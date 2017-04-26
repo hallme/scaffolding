@@ -26,12 +26,14 @@ Stylesheet: Responsive WooCommerce Styles
 			max-width: none;
 			text-align: center;
 			@include flexbox(flex);
+			@include flex-direction(column);
 			padding-left: ($grid-gutter-width / 2);
 			padding-right: ($grid-gutter-width / 2);
 
 			.inner-product {
 				@include flexbox(flex);
 				@include flex-direction(column);
+				@include flex-grow(1);
 			}
 
 			.woocommerce-LoopProduct-link {
