@@ -15,34 +15,36 @@ get_header(); ?>
 	<div class="row">
 
 		<div id="main" class="<?php echo scaffolding_set_layout_classes( 'main' ); ?> clearfix" role="main">
-
+			
 			<div itemscope itemtype="http://schema.org/SearchResultsPage">
 
-				<h1 class="archive-title"><span>Search Results for:</span> <?php echo esc_attr( get_search_query() ); ?></h1>
+				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'scaffolding' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 
-				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+				<?php if ( have_posts() ) : ?>
+		
+					<?php while ( have_posts() ) : the_post(); ?>
 
-					<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
 
-						<header class="article-header">
+							<header class="entry-header">
 
-							<h2 class="entry-title search-title h3"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+								<h2 class="entry-title search-title h3"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 
-							<?php if ( "post" == get_post_type() ) : ?>
+								<?php if ( "post" == get_post_type() ) : ?>
 
-								<p class="byline"><?php printf( __( 'Posted <time class="updated" datetime="%1$s">%2$s</time> by <span class="author">%3$s</span> <span class="amp">&</span> filed under %4$s.', 'scaffolding' ), get_the_time( 'Y-m-d' ), get_the_time( get_option( 'date_format' ) ), scaffolding_get_the_author_posts_link(), get_the_category_list( ', ' ) ); ?></p>
+									<p class="entry-meta"><?php printf( __( 'Posted <time class="updated" datetime="%1$s">%2$s</time> by <span class="author">%3$s</span> <span class="amp">&amp;</span> filed under %4$s.', 'scaffolding' ), get_the_time( 'Y-m-d' ), get_the_time( get_option( 'date_format' ) ), scaffolding_get_the_author_posts_link(), get_the_category_list( ', ' ) ); ?></p>
 
-							<?php endif; ?>
+								<?php endif; ?>
 
-						</header><?php // END .article-header ?>
+							</header>
 
-						<div class="entry-content" itemprop="description">
+							<div class="entry-content" itemprop="description">
 
-							<?php the_excerpt('<span class="read-more">Read more &raquo;</span>'); ?>
+								<?php the_excerpt(); ?>
 
-						</div><?php // END .article-section ?>
+							</div>
 
-					</article><?php // END article ?>
+						</article>
 
 					<?php endwhile; ?>
 

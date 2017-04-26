@@ -12,21 +12,155 @@ a:visited {
 	text-decoration: none;
 }
 
-/* on hover and focus */
 a:hover,
 a:focus {
 	color: $color__link-hover;
 	text-decoration: underline;
 }
 
-/* on click */
 a:active {}
 
 a:link {
-	-webkit-tap-highlight-color: rgba( 0, 0, 0, 0.3 );
+	-webkit-tap-highlight-color: rgba(0,0,0,0.3);
 }
 
-/* read more link */
-.read-more {
+a.read-more {
 	white-space: nowrap;
+}
+
+// button styles - using a namespace to avoid plugin conflict
+// usage: for each button add the default class and one for color, size and width
+
+@mixin button {
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: 0;
+	outline: 0;
+	@include transition(background-color 0.25s ease-in-out);
+	
+	&:hover,
+	&:focus,
+	&:active,
+	&.active {
+		text-decoration: none;
+	}
+	
+	&:disabled,
+	&.disabled,
+	&:disabled[disabled] {
+		cursor: not-allowed;
+		filter: alpha(opacity=65);
+		opacity: 0.65;
+	}
+}
+
+// default class
+a.sc-btn,
+button.sc-btn {
+	@include button;
+}
+
+// button colors
+@mixin button-color( $bgcolor, $txtcolor ) {
+	background-color: $bgcolor;
+	color: $txtcolor;
+	
+	&:hover,
+	&:focus,
+	&:active,
+	&.active {
+		background-color: darken( $bgcolor, 10% );
+		color: $txtcolor;
+	}
+	
+	&:active,
+	&.active {
+		background-color: darken( $bgcolor, 20% );
+	}
+	
+	&:disabled,
+	&.disabled,
+	&:disabled[disabled] {
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $bgcolor;
+		}
+	}
+}
+
+a.sc-btn--primary,
+button.sc-btn--primary {
+	@include button-color( $color__primary, #FFF );
+}
+
+a.sc-btn--secondary,
+button.sc-btn--secondary {
+	@include button-color( $color__secondary, #FFF );
+}
+
+// button sizes
+@mixin button-sm {
+	font-size: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+a.sc-btn--sm,
+button.sc-btn--sm {
+	@include button-sm;
+}
+
+@mixin button-lg {
+	font-size: 1.25em;
+	padding-top: 0.875em;
+	padding-bottom: 0.875em;
+}
+
+a.sc-btn--lg,
+button.sc-btn--lg {
+	@include button-lg;
+}
+
+// button widths
+@mixin button-narrow {
+	display: inline-block;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+a.sc-btn--narrow,
+button.sc-btn--narrow {
+	@include button-narrow;
+}
+
+@mixin button-wide {
+	display: inline-block;
+	padding-left: 1em;
+	padding-right: 1em;
+	
+	@media only screen and (min-width: $screen-md-min) {
+		padding-left: 3em;
+		padding-right: 3em;
+	}
+}
+
+a.sc-btn--wide,
+button.sc-btn--wide {
+	@include button-wide;
+}
+
+@mixin button-full {
+	display: block;
+	padding-left: 1em;
+	padding-right: 1em;
+	width: 100%;
+}
+
+a.sc-btn--full,
+button.sc-btn--full {
+	@include button-full;
 }

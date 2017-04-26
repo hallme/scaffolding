@@ -76,6 +76,12 @@ This is for the larger monitors and possibly full screen viewers.
 }
 
 /*
+CUSTOM STYLES
+This is where you have custom breakpoints.
+*/
+//@import "media-queries/custom";
+
+/*
 RETINA (2x RESOLUTION DEVICES)
 This applies to the retina iPhone (4s) and iPad (2+) along with
 other displays with a 2x resolution. You can also create a media
@@ -86,19 +92,6 @@ query for retina AND a certain size if you want. Go Nuts.
 	only screen and (min-device-pixel-ratio: 1.5) {
 		@import "media-queries/retina";
 }*/
-
-/*
-iPHONE 5 MEDIA QUERY
-Want to get fancy for no good reason? Knock yourself out.
-*/
-@media (device-height: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-	// iPhone 5 or iPod Touch 5th generation styles (you can include your own file if you want)
-	input,
-	textarea {
-		-webkit-appearance: none;
-		-webkit-border-radius: 0;
-	}
-}
 
 /*
 PRINT STYLESHEET

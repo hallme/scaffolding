@@ -504,3 +504,18 @@ span.amp {
 	-moz-align-items: $value;
 	align-items: $value;
 }
+
+/*************************
+ * FLEXBOX GROW
+ * Values: positive integer
+ * Default: 0
+ * USAGE: @include flex-grow(0)
+ ************************/
+
+@mixin flex-grow($int: 0) {
+	-webkit-box-flex: $int;
+	-webkit-flex-grow: $int;
+	-moz-flex-grow: $int;
+	-ms-flex-positive: $int;
+	flex-grow: $int;
+}

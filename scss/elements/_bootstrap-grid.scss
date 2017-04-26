@@ -4,6 +4,8 @@ Author:
 
 Stylesheet: Bootstrap Grid Stylesheet
 
+v3.3.7 (http://getbootstrap.com)
+
 ******************************************************************/
 
 * {
@@ -15,24 +17,106 @@ Stylesheet: Bootstrap Grid Stylesheet
 	@include box-sizing(border-box);
 }
 
+/**
+ * Framework grid generation
+ *
+ * Used only by Bootstrap to generate the correct number of grid classes given
+ * any value of `$grid-columns`.
+ */
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+	@for $i from (1 + 1) through $grid-columns {
+		$list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+	}
+	#{$list} {
+		position: relative;
+		// Prevent columns from collapsing when empty
+		min-height: 1px;
+		// Inner gutter via padding
+		padding-left:  ceil(($grid-gutter-width / 2));
+		padding-right: floor(($grid-gutter-width / 2));
+	}
+}
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
+	@for $i from (1 + 1) through $grid-columns {
+		$list: "#{$list}, .col-#{$class}-#{$i}";
+	}
+	#{$list} {
+		float: left;
+	}
+}
+
+@mixin calc-grid-column($index, $class, $type) {
+	@if ($type == width) and ($index > 0) {
+		.col-#{$class}-#{$index} {
+			width: percentage(($index / $grid-columns));
+		}
+	}
+	@if ($type == push) and ($index > 0) {
+		.col-#{$class}-push-#{$index} {
+			left: percentage(($index / $grid-columns));
+		}
+	}
+	@if ($type == push) and ($index == 0) {
+		.col-#{$class}-push-0 {
+			left: auto;
+		}
+	}
+	@if ($type == pull) and ($index > 0) {
+		.col-#{$class}-pull-#{$index} {
+			right: percentage(($index / $grid-columns));
+		}
+	}
+	@if ($type == pull) and ($index == 0) {
+		.col-#{$class}-pull-0 {
+			right: auto;
+		}
+	}
+	@if ($type == offset) {
+		.col-#{$class}-offset-#{$index} {
+			margin-left: percentage(($index / $grid-columns));
+		}
+	}
+}
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin loop-grid-columns($columns, $class, $type) {
+	@for $i from 0 through $columns {
+		@include calc-grid-column($i, $class, $type);
+	}
+}
+
+// Create grid for specific class
+@mixin make-grid($class) {
+	@include float-grid-columns($class);
+	@include loop-grid-columns($grid-columns, $class, width);
+	@include loop-grid-columns($grid-columns, $class, pull);
+	@include loop-grid-columns($grid-columns, $class, push);
+	@include loop-grid-columns($grid-columns, $class, offset);
+}
+
 
 /**
-* Grid System
-*/
+ * Grid system
+ * Generate semantic grid columns with these mixins.
+ */
 
 // Centered container element
-@mixin container-fixed() {
+@mixin container-fixed($gutter: $grid-gutter-width) {
 	margin-right: auto;
 	margin-left: auto;
-	padding-left:  ($grid-gutter-width / 2);
-	padding-right: ($grid-gutter-width / 2);
+	padding-left: floor(($gutter / 2));
+	padding-right: ceil(($gutter / 2));
 	@include clearfix;
 }
 
 // Creates a wrapper for a series of columns
 @mixin make-row($gutter: $grid-gutter-width) {
-	margin-left:  ($gutter / -2);
-	margin-right: ($gutter / -2);
+	margin-left: ceil(($gutter / -2));
+	margin-right: floor(($gutter / -2));
 	@include clearfix;
 }
 
@@ -42,33 +126,27 @@ Stylesheet: Bootstrap Grid Stylesheet
 	float: left;
 	width: percentage(($columns / $grid-columns));
 	min-height: 1px;
-	padding-left:  ($gutter / 2);
+	padding-left: ($gutter / 2);
 	padding-right: ($gutter / 2);
 }
 
 @mixin make-xs-column-offset($columns) {
-	@media (min-width: $screen-xs-min) {
-		margin-left: percentage(($columns / $grid-columns));
-	}
+	margin-left: percentage(($columns / $grid-columns));
 }
 
 @mixin make-xs-column-push($columns) {
-	@media (min-width: $screen-xs-min) {
-		left: percentage(($columns / $grid-columns));
-	}
+	left: percentage(($columns / $grid-columns));
 }
 
 @mixin make-xs-column-pull($columns) {
-	@media (min-width: $screen-xs-min) {
-		right: percentage(($columns / $grid-columns));
-	}
+	right: percentage(($columns / $grid-columns));
 }
 
 // Generate the small columns
 @mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
 	position: relative;
 	min-height: 1px;
-	padding-left:  ($gutter / 2);
+	padding-left: ($gutter / 2);
 	padding-right: ($gutter / 2);
 
 	@media (min-width: $screen-sm-min) {
@@ -99,7 +177,7 @@ Stylesheet: Bootstrap Grid Stylesheet
 @mixin make-md-column($columns, $gutter: $grid-gutter-width) {
 	position: relative;
 	min-height: 1px;
-	padding-left:  ($gutter / 2);
+	padding-left: ($gutter / 2);
 	padding-right: ($gutter / 2);
 
 	@media (min-width: $screen-md-min) {
@@ -130,7 +208,7 @@ Stylesheet: Bootstrap Grid Stylesheet
 @mixin make-lg-column($columns, $gutter: $grid-gutter-width) {
 	position: relative;
 	min-height: 1px;
-	padding-left:  ($gutter / 2);
+	padding-left: ($gutter / 2);
 	padding-right: ($gutter / 2);
 
 	@media (min-width: $screen-lg-min) {
@@ -159,144 +237,46 @@ Stylesheet: Bootstrap Grid Stylesheet
 
 
 /**
-* Framework grid generation
-*
-* Used only by Bootstrap to generate the correct number of grid classes given
-* any value of $grid-columns.
-*/
+ * Container widths
+ * Set the container width, and override it for fixed navbars in media queries.
+ */
 
-@mixin make-grid-columns() {
-	$list: '';
-	$i: 1;
-	$list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
-	@for $i from 2 through $grid-columns {
-		$list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}, #{$list}";
-	}
-	#{$list} {
-		position: relative;
-		// Prevent columns from collapsing when empty
-		min-height: 1px;
-		// Inner gutter via padding
-		padding-left:  ($grid-gutter-width / 2);
-		padding-right: ($grid-gutter-width / 2);
-	}
-}
+.container {
+	@include container-fixed;
 
-// [converter] Grid converted to use SASS cycles (LESS uses recursive nested mixin defs not supported by SASS)
-@mixin make-grid-columns-float($class) {
-	$list: '';
-	$i: 1;
-	$list: ".col-#{$class}-#{$i}";
-	@for $i from 2 through $grid-columns {
-		$list: ".col-#{$class}-#{$i}, #{$list}";
+	@media (min-width: $screen-sm-min) {
+		width: $container-sm;
 	}
-	#{$list} {
-		float: left;
+	@media (min-width: $screen-md-min) {
+		width: $container-md;
 	}
-}
-
-@mixin make-grid-columns() {
-	$list: '';
-	$i: 1;
-	$list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
-	@for $i from 2 through $grid-columns {
-		$list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}, #{$list}";
-	}
-	#{$list} {
-		position: relative;
-		// Prevent columns from collapsing when empty
-		min-height: 1px;
-		// Inner gutter via padding
-		padding-left:  ($grid-gutter-width / 2);
-		padding-right: ($grid-gutter-width / 2);
-	}
-}
-
-// [converter] Grid converted to use SASS cycles (LESS uses recursive nested mixin defs not supported by SASS)
-@mixin make-grid-columns-float($class) {
-	$list: '';
-	$i: 1;
-	$list: ".col-#{$class}-#{$i}";
-	@for $i from 2 through $grid-columns {
-		$list: ".col-#{$class}-#{$i}, #{$list}";
-	}
-	#{$list} {
-		float: left;
-	}
-}
-
-@mixin calc-grid($index, $class, $type) {
-	@if ($type == width) and ($index > 0) {
-		.col-#{$class}-#{$index} {
-			width: percentage(($index / $grid-columns));
-		}
-	}
-	@if ($type == push) {
-		.col-#{$class}-push-#{$index} {
-			left: percentage(($index / $grid-columns));
-		}
-	}
-	@if ($type == pull) {
-		.col-#{$class}-pull-#{$index} {
-			right: percentage(($index / $grid-columns));
-		}
-	}
-	@if ($type == offset) {
-		.col-#{$class}-offset-#{$index} {
-			margin-left: percentage(($index / $grid-columns));
-		}
-	}
-}
-
-// [converter] This is defined recursively in LESS, but SASS supports real loops
-@mixin make-grid($columns, $class, $type) {
-	@for $i from 0 through $columns {
-		@include calc-grid($i, $class, $type);
+	@media (min-width: $screen-lg-min) {
+		width: $container-lg;
 	}
 }
 
 
 /**
-* Container widths
-*
-* Set the container width, and override it for fixed navbars in media queries.
-*/
+ * Fluid container
+ *
+ * Utilizes the mixin meant for fixed width containers, but without any defined
+ * width for fluid, full width layouts.
+ */
 
-.lt-ie9 {
-	.container {
-		@include container-fixed;
-
-		@media (min-width: $screen-sm-min) {
-			width: $container-sm;
-		}
-		@media (min-width: $screen-md-min) {
-			width: $container-md;
-		}
-		@media (min-width: $screen-lg-min) {
-			width: $container-lg;
-		}
-	}
+.container-fluid {
+	@include container-fixed;
 }
 
-
-/**
-* Fluid container
-*
-* Utilizes the mixin meant for fixed width containers, but without any defined
-* width for fluid, full width layouts.
-*/
-
-.container-fluid,
 .wrap {
 	@include wrap;
 }
 
 
-/**
-* Row
-*
-* Rows contain and clear the floats of your columns.
-*/
+/** 
+ * Row
+ *
+ * Rows contain and clear the floats of your columns.
+ */
 
 .row {
 	@include make-row;
@@ -304,69 +284,50 @@ Stylesheet: Bootstrap Grid Stylesheet
 
 
 /**
-* Columns
-*
-* Common styles for small and large grid columns
-*/
+ * Columns
+ * Common styles for small and large grid columns
+ */
 
 @include make-grid-columns;
 
 
 /**
-* Extra small grid
-*
-* Columns, offsets, pushes, and pulls for extra small devices
-* like smartphones.
-*/
+ * Extra small grid
+ *
+ * Columns, offsets, pushes, and pulls for extra small devices like smartphones.
+ */
 
-@include make-grid-columns-float(xs);
-@include make-grid($grid-columns, xs, width);
-@include make-grid($grid-columns, xs, pull);
-@include make-grid($grid-columns, xs, push);
-@include make-grid($grid-columns, xs, offset);
+@include make-grid(xs);
 
 
 /**
-* Small grid
-*
-* Columns, offsets, pushes, and pulls for the small device range,
-* from phones to tablets.
-*/
+ * Small grid
+ *
+ * Columns, offsets, pushes, and pulls for the small device range, from phones to tablets.
+ */
 
 @media (min-width: $screen-sm-min) {
-	@include make-grid-columns-float(sm);
-	@include make-grid($grid-columns, sm, width);
-	@include make-grid($grid-columns, sm, pull);
-	@include make-grid($grid-columns, sm, push);
-	@include make-grid($grid-columns, sm, offset);
+	@include make-grid(sm);
 }
 
 
 /**
-* Medium grid
-*
-* Columns, offsets, pushes, and pulls for the desktop device range.
-*/
+ * Medium grid
+ *
+ * Columns, offsets, pushes, and pulls for the desktop device range.
+ */
 
 @media (min-width: $screen-md-min) {
-	@include make-grid-columns-float(md);
-	@include make-grid($grid-columns, md, width);
-	@include make-grid($grid-columns, md, pull);
-	@include make-grid($grid-columns, md, push);
-	@include make-grid($grid-columns, md, offset);
+	@include make-grid(md);
 }
 
 
 /**
-* Large grid
-*
-* Columns, offsets, pushes, and pulls for the large desktop device range.
-*/
+ * Large grid
+ *
+ * Columns, offsets, pushes, and pulls for the large desktop device range.
+ */
 
 @media (min-width: $screen-lg-min) {
-	@include make-grid-columns-float(lg);
-	@include make-grid($grid-columns, lg, width);
-	@include make-grid($grid-columns, lg, pull);
-	@include make-grid($grid-columns, lg, push);
-	@include make-grid($grid-columns, lg, offset);
+	@include make-grid(lg);
 }

@@ -22,29 +22,50 @@ video {
 	width: 100% !important;
 }
 
+figure {
+	margin: 1em 0;
+}
+
 /* Image Alignment */
 img.alignleft,
-.alignleft {
-	float: left;
-	margin: 15px 20px 15px 0;
-}
-
+.alignleft,
 img.alignright,
-.alignright {
-	float: right;
-	margin: 15px 0 15px 20px;
-}
-
+.alignright,
 img.aligncenter,
-.aligncenter {
-	display: block;
-	margin: 0 auto;
-}
-
+.aligncenter,
 img.alignnone,
 .alignnone {
-	clear: both;
-	margin: 15px 0;
+	display: block;
+	margin: 15px auto;
+}
+
+// Add image alignment for larger screens only
+@media only screen and (min-width: 600px) {
+	
+	img.alignleft,
+	.alignleft {
+		float: left;
+		margin: 5px 20px 15px 0;
+	}
+
+	img.alignright,
+	.alignright {
+		float: right;
+		margin: 5px 0 15px 20px;
+	}
+
+	img.aligncenter,
+	.aligncenter {
+		display: block;
+		margin: 15px auto;
+	}
+
+	img.alignnone,
+	.alignnone {
+		clear: both;
+		margin: 15px 0;
+	}
+	
 }
 
 /* Image Caption */
@@ -69,10 +90,16 @@ img.alignnone,
 
 /* Image Gallery */
 .gallery {
-
+	margin-top: 30px;
+	margin-left: -15px;
+	margin-right: -15px;
+	@include flexbox(flex);
+	@include flex-wrap(wrap);
+	
 	.gallery-item {
-		display: inline-block;
-		margin: 1%;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-bottom: 30px;
 		overflow: hidden;
 		position: relative;
 
@@ -80,6 +107,10 @@ img.alignnone,
 			text-align: center;
 
 			a {
+				&:focus {
+					outline: none;
+				}
+				
 				img {
 					vertical-align: bottom;
 				}
@@ -108,16 +139,16 @@ img.alignnone,
 	position: absolute;
 	text-align: left;
 	width: 100%;
-}
 
-.gallery-caption:before {
-	content: "";
-	height: 100%;
-	min-height: 49px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
+	&:before {
+		content: "";
+		height: 100%;
+		min-height: 49px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
 }
 
 .gallery-item:hover .gallery-caption {
@@ -134,17 +165,14 @@ img.alignnone,
 
 .gallery-columns-1 {
 	.gallery-item {
-		width: 98%;
+		width: 100%;
 	}
 }
-.gallery-columns-2 {
-	.gallery-item {
-		width: 48%;
-	}
-}
+
+.gallery-columns-2,
 .gallery-columns-3 {
 	.gallery-item {
-		width: 31.3%;
+		width: 50%;
 	}
 }
 
@@ -156,37 +184,25 @@ img.alignnone,
 .gallery-columns-8,
 .gallery-columns-9 {
 	.gallery-item {
-		width: 23%;
+		width: 25%;
 	}
 }
 
 /* Change gallery to proper spacing on larger screens */
 @media only screen and (min-width: $screen-sm-min) {
-	.gallery-columns-5 {
+	
+	.gallery-columns-4 {
 		.gallery-item {
-			width: 18%;
+			width: 25%;
 		}
 	}
-	.gallery-columns-6 {
+	
+	.gallery-columns-3 {
 		.gallery-item {
-			width: 14.6%;
+			width: 33.333%;
 		}
 	}
-	.gallery-columns-7 {
-		.gallery-item {
-			width: 12.2%;
-		}
-	}
-	.gallery-columns-8 {
-		.gallery-item {
-			width: 10.5%;
-		}
-	}
-	.gallery-columns-9 {
-		.gallery-item {
-			width: 9.1%;
-		}
-	}
+	
 }
 
 /* Core Media Player */

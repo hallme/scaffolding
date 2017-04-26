@@ -5,10 +5,14 @@
  * @package Scaffolding
  * @since Scaffolding 1.0
  */
+?>
 
-if ( function_exists( 'scaffolding_page_navi' ) ) : ?>
+<?php if ( function_exists( 'scaffolding_page_navi' ) ) : ?>
 
-	<?php global $wp_query; scaffolding_page_navi( '', '', $wp_query ); ?>
+	<?php 
+		global $wp_query; 
+		scaffolding_page_navi( '', '', $wp_query ); 
+	?>
 
 <?php else : ?>
 
@@ -23,5 +27,4 @@ if ( function_exists( 'scaffolding_page_navi' ) ) : ?>
 		</ul>
 	</nav>
 
-<?php
-endif;
+<?php endif;

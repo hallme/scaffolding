@@ -11,10 +11,11 @@ body {
 	font-size: $size__font-default;
 	color: $color__body-text;
 	line-height: 1.55;
-	overflow-wrap: break-word;
-	word-wrap: break-word;
-	-webkit-hyphens: auto;
-	-ms-hyphens: manual;
+}
+
+p {
+	-webkit-hyphens: manual;
+	-epub-hyphens: manual;
 	-moz-hyphens: manual;
 	hyphens: manual;
 }

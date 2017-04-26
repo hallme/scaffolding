@@ -12,6 +12,7 @@ Stylesheet: Comments Stylesheet
 
 .respond-form,
 .comment-respond {
+	@include clearfix;
 
 	#reply-title {
 		font-weight: bold;
@@ -128,15 +129,25 @@ Stylesheet: Comments Stylesheet
 
 }
 
-.comment-nav {
+#comment-nav-above {
+	margin-bottom: 2em;
+}
 
-	ul {
-		margin: 1em 0;
+#comment-nav-below {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
 
-		li {
-			margin-left: 0;
-		}
+.comment-navigation {
+	@include clearfix;
+	
+	.nav-previous {
+		float: left;
+	}
 
+	.nav-next {
+		float: right;
+		text-align: right;
 	}
 }
 

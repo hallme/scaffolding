@@ -1,0 +1,24 @@
+{
+  "name": "gulp-task-runners",
+  "version": "1.0.0",
+  "description": "Wordpress Gulp task runners.",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0",
+    "wp-cli": "0.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hallme/scaffolding"
+  },
+  "author": "Hall Internet Marketing",
+  "bugs": {
+    "url": "https://github.com/hallme/scaffolding/issues"
+  },
+  "homepage": "https://github.com/hallme/scaffolding/#readme"
+}

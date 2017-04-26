@@ -18,35 +18,37 @@ get_header(); ?>
 
 		<div id="main" class="<?php echo scaffolding_set_layout_classes( 'main' ); ?> clearfix" role="main">
 
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+		<?php if ( have_posts() ) : ?>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
+			<?php while ( have_posts() ) : the_post(); ?>
 
-				<header class="article-header">
+				<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
 
-					<h2 class="entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+					<header class="entry-header">
 
-					<p class="byline vcard"><?php printf( __( 'Posted <time class="updated" datetime="%1$s"><a href="%5$s" title="%6$s">%2$s</a></time> by <span class="author">%3$s</span> <span class="amp">&amp;</span> filed under %4$s.', 'scaffolding' ), get_the_time( 'Y-m-d' ), get_the_time( get_option( 'date_format' ) ), scaffolding_get_the_author_posts_link(), get_the_category_list( ', ' ), get_permalink(), the_title_attribute( array( 'echo' => false ) ) ); ?></p>
+						<h2 class="entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 
-				</header>
+						<p class="entry-meta vcard"><?php printf( __( 'Posted <time class="updated" datetime="%1$s"><a href="%5$s" title="%6$s">%2$s</a></time> by <span class="author">%3$s</span> <span class="amp">&amp;</span> filed under %4$s.', 'scaffolding' ), get_the_time( 'Y-m-d' ), get_the_time( get_option( 'date_format' ) ), scaffolding_get_the_author_posts_link(), get_the_category_list( ', ' ), get_permalink(), the_title_attribute( array( 'echo' => false ) ) ); ?></p>
 
-				<section class="entry-content clearfix">
+					</header>
 
-					<?php the_content('<span class="read-more">Read More&hellip;</span>'); ?>
+					<section class="entry-content clearfix">
 
-				</section>
-				
-				<?php if ( get_the_tag_list() ) : ?>
+						<?php the_content('<span class="read-more">Read More&hellip;</span>'); ?>
 
-				<footer class="article-footer">
+					</section>
 
-					<?php echo get_the_tag_list( '<p class="tags"><span class="meta-title">Tags:</span> ', ', ', '</p>' );  ?>
+					<?php if ( get_the_tag_list() ) : ?>
 
-				</footer>
-				
-				<?php endif; ?>
+						<footer class="entry-footer clearfix">
 
-			</article>
+							<?php the_tags('<p class="tags"><span class="tags-title">Tags:</span> ', ', ', '</p>'); ?>
+
+						</footer>
+
+					<?php endif; ?>
+
+				</article>
 
 			<?php endwhile; ?>
 

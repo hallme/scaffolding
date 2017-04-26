@@ -25,10 +25,13 @@ $size__font-default: 16px;
 
 /* Color Scheme */
 $color__body-text: #111;
-$color__dark-gray: #444;
+$color__primary: #34495e;
+$color__secondary: #9b59b6;
+$color__tertiary-dark: #444;
+$color__tertiary-light: #EEE;
 
-$color__link: #008CBA;
-$color__link-hover: #007BA1;
+$color__link: #3498db;
+$color__link-hover: #2980b9;
 
 $color__alert-yellow: #f1c40f;
 $color__alert-red: #c0392b;
@@ -55,13 +58,12 @@ $input__bg-focus-color: #FFF;
 
 /**************
  * Tables
- * integrated with WooCommerce
  **************/
 
 $table__border-color: #DDD;
 $table__bg-th-color: #EEE;
 $table__bg-even-color: #FFF;
-$table__bg-odd-color: #F0F0F0;
+$table__bg-odd-color: #f1f4f7;
 
 /**************
  * Grid Stuff
@@ -83,10 +85,6 @@ $grid-gutter-width: 30px;
 $screen-xs-max: ($screen-sm-min - 1) !default;
 $screen-sm-max: ($screen-md-min - 1) !default;
 $screen-md-max: ($screen-lg-min - 1) !default;
-
-/**************
- * Other
- **************/
 
 // Our plugin path
 $plugins-path: '/wp-content/plugins/';

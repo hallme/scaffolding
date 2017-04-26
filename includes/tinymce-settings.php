@@ -6,84 +6,213 @@
  * handle this differently.
  *
  * http://www.kevinleary.net/customizing-tinymce-wysiwyg-editor-wordpress/
+ * https://shellcreeper.com/complete-guide-to-style-format-drop-down-in-wp-editor/
  */
 
-// TinyMCE: First line toolbar customizations
-if ( ! function_exists( 'scaffolding_extended_editor_mce_buttons' ) ) {
-	function scaffolding_extended_editor_mce_buttons ( $buttons ) {
-		// The settings are returned in this array. Customize to suite your needs.
-		return array(
-			'bold', 'italic', 'strikethrough', 'bullist', 'numlist', 'blockquote', 'hr',
-			'alignleft', 'aligncenter', 'alignright', 'link', 'unlink', 'wp_more',
-			'spellchecker', 'wp_fullscreen', 'wp_adv'
-		);
-		/* WordPress Default
-		return array(
-			'bold', 'italic', 'strikethrough', bullist', 'numlist', 'blockquote', 'hr',
-			'alignleft', 'aligncenter', 'alignright', 'link', 'unlink', 'wp_more',
-			'spellchecker', 'wp_fullscreen', 'wp_adv'
-		); */
-	}
-	add_filter( 'mce_buttons', 'scaffolding_extended_editor_mce_buttons', 0 );
+/**
+ * TinyMCE: First line toolbar customizations
+ * There are 4 total lines that may be added
+ */
+function scaffolding_tinymce_modify_mce_buttons_1 ( $buttons ) {
+	// The settings are returned in this array. Customize to suite your needs.
+	return array(
+		'bold', 'italic', 'strikethrough', 'bullist', 'numlist', 'blockquote', 'hr',
+		'alignleft', 'aligncenter', 'alignright', 'link', 'unlink', 'wp_more',
+		'spellchecker', 'wp_fullscreen', 'wp_adv'
+	);
+	/* WordPress Default
+	return array(
+		'bold', 'italic', 'strikethrough', bullist', 'numlist', 'blockquote', 'hr',
+		'alignleft', 'aligncenter', 'alignright', 'link', 'unlink', 'wp_more',
+		'spellchecker', 'wp_fullscreen', 'wp_adv'
+	); */
 }
+add_filter( 'mce_buttons', 'scaffolding_tinymce_modify_mce_buttons_1', 0 );
 
-// TinyMCE: Second line toolbar customizations
-if ( ! function_exists( 'scaffolding_extended_editor_mce_buttons_2' ) ) {
-	function scaffolding_extended_editor_mce_buttons_2 ( $buttons ) {
-		// The settings are returned in this array. Customize to suite your needs. An empty array is used here because I remove the second row of icons.
-		return array(
-			'styleselect', 'underline', 'alignull', 'forecolor', 'pastetext', 'pasteword', 'removeformat', 'media', 'charmap',
-			'outdent', 'indent', 'undo', 'redo', 'wp_help'
-		);
-		/* WordPress Default
-		return array(
-			'formatselect', 'underline', 'alignfull', 'pastetext', 'pasteword', 'removeformat', 'charmap',
-			'outdent', 'indent', 'undo', 'redo', 'wp_help'
-		); */
-	}
-	add_filter( 'mce_buttons_2', 'scaffolding_extended_editor_mce_buttons_2', 0 );
+/**
+ * TinyMCE: Second line toolbar customizations
+ * There are 4 total lines that may be added
+ */
+function scaffolding_tinymce_modify_mce_buttons_2 ( $buttons ) {
+	// The settings are returned in this array. Customize to suite your needs.
+	return array(
+		'styleselect', 'underline', 'alignull', 'forecolor', 'pastetext', 'pasteword', 'removeformat', 'media', 'charmap',
+		'outdent', 'indent', 'undo', 'redo', 'wp_help'
+	);
+	/* WordPress Default
+	return array(
+		'formatselect', 'underline', 'alignfull', 'pastetext', 'pasteword', 'removeformat', 'charmap',
+		'outdent', 'indent', 'undo', 'redo', 'wp_help'
+	); */
 }
+add_filter( 'mce_buttons_2', 'scaffolding_tinymce_modify_mce_buttons_2', 0 );
 
-// Add new styles to the 'styleselect'
-add_filter( 'tiny_mce_before_init', 'scaffolding_styles_dropdown' );
-function scaffolding_styles_dropdown( $settings ) {
+/**
+ * TinyMCE: Modify 'styleselect'
+ * This is the Formats dropdown
+ */
+function scaffolding_tinymce_modify_styleselect( $settings ) {
+	
+	// Modify default styles
+    $default_styles = array(
+        array(
+            'title'   => 'Headings',
+            'items' => array(
+                /*
+				array(
+                    'title'   => 'Heading 1',
+                    'format'  => 'h1',
+                ),
+				*/
+                array(
+                    'title'   => 'Heading 2',
+                    'format'  => 'h2',
+                ),
+                array(
+                    'title'   => 'Heading 3',
+                    'format'  => 'h3',
+                ),
+                array(
+                    'title'   => 'Heading 4',
+                    'format'  => 'h4',
+                ),
+                array(
+                    'title'   => 'Heading 5',
+                    'format'  => 'h5',
+                ),
+				/*
+                array(
+                    'title'   => 'Heading 6',
+                    'format'  => 'h6',
+                ),
+				*/
+            ),
+        ),
+        array(
+            'title'   => 'Inline',
+            'items' => array(
+                array(
+                    'title'   => 'Bold',
+                    'format'  => 'bold',
+                    'icon'    => 'bold',
+                ),
+                array(
+                    'title'   => 'Italic',
+                    'format'  => 'italic',
+                    'icon'    => 'italic',
+                ),
+                array(
+                    'title'   => 'Underline',
+                    'format'  => 'underline',
+                    'icon'    => 'underline',
+                ),
+                array(
+                    'title'   => 'Strikethrough',
+                    'format'  => 'strikethrough',
+                    'icon'    => 'strikethrough',
+                ),
+                array(
+                    'title'   => 'Superscript',
+                    'format'  => 'superscript',
+                    'icon'    => 'superscript',
+                ),
+                array(
+                    'title'   => 'Subscript',
+                    'format'  => 'subscript',
+                    'icon'    => 'subscript',
+                ),
+                array(
+                    'title'   => 'Code',
+                    'format'  => 'code',
+                    'icon'    => 'code',
+                ),
+            ),
+        ),
+        array(
+            'title'   => 'Blocks',
+            'items' => array(
+                array(
+                    'title'   => 'Paragraph',
+                    'format'  => 'p',
+                ),
+                array(
+                    'title'   => 'Blockquote',
+                    'format'  => 'blockquote',
+                ),
+                array(
+                    'title'   => 'Div',
+                    'format'  => 'div',
+                ),
+                array(
+                    'title'   => 'Pre',
+                    'format'  => 'pre',
+                ),
+            ),
+        ),
+        array(
+            'title'   => 'Alignment',
+            'items' => array(
+                array(
+                    'title'   => 'Left',
+                    'format'  => 'alignleft',
+                    'icon'    => 'alignleft',
+                ),
+                array(
+                    'title'   => 'Center',
+                    'format'  => 'aligncenter',
+                    'icon'    => 'aligncenter',
+                ),
+                array(
+                    'title'   => 'Right',
+                    'format'  => 'alignright',
+                    'icon'    => 'alignright',
+                ),
+				/*
+                array(
+                    'title'   => 'Justify',
+                    'format'  => 'alignjustify',
+                    'icon'    => 'alignjustify',
+                ),
+				*/
+            ),
+        ),
+    );
 
-	// Create array of new styles
+	// Add custom styles
 	$new_styles = array(
+		/*
 		array(
 			'title'	=> __( 'Buttons', 'scaffolding' ), // This is the title of the dropdown
-			'items'	=> array( // Define the items
+			'items'	=> array(
 				array(
 					'title'    => __( 'Orange Button', 'scaffolding' ),
 					'selector' => 'a',
 					'classes'  => 'orange-btn',
 					'exact'    => true
 				),
-				array(
-					'title'    => __( 'Blue Button', 'scaffolding' ),
-					'selector' => 'a',
-					'classes'  => 'blue-btn',
-					'exact'    => true
-				),
 			),
 		),
+		*/
 	);
 
-	// Merge old & new styles
-	$settings['style_formats_merge'] = true;
+	// Merge styles
+	$new_settings = array_merge( $default_styles, $new_styles );
 
-	// Add new styles
-	$settings['style_formats'] = json_encode( $new_styles );
+	// Add styles in tinymce config as json data
+	$settings['style_formats'] = json_encode( $new_settings );
 
-	// Return New Settings
+	// Return new settings
 	return $settings;
 
 }
+add_filter( 'tiny_mce_before_init', 'scaffolding_tinymce_modify_styleselect' );
 
-// Add custom colors to TinyMCE "colors" dropdown
-add_filter( 'tiny_mce_before_init', 'scaffolding_change_tinymce_colors' );
-function scaffolding_change_tinymce_colors( $init ) {
-	$default_colours = '
+/**
+ * TinyMCE: Modify text colors
+ * Update this to include the theme's color palette and remove the defaults
+ */
+function scaffolding_tinymce_modify_text_colors( $init ) {
+	$default_colors = '
 		"000000", "Black",
 		"993300", "Burnt orange",
 		"333300", "Dark olive",
@@ -125,8 +254,8 @@ function scaffolding_change_tinymce_colors( $init ) {
 		"CC99FF", "Plum",
 		"FFFFFF", "White"
 	';
-	$custom_colours = '';
-	$init['textcolor_map'] = '['.$default_colours.','.$custom_colours.']';
+	$custom_colors = '';
+	$init['textcolor_map'] = '['.$default_colors.','.$custom_colors.']';
 	$init['textcolor_rows'] = 6; // expand colour grid to 6 rows
 	return $init;
 }

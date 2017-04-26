@@ -12,7 +12,7 @@ and will be used across all viewports.
 ******************************************************************/
 
 /*************************
- * GENERAL STYLES
+ * GENERAL
  ************************/
 
 html {
@@ -26,20 +26,15 @@ body {
 
 	#container {
 		height: 100%;
-		/* styles for mobile nav slide in */
+		// styles for mobile nav slide in
 		position: relative;
 		@include transition(all 0.25s ease-in-out);
 	}
 }
 
 /*************************
- * HEADER STYLES
+ * HEADER
  ************************/
-
-/* Ensure that there is no gap between the header and the admin bar for WordPress versions before 3.8. */
-#wpadminbar {
-	min-height: 32px;
-}
 
 #masthead {}
 
@@ -48,6 +43,8 @@ body {
 }
 
 #logo {
+	float: left;
+	
 	&.h1 {
 		margin: 0;
 	}
@@ -61,10 +58,10 @@ body {
 	.spacer {
 		padding-top: 26%; // change this value based on the aspect ratio of your header image
 	}
-} /* end .banner */
+}
 
 /*************************
- * POSTS & CONTENT STYLES
+ * POSTS & CONTENT
  ************************/
 
 #content {}
@@ -72,51 +69,54 @@ body {
 #inner-content {
 	padding: 2em 0;
 
-	/* headers */
+	// headers
 	.page-header {}
 	.article-header {}
 
-	/* titles */
+	// titles
 	.page-title,
-	.archive-title,
 	.single-title {
 		margin-top: 0;
 	}
 
 	.search-title {}
 
-	/* want to style individual post classes? Booya! */
-	.post-id {}         /* post by id (i.e. post-3) */
-	.post {}            /* general post style */
-	.page {}            /* general article on a page style */
-	.attachment {}      /* general style on an attatchment */
-	.sticky {}          /* sticky post style */
-	.hentry {}          /* hentry class */
-	.category-slug {}   /* style by category (i.e. category-videos) */
-	.tag-slug {}        /* style by tag (i.e. tag-news) */
+	// want to style individual post classes? Booya!
+	.post-id {}         // post by id (i.e. post-3)
+	.post {}            // general post style
+	.page {}            // general article on a page style
+	.attachment {}      // general style on an attatchment
+	.sticky {}          // sticky post style
+	.hentry {}          // hentry class
+	.category-slug {}   // style by category (i.e. category-videos)
+	.tag-slug {}        // style by tag (i.e. tag-news)
 
 	/* post meta */
-	.byline {
+	.entry-meta {
 		color: #999;
-		margin: -1em 0 0;
 
 		time {}
 	}
 
-	.tags {}
+	.tags {
+		.tags-title {
+			color: #999;
+		}
+	}
 	.categories {}
 
-	/* entry content */
+	// entry content
 	.page-content {}
 	.entry-content {}
+	.archive-description {}
 
-	/* footers */
+	// footers
 	.page-footer {}
-	.article-footer {}
+	.entry-footer {}
 
-} /* end #inner-content */
+}
 
-/* Style individual templates */
+// Style individual templates
 .home {}
 .blog {}
 .archive {}
@@ -128,15 +128,37 @@ body {
 .search {
 	#inner-content {
 		article {
-			border-bottom: 1px solid #EEE;
-			margin-bottom: 1em;
+			border-bottom: 1px solid #DDD;
+			padding-top: 1em;
 			padding-bottom: 1em;
+			
+			.entry-header {
+				margin-top: 2em;
+				margin-bottom: 1em;
+			}
+			
+			.entry-title {
+				margin: 0;
+			}
+			
+			.entry-meta {
+				margin: 0.5em 0 0;
+			}
+			
+			.entry-content,
+			.entry-footer {
+				margin-top: -1em;
+				margin-bottom: 1em;
+			}
+			
+			&.first-post {
+				.entry-header {
+					margin-top: 0;
+				}
+			}
 
-			&.last-post,
 			&.only-post {
 				border-bottom: 0;
-				margin-bottom: 0;
-				padding-bottom: 0;
 			}
 		}
 	}
@@ -144,8 +166,8 @@ body {
 
 .single {
 	#inner-content {
-		.byline {
-			margin: -1em 0 1em;
+		.entry-meta {
+			margin: -0.5em 0 1em;
 		}
 	}
 }
@@ -158,64 +180,20 @@ body {
 	margin-top: 2em;
 }
 
-.widgettitle {
-	border-bottom: 2px solid #444;
-	margin-bottom: 0.75em;
-}
-
-.widget {
-	margin: 2.2em 0;
-	padding: 0;
-
-	&.first-widget {
-		margin: 0 0 2.2em;
-
-		.widgettitle {
-			margin-top: 0;
-		}
-	}
-
-	&.only-widget {
-		margin: 0;
-
-		.widgettitle {
-			margin-top: 0;
-		}
-	}
-
-	&.last-widget {
-		margin: 2.2em 0 0;
-	}
-
-	/* list styles */
-	ul,
-	ol {
-		li {
-			margin-bottom: 0.75em;
-
-			&:first-child {}
-			&:last-child {}
-
-			a {}
-
-			/* deep nesting */
-			ul,
-			ol {
-				margin-top: 0.75em;
-				padding-left: 1em;
-			}
-		}
-	}
-} /* end .widget */
-
 /*************************
- * FOOTER STYLES
+ * FOOTER
  ************************/
 
 #colophon {
 	background-color: #111;
 	clear: both;
 	color: #999;
+	font-size: 0.875em;
+	
+	.copyright {
+		margin-bottom: 0;
+		text-align: center;
+	}
 }
 
 #inner-footer {
@@ -223,39 +201,43 @@ body {
 }
 
 ul.footer-menu {
-	margin: 0;
+	margin: 0 1px;
 	padding: 0;
 	text-align: center;
 
 	li {
 		display: inline-block;
-		margin: 0 0 0 -3px;
+		margin: 0 -1px;
 		padding: 0;
 
 		a {
-			border-left: 1px solid #ccc;
+			border-left: 1px solid #999;
 			color: #999;
 			display: block;
 			line-height: 1;
-			padding: 0 0.875em;
+			padding: 0 0.675em;
 		}
 
-		&:first-child a {
-			border-left: none;
+		&:first-child {
+			a {
+				padding-left: 0;
+				border-left: 0;
+			}
+		}
+		
+		&:last-child {
+			a {
+				padding-right: 0;
+			}
 		}
 	}
 
 	ul.sub-menu {
 		display: none; // hide child ul as design does not support it
 	}
-} /* end .footer-menu */
-
-.copyright {
-	margin-bottom: 0;
-	text-align: center;
 }
 
-/* scroll to top link */
+// scroll to top link
 #back-top {
 	bottom: 10px;
 	margin-right: 30px;
@@ -290,4 +272,4 @@ ul.footer-menu {
 		width: 40px;
 	}
 
-} /* end #back-top */
+}

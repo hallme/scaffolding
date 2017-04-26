@@ -2,3 +2,4 @@
 .sass-cache/
 .svn
 /css
+node_modules/

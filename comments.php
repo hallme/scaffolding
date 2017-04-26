@@ -35,24 +35,24 @@ if ( have_comments() ) : ?>
 	<div id="comments" class="comments-area">
 
 		<h3 class="h2 comments-title"><?php comments_number( __( '<span>No</span> Responses', 'scaffolding' ), __( '<span>One</span> Response', 'scaffolding' ), _n( '<span>%</span> Response', '<span>%</span> Responses', get_comments_number(), 'scaffolding' ) ); ?> to &#8220;<?php the_title(); ?>&#8221;</h3>
-
-		<nav class="comment-nav">
-			<ul class="clearfix">
-				<li><?php previous_comments_link(); ?></li>
-				<li><?php next_comments_link(); ?></li>
-			</ul>
-		</nav>
+		
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+			<nav role="navigation" id="comment-nav-above" class="site-navigation comment-navigation">
+				<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'scaffolding' ) ); ?></div>
+				<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'scaffolding' ) ); ?></div>
+			</nav>
+		<?php endif; // check for comment navigation ?>
 
 		<ol class="commentlist">
 			<?php wp_list_comments( 'type=comment&callback=scaffolding_comments' ); ?>
 		</ol>
 
-		<nav class="comment-nav">
-			<ul class="clearfix">
-				<li><?php previous_comments_link() ?></li>
-				<li><?php next_comments_link() ?></li>
-			</ul>
-		</nav>
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+			<nav role="navigation" id="comment-nav-below" class="site-navigation comment-navigation">
+				<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'scaffolding' ) ); ?></div>
+				<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'scaffolding' ) ); ?></div>
+			</nav>
+		<?php endif; // check for comment navigation ?>
 
 	</div>
 
@@ -60,7 +60,7 @@ if ( have_comments() ) : ?>
 else :
 ?>
 
-	<?php if ( ! comments_open() ) : ?>
+	<?php if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 
 		<p class="nocomments"><?php _e( 'Comments are closed.', 'scaffolding' ); ?></p>
 

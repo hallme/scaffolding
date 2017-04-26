@@ -6,89 +6,246 @@ Stylesheet: Widgets Stylesheet
 
 ******************************************************************/
 
-/* links widget */
-.widget_links {}
-.widget_links ul {}
-.widget_links ul li {}
-.widget_links ul li a {}
+.widget {
+	margin: 2.2em 0;
+	padding: 0;
 
-/* meta widget */
-.widget_meta {}
-.widget_meta ul {}
-.widget_meta ul li {}
-.widget_meta ul li a {}
+	&.first-widget {
+		margin: 0 0 2.2em;
 
-/* pages widget */
-.widget_pages {}
-.widget_pages ul {}
-.widget_pages ul li {}
-.widget_pages ul li a {}
+		.widgettitle {
+			margin-top: 0;
+		}
+	}
 
-/* recent-posts widget */
-.widget_recent_entries {}
-.widget_recent_entries ul {}
-.widget_recent_entries ul li {}
-.widget_recent_entries ul li a {}
+	&.only-widget {
+		margin: 0;
 
-/* archives widget */
-.widget_archive {}
-.widget_archive ul {}
-.widget_archive ul li {}
-.widget_archive ul li a {}
-.widget_archive select {}
-.widget_archive option {}
+		.widgettitle {
+			margin-top: 0;
+		}
+	}
 
-/* tag-cloud widget */
-.widget_links {}
-.widget_links li:after {}
-.widget_links li:before {}
-.widget_tag_cloud {}
-.widget_tag_cloud a {}
-.widget_tag_cloud a:after {}
-.widget_tag_cloud a:before {}
+	&.last-widget {
+		margin: 2.2em 0 0;
+	}
+	
+	.widgettitle {
+		border-bottom: 2px solid #444;
+		margin-bottom: 0.75em;
+	}
 
-/* calendar widget */
+	// list styles
+	ul,
+	ol {
+		list-style: none;
+		
+		li {
+			margin-left: 0;
+			margin-bottom: 0.75em;
+
+			&:first-child {}
+			&:last-child {}
+
+			a {}
+
+			ul,
+			ol {
+				margin-top: 0.75em;
+				margin-left: 2em;
+				margin-right: 0;
+			}
+		}
+	}
+	
+	// hyphenate long words
+	a,
+	p,
+	li,
+	.widgettitle {
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		-webkit-hyphens: auto;
+		-ms-hyphens: auto;
+		-moz-hyphens: auto;
+		hyphens: auto;
+	}
+}
+
+/*************************
+ * DEFAULT WIDGETS
+ ************************/
+
+/* Archives */
+.widget_archive {
+	select {}
+	
+	option {}
+}
+
+/* Calendar */
 .widget_calendar {}
-#calendar_wrap {}
-#calendar_wrap th {}
-#calendar_wrap td {}
-#wp-calendar tr td {}
-#wp-calendar caption {}
-#wp-calendar a {}
-#wp-calendar #today {}
-#wp-calendar #prev {}
-#wp-calendar #next {}
-#wp-calendar #next a {}
-#wp-calendar #prev a {}
 
-/* category widget */
-.widget_categories {}
-.widget_categories ul {}
-.widget_categories ul li {}
-.widget_categories ul ul.children {}
-.widget_categories a {}
-.widget_categories select{}
-.widget_categories select#cat {}
-.widget_categories select.postform {}
-.widget_categories option {}
-.widget_categories .level-0 {}
-.widget_categories .level-1 {}
-.widget_categories .level-2 {}
-.widget_categories .level-3 {}
+#calendar_wrap {
+	overflow-x: auto; // make sure table doesn't overflow
+}
 
-/* recent-comments widget */
-.recentcomments {}
-#recentcomments {}
-#recentcomments li {}
-#recentcomments li a {}
-.widget_recent_comments {}
+#wp-calendar {
+	caption {
+		margin-bottom: 0.5em;
+	}
+	
+	tr {}
+	
+	td {
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	th {}
+	
+	thead {}
+	
+	tfoot {
+		td {
+			background: #FFF;
+			border: 0;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	
+	tbody {}
+	
+	#next,
+	#prev {
+		a {
+			font-size: 0.9em;
+		}
+	}
+	
+	#next {
+		text-align: right;
+	}
+	
+	#prev {
+		text-align: left;
+	}
+	
+	.pad {
+		background: #FFF;
+	}
+}
 
-/* search widget */
-#searchform {}
-.widget_search {}
-.screen-reader-text {}
+/* Categories */
+.widget_categories {
+	select {}
+	
+	option {}
+}
 
-/* text widget */
-.textwidget {}
-.widget_text {}
-.textwidget p {}
+/* Custom Menu */
+.widget_nav_menu {
+	ul {
+		li {
+			a {}
+		}
+	}
+}
+
+/* Meta */
+.widget_meta {
+	ul {
+		li {
+			a {}
+		}
+	}
+}
+
+/* Pages */
+.widget_pages {
+	ul {
+		li {
+			a {}
+		}
+	}
+}
+
+/* Recent Comments */
+.widget_recent_comments {
+	#recentcomments {}
+	
+	.recentcomments {}
+	
+	a {}
+	
+	.comment-author-link {}
+}
+
+/* Recent Posts */
+.widget_recent_entries {
+	ul {
+		li {
+			a {}
+			
+			.post-date {
+				display: block;
+				color: #999;
+				font-size: 0.875em;
+				font-style: italic;
+			}
+		}
+	}
+}
+
+/* RSS */
+.widget_rss {
+	ul {
+		li {
+			margin-bottom: 1em;
+			
+			.rsswidget {}
+			
+			.rss-date {
+				display: block;
+				color: #999;
+				font-size: 0.875em;
+				font-style: italic;
+			}
+			
+			.rssSummary {
+				margin: 0.5em 0;
+				font-size: 0.875em;
+			}
+			
+			cite {
+				color: #999;
+			}
+		}
+	}
+}
+
+/* Search */
+.widget_search {
+	#searchform {}
+	
+	label {}
+	
+	#s {}
+	
+	#searchsubmit {}
+}
+
+/* Tag Cloud */
+.widget_tag_cloud {
+	.tagcloud {}
+	
+	a {}
+}
+
+/* Text */
+.widget_text {
+	.textwidget {}
+	
+	p {}
+}

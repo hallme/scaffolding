@@ -11,12 +11,15 @@ It currently slides out from the right.
 
 // Menu Toggle
 #mobile-menu-button {
-	clear: both;
 	display: block;
 	float: right;
-	font-size: 1em;
+	font-size: 1.125em;
 	line-height: 1;
-	margin: 10px;
+	padding: 0.675em 0;
+	margin: 0;
+	outline: 0;
+	border: 0;
+	background: none;
 	overflow: hidden;
 	white-space: nowrap;
 	@include transition(all 0.25s ease-in-out);
@@ -28,8 +31,11 @@ It currently slides out from the right.
 	}
 
 	// Font Awesome Icon
-	.fa:before {
+	&:before {
+		font-family: "FontAwesome";
 		content: "\f0c9"; // bars icon
+		display: inline;
+		margin-right: 5px;
 	}
 }
 
@@ -166,7 +172,7 @@ body.menu-open {
 	}
 
 	#mobile-menu-button {
-		.fa:before {
+		&:before {
 			content: "\f00d"; // times icon
 		}
 	}

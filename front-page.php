@@ -19,30 +19,32 @@ get_header(); ?>
 
 		<div id="main" class="<?php echo scaffolding_set_layout_classes( 'main' ); ?> clearfix" role="main">
 
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+		<?php if ( have_posts() ) : ?>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
+			<?php while ( have_posts() ) : the_post(); ?>
 
-				<header class="page-header">
+				<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?> role="article">
 
-					<h1 class="page-title"><?php the_title(); ?></h1>
+					<header class="page-header">
 
-				</header>
+						<h1 class="page-title"><?php the_title(); ?></h1>
 
-				<section class="page-content clearfix">
+					</header>
 
-					<?php the_content(); ?>
+					<section class="page-content clearfix">
 
-					<?php wp_link_pages( array(
-						'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'scaffolding' ) . '</span>',
-						'after'       => '</div>',
-						'link_before' => '<span>',
-						'link_after'  => '</span>',
-					) ); ?>
+						<?php the_content(); ?>
 
-				</section>
+						<?php wp_link_pages( array(
+							'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'scaffolding' ) . '</span>',
+							'after'       => '</div>',
+							'link_before' => '<span>',
+							'link_after'  => '</span>',
+						) ); ?>
 
-			</article>
+					</section>
+
+				</article>
 
 			<?php endwhile; ?>
 

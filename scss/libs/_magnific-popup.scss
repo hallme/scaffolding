@@ -61,6 +61,10 @@ Stylesheet: Magnific Popup Stylesheet
 	text-align: left;
 	vertical-align: middle;
 	z-index: 1045;
+	
+	figure {
+		margin: 0;
+	}
 }
 
 .mfp-inline-holder .mfp-content,
@@ -265,7 +269,7 @@ button::-moz-focus-inner {
 
 	&:before,
 	.mfp-b {
-		border-right: 27px solid #3f3f3f;
+		border-right: 27px solid #555;
 		margin-left: 25px;
 	}
 }
@@ -281,7 +285,7 @@ button::-moz-focus-inner {
 
 	&:before,
 	.mfp-b {
-		border-left: 27px solid #3f3f3f;
+		border-left: 27px solid #555;
 	}
 }
 

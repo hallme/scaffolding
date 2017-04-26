@@ -9,102 +9,87 @@ Stylesheet: Pagination Stylesheet
 .page-navigation,
 .wp-prev-next {}
 
-.scaffolding_page_navi {
-	margin: 1em 0;
+.scaffolding-page-navi {
+	list-style: none;
+	text-align: center;
+	margin: 2em -2px 1em;
+	
+	&:empty {
+		display: none;
+		margin: 0;
+	}
 
 	li {
-		float: left;
-		margin: 0;
+		display: inline-block;
+		margin: 2px;
+		width: 48%;
+		
+		&:empty {
+			display: none;
+			margin: 0;
+		}
+		
+		a,
+		span {
+			display: block;
+			padding: 0.675em;
+			border: 1px solid #DDD;
+		}
 
 		a {
-			color: #333;
-			display: block;
-			padding: 3px 10px;
-			position: relative;
-			text-decoration: none;
+			color: $color__body-text;
+			@include transition(all 0.25s ease-in-out);
 
 			&:hover,
 			&:focus {
 				color: $color__link;
-				text-decoration: underline;
+				text-decoration: none;
 			}
 		}
 	}
 
-	/* current page link */
-	li.bpn-current {
-		background-color: #f5f5f5;
-		color: $color__link;
-		padding: 3px 10px;
-		position: relative;
+	// current page link
+	li.sc-current {
+		span {
+			background-color: #EEE;
+		}
+	}
 
+	// previous and next page links
+	li.sc-prev-link,
+	li.sc-next-link {
 		a {
-			/* hovering on current page link */
+			color: #FFF;
+			background-color: $color__primary;
+			border-color: $color__primary;
+			
 			&:hover,
 			&:focus {
-				color: #333;
+				background-color: darken($color__primary, 10%);
+				border-color: darken($color__primary, 10%);
 			}
 		}
 	}
 
-	/* common styles for page-navi links */
-	li.bpn-prev-link,
-	li.bpn-next-link {
-		font-weight: 700;
-
+	// first and last page links
+	li.sc-first-link,
+	li.sc-last-link {
 		a {
-			color: $color__link;
-
+			color: #FFF;
+			background-color: $color__secondary;
+			border-color: $color__secondary;
+			
 			&:hover,
 			&:focus {
-				color: #333;
+				background-color: darken($color__secondary, 10%);
+				border-color: darken($color__secondary, 10%);
 			}
 		}
 	}
 
-	/* remove the bg on end links */
-	li.bpn-prev-link a:hover,
-	li.bpn-next-link a:hover,
-	li.bpn-first-page-link a:hover,
-	li.bpn-last-page-link a:hover {
-		background: none;
-	}
+}
 
-	/* previous link */
-	li.bpn-prev-link {
-		a {
-			&:hover,
-			&:focus {}
-		}
-	}
-
-	/* next page link */
-	li.bpn-next-link {
-		a {
-			&:hover,
-			&:focus {}
-		}
-	}
-
-	/* first page link */
-	li.bpn-first-page-link {
-		a {
-			&:hover,
-			&:focus {}
-		}
-	}
-
-	/* last page link */
-	li.bpn-last-page-link {
-		a {
-			&:hover,
-			&:focus {}
-		}
-	}
-
-} /* end .scaffolding_page_navi */
-
-/* fallback previous & next links */
+// fallback previous & next links
 .wp-prev-next {
 
 	ul {}
@@ -117,4 +102,26 @@ Stylesheet: Pagination Stylesheet
 		float: right;
 	}
 
-} /* end .wp-prev-next */
+}
+
+/**
+ * Large Mobile Devices
+ */
+
+@media only screen and (min-width: 481px) {
+	
+	.scaffolding-page-navi {
+		
+        li {
+			width: auto;
+
+            a,
+			span {
+				padding: 0.5em 1.25em;
+				
+			}
+        }
+
+    }
+	
+}

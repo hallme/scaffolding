@@ -48,7 +48,7 @@ if ( function_exists( 'is_woocommerce' ) ) {
 	require_once( SCAFFOLDING_INCLUDE_PATH . 'woocommerce-overrides.php' );
 }
 
-//require_once( SCAFFOLDING_INCLUDE_PATH . 'tinymce-settings.php' );
+require_once( SCAFFOLDING_INCLUDE_PATH . 'tinymce-settings.php' );
 //require_once( SCAFFOLDING_INCLUDE_PATH . 'theme-guide.php' );
 
 
@@ -83,7 +83,7 @@ function scaffolding_scripts_and_styles() {
 	wp_enqueue_style( 'scaffolding-stylesheet', get_stylesheet_directory_uri() . '/css/style.css', array(), '', 'all' );
 
 	// Font Awesome (icon set) - http://fortawesome.github.io/Font-Awesome/
-	wp_enqueue_style( 'scaffolding-font-awesome', get_stylesheet_directory_uri() . '/libs/font-awesome/css/font-awesome.min.css', array(), '4.5.0' );
+	wp_enqueue_style( 'scaffolding-font-awesome', get_stylesheet_directory_uri() . '/libs/font-awesome/css/font-awesome.min.css', array(), '4.7.0' );
 
 	// IE-only stylesheet
 	wp_enqueue_style( 'scaffolding-ie-only', get_stylesheet_directory_uri() . '/css/ie.css', array(), '' );
@@ -246,7 +246,7 @@ function scaffolding_main_nav() {
 		'link_after'      => '',						      // after each link
 		'depth'           => 0,							      // limit the depth of the nav
 		'fallback_cb'     => '',	                          // fallback function
-		'items_wrap'      => '<a href="#" id="mobile-menu-button" title="Click to open menu"><i class="fa"></i> Menu</a><ul id="%1$s" class="%2$s">%3$s</ul>',
+		'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 		'walker'          => new Scaffolding_Walker_Nav_Menu,
 	) );
 } // end scaffolding_main_nav()
@@ -437,22 +437,6 @@ function scaffolding_register_sidebars() {
  ************************************/
 
 /**
- * Search Form
- *
- * Call using get_search_form().
- *
- * @since Scaffolding 1.0
- */
-function scaffolding_wpsearch( $form ) {
-	$form = '<form role="search" method="get" id="searchform" class="clearfix" action="' . home_url( '/' ) . '" >
-	<label class="screen-reader-text" for="s">' . __('Search for:', 'scaffolding') . '</label>
-	<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="'.esc_attr__( 'Search the Site&hellip;', 'scaffolding' ).'" />
-	<input type="submit" id="searchsubmit" value="'. esc_attr__( 'Go', 'scaffolding' ) .'" />
-	</form>';
-	return $form;
-} // end scaffolding_wpsearch()
-
-/**
  * Filter posts from query that are set to 'noindex'
  *
  * This function is dependent on Yoast SEO Plugin.
@@ -607,7 +591,7 @@ function scaffolding_set_layout_classes( $type ) {
 
 // Set up the content width value based on the theme's design
 if ( ! isset( $content_width ) ) {
-	$content_width = 474;
+	$content_width = 1170;
 }
 
 /**

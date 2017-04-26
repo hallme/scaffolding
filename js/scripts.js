@@ -62,11 +62,17 @@ jQuery(document).ready(function($) {
 	// Select2 - https://select2.github.io/
 	if ($.fn.select2) {
 		var setup_select2 = function() {
-			$('select').each(function(){
-				$(this).select2({
-					minimumResultsForSearch: 20,
-				});
-			})
+			// Add search only if results exceed number
+			var search = 20;
+			
+			// Disable search on touch devices for cleaner UX
+			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+				search = -1;
+			}
+			
+			$('select').select2({
+				minimumResultsForSearch: search,
+			});
 		};
 		$(document).ajaxComplete(setup_select2);
 		$(document).bind('gform_post_render', setup_select2);
