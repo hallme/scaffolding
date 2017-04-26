@@ -228,6 +228,9 @@ Last reviewed with plugin Version 2.6.4.
 	input.button,
 	#respond input#submit {
 		position: relative;
+		font-weight: bold;
+		text-transform: uppercase;
+		text-decoration: none;
 		
 		&:after {
 			font-family: "FontAwesome";
@@ -254,23 +257,46 @@ Last reviewed with plugin Version 2.6.4.
 				margin-left: 0.53em;
 			}
 		}
+		
+		&:disabled,
+		&.disabled,
+		&:disabled[disabled] {
+			cursor: not-allowed;
+			filter: alpha(opacity=65);
+			opacity: 0.65;
+		}
 	}
 	
-	// Set Height Buttons
-	form.cart a.add_to_cart_button,
-	form.cart button.single_add_to_cart_button {
-		height: $input__height;
-		line-height: $input__height;
-		padding-top: 0 !important;
-		padding-bottom: 0 !important;
-		width: auto;
+	// Primary Buttons
+	a.add_to_cart_button,
+	button.single_add_to_cart_button,
+	a.checkout-button,
+	input[name="save_account_details"],
+	input[name="save_address"] {
+		background-color: $primary;
+		color: $primarytext;
+
+		&:hover,
+		&:focus {
+			background-color: darken($primary, 10%);
+			color: $primarytext;
+		}
+		
+		&:disabled,
+		&.disabled,
+		&:disabled[disabled] {
+			&:hover,
+			&:focus,
+			&:active {
+				background-color: $primary;
+			}
+		}
 	}
 
 	// Secondary Buttons
 	input[name="apply_coupon"],
 	input[name="update_cart"],
 	button[name="calc_shipping"],
-	a.view,
 	.cross-sells a.add_to_cart_button,
 	.woocommerce-message .button,
 	.woocommerce-error .button,
@@ -283,11 +309,23 @@ Last reviewed with plugin Version 2.6.4.
 			background-color: darken($secondary, 10%);
 			color: $secondarytext;
 		}
+		
+		&:disabled,
+		&.disabled,
+		&:disabled[disabled] {
+			&:hover,
+			&:focus,
+			&:active {
+				background-color: $secondary;
+			}
+		}
 	}
 	
 	// Large Buttons
 	a.checkout-button,
-	#place_order {
+	#place_order,
+	input[name="save_account_details"],
+	input[name="save_address"] {
 		font-size: 1.125em;
 		padding: 1em 3em;
 	}
@@ -295,14 +333,17 @@ Last reviewed with plugin Version 2.6.4.
 	// Normal Buttons
 	a.wc-backward,
 	input.button[name="login"],
-	input.button[name="register"] {
+	input.button[name="register"],
+	input[name="apply_coupon"],
+	input[name="update_cart"],
+	button[name="calc_shipping"],
+	a.add_to_cart_button,
+	button.single_add_to_cart_button {
 		font-size: 1em;
-		padding: 0.875em 2em;
+		padding: 0.675em 2em;
 	}
 	
 	// Small Buttons
-	a.view,
-	ul.products li.product a.button,
 	.woocommerce-message .button,
 	.woocommerce-error .button,
 	.woocommerce-info .button {
@@ -334,6 +375,29 @@ Last reviewed with plugin Version 2.6.4.
 			color: #fff !important;
 			background: $color__alert-red;
 		}
+	}
+	
+	// Set Height Buttons
+	form.cart a.add_to_cart_button,
+	form.cart button.single_add_to_cart_button,
+	input[name="apply_coupon"],
+	input[name="update_cart"],
+	button[name="calc_shipping"] {
+		height: $input__height;
+		line-height: $input__height;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+	
+	form.cart a.add_to_cart_button,
+	form.cart button.single_add_to_cart_button {
+		width: auto;
+	}
+	
+	input[name="apply_coupon"],
+	input[name="update_cart"],
+	button[name="calc_shipping"] {
+		width: 100%;
 	}
 
 	/**
@@ -373,24 +437,33 @@ Last reviewed with plugin Version 2.6.4.
 	 * Sale & Stock
 	 */
 	span.onsale {
-		min-height: 3.236em;
-		min-width: 3.6em;
-		padding: 0.202em;
+		position: relative;
 		font-size: 1em;
-		font-weight: 700;
+		font-weight: bold;
 		position: absolute;
-		text-align: center;
-		line-height: 3.236;
-		top: -0.5em;
-		left: -0.5em;
+		padding-left: 10px;
+		line-height: 35px;
+		top: 0;
+		left: 0;
 		margin: 0;
-		border-radius: 100%;
-		background-color: $highlight;
 		color: $highlightext;
 		font-size: 0.857em;
 		z-index: 1;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 45px 170px 0 0;
+			border-color: $highlight transparent transparent transparent;
+			z-index: -1;
+		}
 	}
 	
 	/**

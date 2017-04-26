@@ -7,6 +7,64 @@ Stylesheet: Responsive WooCommerce Styles
 ******************************************************************/
 
 /**
+ * Product loops
+ */
+.woocommerce {
+	
+	ul.products {
+		@include flexbox(flex);
+		@include flex-wrap(wrap);
+		margin-left: ($grid-gutter-width / -2);
+		margin-right: ($grid-gutter-width / -2);
+
+		li.product {
+			float: left;
+			display: inline-block;
+			margin-left: 0;
+			margin-right: 0;
+			margin-bottom: 2em;
+			max-width: none;
+			text-align: center;
+			@include flexbox(flex);
+			padding-left: ($grid-gutter-width / 2);
+			padding-right: ($grid-gutter-width / 2);
+
+			.inner-product {
+				@include flexbox(flex);
+				@include flex-direction(column);
+			}
+
+			.woocommerce-LoopProduct-link {
+				@include flex-grow(1);
+			}
+		}
+
+		&.columns-4,
+		&.columns-3,
+		&.columns-2 {
+			li.product {
+				width: 50%;
+			}
+		}
+	}
+	
+}
+
+/**
+ * Flexbox Fix
+ */
+.flexbox {
+	.woocommerce {
+		ul.products {
+			&:before,
+			&:after {
+				content: normal !important; // fixes browser bug
+			}
+		}
+	}
+}
+
+/**
  * Product
  */
 .single-product {
@@ -66,6 +124,21 @@ Stylesheet: Responsive WooCommerce Styles
 				}
 			}
 		}
+		
+		div.images {
+
+			.flex-control-thumbs {
+				@include flexbox(flex);
+				@include flex-wrap(wrap);
+
+				li {
+					width: 24.9%;
+					float: left;
+					margin: 0;
+				}
+			}
+			
+		}
 	}
 }
 
@@ -85,71 +158,7 @@ Stylesheet: Responsive WooCommerce Styles
 			@include clearfix;
 			clear: both;
 		}
-
-		ul.products {
-			@include flexbox(flex);
-			@include flex-wrap(wrap);
-			@include justify-content(flex-start);
-			
-			li.product {
-				display: inline-block;
-				margin-left: 0;
-				max-width: none;
-				text-align: center;
-				@include flexbox(flex);
-				@include flex-direction(column);
-				@include justify-content(space-between);
-				
-				.button {
-					width: auto;
-				}
-			}
-			
-			&.columns-4,
-			&.columns-3,
-			&.columns-2 {
-				li.product {
-					margin-right: 4%;
-					width: 47.89%; // 2 columns, safari is being uncooperative
-					margin-left: 0;
-					
-					&:nth-child(even) {
-						margin-right: 0;
-					}
-				}
-			}
-
-			&.columns-4 {
-				li.product {
-					&.last {
-						margin-right: 0 !important;
-					}
-				}
-			}
-			
-			&.columns-2 {
-				li.product {
-					margin-right: 4%;
-					
-					&.last {
-						margin-right: 0 !important;
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * Flexbox Fallback
-	 */
-	.no-flexbox {
-		.woocommerce {
-			ul.products {
-				li.product {
-					float: left;
-				}
-			}
-		}
+		
 	}
 
 }
@@ -177,22 +186,6 @@ Stylesheet: Responsive WooCommerce Styles
 			.col-2 {
 				float: right;
 				width: 48%;
-			}
-		}
-		
-		/**
-		 * Product loops
-		 */
-		ul.products {
-			&.columns-4 {
-				li.product {
-					width: 22.95%; // safari is being uncooperative
-					margin-right: 2.66666666667%;
-					
-					&:nth-child(even) {
-						margin-right: 2.66666666667%;
-					}
-				}
 			}
 		}
 		
@@ -229,7 +222,6 @@ Stylesheet: Responsive WooCommerce Styles
 				margin-bottom: 2em;
 				width: 50%;
 			}
-
 		}
 	}
 	
@@ -299,6 +291,16 @@ Stylesheet: Responsive WooCommerce Styles
 		}
 	}
 	
+	.woocommerce-MyAccount-navigation {
+		float: left;
+		width: 25%;
+	}
+
+	.woocommerce-MyAccount-content {
+		float: right;
+		width: 75%;
+	}
+	
 	/**
 	 * Checkout
 	 */
@@ -308,12 +310,12 @@ Stylesheet: Responsive WooCommerce Styles
 			
 			.form-row-first {
 				float: left;
-				width: 70%;
+				width: 63%;
 			}
 			
 			.form-row-last {
 				float: right;
-				width: 30%;
+				width: 35%;
 			}
 		}
 		
@@ -352,17 +354,14 @@ Stylesheet: Responsive WooCommerce Styles
 		ul.products {
 			&.columns-3 {
 				li.product {
-					margin-right: 4%;
-					width: 30.6%; // safari is being uncooperative
-					
-					&:nth-child(even) {
-						margin-right: 4%;
-					}
+					width: 33.333%;
 				}
 			}
 			
-			li.last {
-				margin-right: 0 !important;
+			&.columns-4 {
+				li.product {
+					width: 25%;
+				}
 			}
 		}
 		

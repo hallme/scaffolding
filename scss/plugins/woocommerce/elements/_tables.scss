@@ -318,6 +318,12 @@ Stylesheet: Responsive WooCommerce Styles
 						font-weight: 700;
 						margin-right: 5px;
 					}
+					
+					&.woocommerce-orders-table__cell-order-actions {
+						&:before {
+							display: none;
+						}
+					}
 				}
 			}
 		}
