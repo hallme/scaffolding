@@ -413,6 +413,7 @@ span.amp {
 
 /*************************
  * FLEXBOX
+ * Mixins provided by: https://github.com/mastastealth/sass-flex-mixin/blob/master/_flex.scss
  * Values: flex | inline-flex
  * Default: flex
  * USAGE: @include flexbox(flex);
@@ -425,8 +426,7 @@ span.amp {
 		display: -moz-inline-flex;
 		display: -ms-inline-flexbox;
 		display: inline-flex;
-	}
-	@else {
+	} @else {
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: -moz-flex;
@@ -446,14 +446,11 @@ span.amp {
 	// No Webkit Box fallback.
 	-webkit-flex-wrap: $value;
 	-moz-flex-wrap: $value;
-
 	@if $value == nowrap {
 		-ms-flex-wrap: none;
-	}
-	@else {
+	} @else {
 		-ms-flex-wrap: $value;
 	}
-
 	flex-wrap: $value;
 }
 
@@ -468,20 +465,16 @@ span.amp {
 	@if $value == row-reverse {
 		-webkit-box-direction: reverse;
 		-webkit-box-orient: horizontal;
-	}
-	@else if $value == column {
+	} @else if $value == column {
 		-webkit-box-direction: normal;
 		-webkit-box-orient: vertical;
-	}
-	@else if $value == column-reverse {
+	} @else if $value == column-reverse {
 		-webkit-box-direction: reverse;
 		-webkit-box-orient: vertical;
-	}
-	@else {
+	} @else {
 		-webkit-box-direction: normal;
 		-webkit-box-orient: horizontal;
 	}
-
 	-webkit-flex-direction: $value;
 	-moz-flex-direction: $value;
 	-ms-flex-direction: $value;
@@ -499,23 +492,18 @@ span.amp {
 	@if $value == flex-start {
 		-webkit-box-pack: start;
 		-ms-flex-pack: start;
-	}
-	@else if $value == flex-end {
+	} @else if $value == flex-end {
 		-webkit-box-pack: end;
 		-ms-flex-pack: end;
-	}
-	@else if $value == space-between {
+	} @else if $value == space-between {
 		-webkit-box-pack: justify;
 		-ms-flex-pack: justify;
-	}
-	@else if $value == space-around {
+	} @else if $value == space-around {
 		-ms-flex-pack: distribute;
-	}
-	@else {
+	} @else {
 		-webkit-box-pack: $value;
 		-ms-flex-pack: $value;
 	}
-
 	-webkit-justify-content: $value;
 	-moz-justify-content: $value;
 	justify-content: $value;
@@ -532,19 +520,62 @@ span.amp {
 	@if $value == flex-start {
 		-webkit-box-align: start;
 		-ms-flex-align: start;
-	}
-	@else if $value == flex-end {
+	} @else if $value == flex-end {
 		-webkit-box-align: end;
 		-ms-flex-align: end;
-	}
-	@else {
+	} @else {
 		-webkit-box-align: $value;
 		-ms-flex-align: $value;
 	}
-
 	-webkit-align-items: $value;
 	-moz-align-items: $value;
 	align-items: $value;
+}
+
+/*************************
+ * FLEXBOX ALIGN SELF
+ * Values: auto | flex-start | flex-end | center | baseline | stretch
+ * Default: auto
+ * USAGE: @include align-self(auto)
+ ************************/
+
+@mixin align-self($value: auto) {
+	// No Webkit Box Fallback.
+	-webkit-align-self: $value;
+	-moz-align-self: $value;
+	@if $value == flex-start {
+		-ms-flex-item-align: start;
+	} @else if $value == flex-end {
+		-ms-flex-item-align: end;
+	} @else {
+		-ms-flex-item-align: $value;
+	}
+	align-self: $value;
+}
+
+/*************************
+ * FLEXBOX FLEX (shorthand)
+ * Values: Values: none | <flex-grow> <flex-shrink> || <flex-basis>
+ * Default: See individual properties (1 1 0).
+ * USAGE: @include flex(1, 1, auto)
+ ************************/
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+	// Set a variable to be used by box-flex properties
+	$fg-boxflex: $fg;
+
+	// Box-Flex only supports a flex-grow value so let's grab the
+	// first item in the list and just return that.
+	@if type-of($fg) == 'list' {
+		$fg-boxflex: nth($fg, 1);
+	}
+
+	-webkit-box-flex: $fg-boxflex;
+	-webkit-flex: $fg $fs $fb;
+	-moz-box-flex: $fg-boxflex;
+	-moz-flex: $fg $fs $fb;
+	-ms-flex: $fg $fs $fb;
+	flex: $fg $fs $fb;
 }
 
 /*************************
@@ -560,4 +591,19 @@ span.amp {
 	-moz-flex-grow: $int;
 	-ms-flex-positive: $int;
 	flex-grow: $int;
+}
+
+/*************************
+ * FLEXBOX ORDER
+ * Values: integer
+ * Default: 0
+ * USAGE: @include order(0)
+ ************************/
+
+@mixin order($int: 0) {
+	-webkit-box-ordinal-group: $int + 1;
+	-webkit-order: $int;
+	-moz-order: $int;
+	-ms-flex-order: $int;
+	order: $int;
 }

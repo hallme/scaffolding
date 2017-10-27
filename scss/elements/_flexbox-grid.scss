@@ -1,0 +1,124 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Flexbox Grid Stylesheet
+
+******************************************************************/
+
+@mixin flex-row($break) {
+	.flex-#{$break} {
+		&.row-flex {
+			@include flexbox(flex);
+		}
+		
+		&.flex-wrap {
+			@include flex-wrap(wrap);
+		}
+		
+		&.flex-nowrap {
+			@include flex-wrap(nowrap);
+		}
+		
+		&.flex-row__reverse {
+			@include flex-direction(row-reverse);
+		}
+		
+		&.flex-justify__start {
+			@include justify-content(flex-start);
+		}
+		
+		&.flex-justify__end {
+			@include justify-content(flex-end);
+		}
+		
+		&.flex-justify__center {
+			@include justify-content(center);
+		}
+		
+		&.flex-justify__btw {
+			@include justify-content(space-between);
+		}
+		
+		&.flex-justify__around {
+			@include justify-content(space-around);
+		}
+		
+		&.flex-align__center {
+			@include align-items(center);
+		}
+
+		&.flex-align__stretch {
+			@include align-items(stretch);
+		}
+		
+		&.flex-align__start {
+			@include align-items(flex-start);
+		}
+		
+		&.flex-align__end {
+			@include align-items(flex-end);
+		}
+	}
+}
+
+.row-flex {
+	margin-left: ($grid-gutter-width / -2);
+	margin-right: ($grid-gutter-width / -2);
+	@include clearfix;
+}
+
+.flex-item {
+	padding-left: ($grid-gutter-width / 2);
+	padding-right: ($grid-gutter-width / 2);
+}
+
+.flexbox {
+	.flex-xs {
+		&:before,
+		&:after {
+			content: normal !important; // fixes browser bug in Safari and perhaps IE
+		}
+	}
+}
+
+@include flex-row(xs);
+
+@media (min-width: $screen-sm-min) {
+	@include flex-row(sm);
+	
+	.flexbox {
+		.flex-sm {
+			&:before,
+			&:after {
+				content: normal !important; // fixes browser bug in Safari and perhaps IE
+			}
+		}
+	}
+}
+
+@media (min-width: $screen-md-min) {
+	@include flex-row(md);
+	
+	.flexbox {
+		.flex-md {
+			&:before,
+			&:after {
+				content: normal !important; // fixes browser bug in Safari and perhaps IE
+			}
+		}
+	}
+}
+
+@media (min-width: $screen-lg-min) {
+	@include flex-row(lg);
+	
+	.flexbox {
+		.flex-lg {
+			&:before,
+			&:after {
+				content: normal !important; // fixes browser bug in Safari and perhaps IE
+			}
+		}
+	}
+}
