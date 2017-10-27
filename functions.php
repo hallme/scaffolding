@@ -83,7 +83,7 @@ function scaffolding_scripts_and_styles() {
 	$wp_styles->add_data( 'scaffolding-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
 
 	// Modernizr - http://modernizr.com/
-	wp_enqueue_script( 'scaffolding-modernizr', get_stylesheet_directory_uri() . '/libs/js/custom-modernizr.min.js', array(), '3.2.0', false );
+	wp_enqueue_script( 'scaffolding-modernizr', get_stylesheet_directory_uri() . '/libs/js/custom-modernizr.min.js', array(), '3.5.0', false );
 
 	// Respond - https://github.com/scottjehl/Respond
 	wp_enqueue_script( 'scaffolding-respondjs', get_stylesheet_directory_uri() . '/libs/js/respond.min.js', array(), '1.4.2', false );
