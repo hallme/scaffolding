@@ -4,13 +4,15 @@ Author:
 
 Stylesheet: Responsive WooCommerce Styles
 
-Last reviewed with plugin Version 2.6.4.
+Last reviewed with plugin Version 3.3.4.
 
 ******************************************************************/
 
 // Import assets
-@import "variables";
-@import "mixins";
+//@import "utilities/fonts"; // UNUSED
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "utilities/animation";
 
 /**
  * Demo Notice
@@ -201,6 +203,10 @@ Last reviewed with plugin Version 2.6.4.
  */
 .woocommerce {
 	
+	abbr[title] {
+		text-decoration: none;
+	}
+	
 	.blockUI.blockOverlay {
 		position: relative;
 		@include loader;
@@ -272,7 +278,8 @@ Last reviewed with plugin Version 2.6.4.
 	button.single_add_to_cart_button,
 	a.checkout-button,
 	input[name="save_account_details"],
-	input[name="save_address"] {
+	input[name="save_address"],
+	.button.view {
 		background-color: $primary;
 		color: $primarytext;
 
@@ -295,12 +302,14 @@ Last reviewed with plugin Version 2.6.4.
 
 	// Secondary Buttons
 	input[name="apply_coupon"],
-	input[name="update_cart"],
+	button[name="update_cart"],
 	button[name="calc_shipping"],
 	.cross-sells a.add_to_cart_button,
 	.woocommerce-message .button,
 	.woocommerce-error .button,
-	.woocommerce-info .button {
+	.woocommerce-info .button,
+	.woocommerce-Button--next,
+	.woocommerce-Button--previous {
 		background-color: $secondary;
 		color: $secondarytext;
 
@@ -327,7 +336,10 @@ Last reviewed with plugin Version 2.6.4.
 	input[name="save_account_details"],
 	input[name="save_address"] {
 		font-size: 1.125em;
-		padding: 1em 3em;
+		padding-top: 1em;
+		padding-bottom: 1em;
+		padding-left: 2em;
+		padding-right: 2em;
 	}
 	
 	// Normal Buttons
@@ -335,21 +347,36 @@ Last reviewed with plugin Version 2.6.4.
 	input.button[name="login"],
 	input.button[name="register"],
 	input[name="apply_coupon"],
-	input[name="update_cart"],
+	button[name="update_cart"],
 	button[name="calc_shipping"],
 	a.add_to_cart_button,
 	button.single_add_to_cart_button {
 		font-size: 1em;
-		padding: 0.675em 2em;
+		padding-top: 0.675em;
+		padding-bottom: 0.675em;
+		padding-left: 2em;
+		padding-right: 2em;
 	}
 	
 	// Small Buttons
 	.woocommerce-message .button,
 	.woocommerce-error .button,
-	.woocommerce-info .button {
+	.woocommerce-info .button,
+	.woocommerce-Button--next,
+	.woocommerce-Button--previous {
 		font-size: 0.875em;
-		padding: 0.675em 1em;
+		padding-top: 0.675em;
+		padding-bottom: 0.675em;
+		padding-left: 1em;
+		padding-right: 1em;
 		width: auto;
+	}
+	
+	.button.view {
+		display: inline-block;
+		font-size: 0.875em;
+		padding: 0.5em;
+		text-align: center;
 	}
 
 	a.added_to_cart {
@@ -381,7 +408,7 @@ Last reviewed with plugin Version 2.6.4.
 	form.cart a.add_to_cart_button,
 	form.cart button.single_add_to_cart_button,
 	input[name="apply_coupon"],
-	input[name="update_cart"],
+	button[name="update_cart"],
 	button[name="calc_shipping"] {
 		height: $input__height;
 		line-height: $input__height;
@@ -395,7 +422,7 @@ Last reviewed with plugin Version 2.6.4.
 	}
 	
 	input[name="apply_coupon"],
-	input[name="update_cart"],
+	button[name="update_cart"],
 	button[name="calc_shipping"] {
 		width: 100%;
 	}
@@ -480,6 +507,7 @@ Last reviewed with plugin Version 2.6.4.
 }
 
 // Import templates
+//@import "elements/pagination"; // UNUSED
 @import "elements/tabs";
 @import "elements/tables";
 @import "elements/widgets";

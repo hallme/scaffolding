@@ -102,6 +102,7 @@ Stylesheet: Responsive WooCommerce Styles
 		td.product-thumbnail {
 			img {
 				max-height: 80px;
+				width: auto;
 			}
 		}
 	}
@@ -434,7 +435,7 @@ Stylesheet: Responsive WooCommerce Styles
 				}
 
 				&.actions {
-					.button[name="update_cart"] {
+					button[name="update_cart"] {
 						width: 100%;
 						clear: both;
 						margin-top: 1.675em;
@@ -552,7 +553,7 @@ Stylesheet: Responsive WooCommerce Styles
 					width: 39%;
 				}
 
-				input[name="update_cart"] {
+				button[name="update_cart"] {
 					padding-left: 0.5em;
 					padding-right: 0.5em;
 					max-width: 200px;
@@ -577,6 +578,10 @@ Stylesheet: Responsive WooCommerce Styles
 			td {
 				padding: 8px 15px;
 				vertical-align: middle;
+			}
+			
+			td.woocommerce-orders-table__cell-order-actions {
+				text-align: center;
 			}
 		}
 		

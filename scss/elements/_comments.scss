@@ -15,6 +15,7 @@ Stylesheet: Comments Stylesheet
 	@include clearfix;
 
 	#reply-title {
+		font-size: 1.125em;
 		font-weight: bold;
 		
 		small {
@@ -79,8 +80,7 @@ Stylesheet: Comments Stylesheet
 			clear: both;
 			display: block;
 			font-weight: bold;
-			line-height: 1.3em;
-			margin: 10px 0 4px 0;
+			margin: 10px 0 5px 0;
 
 			.required {
 				color: #AF3124;

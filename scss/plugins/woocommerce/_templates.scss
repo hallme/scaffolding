@@ -33,6 +33,11 @@ Stylesheet: Responsive WooCommerce Styles
 	select {
 		vertical-align: top;
 	}
+	
+	select,
+	.select2-container {
+		width: 100%;
+	}
 }
 
 /**
@@ -93,6 +98,8 @@ Stylesheet: Responsive WooCommerce Styles
 				display: inline-block;
 				margin: 1em auto;
 				width: 85%;
+				padding-left: 0.675em;
+				padding-right: 0.675em;
 			}
 
 			.price {
@@ -524,7 +531,11 @@ Stylesheet: Responsive WooCommerce Styles
 	#billing_country_field,
 	#shipping_country_field {
 		strong {
+			display: block;
+			border: 1px solid $input__border-color;
 			font-weight: 300 !important;
+			line-height: $input__height;
+			padding: 0 8px;
 		}
 	}
 
@@ -535,16 +546,33 @@ Stylesheet: Responsive WooCommerce Styles
 			margin-bottom: 2em !important;
 		}
 		
+		.col-1,
+		.col-2 {
+			p.form-row {
+				label {
+					display: block;
+				}
+				
+				select,
+				.select2-container {
+					width: 100%;
+				}
+			} 
+		}
+		
 		.col-2 {
 			h3#ship-to-different-address {
-				float: left;
-				clear: none;
-				font-size: 1.125em;
-
 				label {
-					margin-right: 8px;
+					font-weight: inherit;
 					margin-bottom: 0;
-					font-weight: 600;
+				}
+				
+				input {
+					margin-right: 8px;
+				}
+				
+				span {
+					vertical-align: middle;
 				}
 			}
 
@@ -732,7 +760,7 @@ Stylesheet: Responsive WooCommerce Styles
 			}
 
 			span.help {
-				font-size: .857em;
+				font-size: 0.857em;
 				color: $subtext;
 				font-weight: normal;
 			}
@@ -742,20 +770,26 @@ Stylesheet: Responsive WooCommerce Styles
 			}
 
 			p {
-				margin: 0;
+				margin: 0.5em 0 0;
+				line-height: 1.65;
 			}
 		}
 
-		.payment_method_paypal {
-			.about_paypal {
-				float: right;
-				line-height: 52px;
-				font-size: 0.83em;
-			}
+		li.payment_method_paypal {
+			label {
+				.about_paypal {
+					line-height: 52px;
+					font-size: 0.83em;
+					white-space: nowrap;
+				}
 
-			img {
-				max-height: 52px;
-				vertical-align: middle;
+				img {
+					margin-left: 8px;
+					margin-right: 8px;
+					max-height: 52px;
+					width: auto;
+					vertical-align: middle;
+				}
 			}
 		}
 

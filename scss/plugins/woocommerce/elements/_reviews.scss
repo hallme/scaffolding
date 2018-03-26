@@ -338,7 +338,6 @@ Stylesheet: Responsive WooCommerce Styles
 			}
 			
             textarea {
-                @include box-sizing(border-box);
                 width: 100%;
             }
         }
