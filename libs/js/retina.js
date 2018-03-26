@@ -1,182 +1,274 @@
 /*!
- * Retina.js v1.3.0
+ * Retina.js v2.1.1
  *
- * Copyright 2014 Imulus, LLC
+ * Copyright 2016 Axial, LLC
  * Released under the MIT license
  *
  * Retina.js is an open source script that makes it easy to serve
  * high-resolution images to devices with retina displays.
  */
-
-(function() {
-    var root = (typeof exports === 'undefined' ? window : exports);
-    var config = {
-        // An option to choose a suffix for 2x images
-        retinaImageSuffix : '@2x',
-
-        // Ensure Content-Type is an image before trying to load @2x image
-        // https://github.com/imulus/retinajs/pull/45)
-        check_mime_type: true,
-
-        // Resize high-resolution images to original image's pixel dimensions
-        // https://github.com/imulus/retinajs/issues/8
-        force_original_dimensions: true
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define(['exports'], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
     };
+    factory(mod.exports);
+    global.retina = mod.exports;
+  }
+})(this, function (exports) {
+  'use strict';
 
-    function Retina() {}
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  /*
+   * Determine whether or not `window` is available.
+   */
+  var hasWindow = typeof window !== 'undefined';
 
-    root.Retina = Retina;
+  /*
+   * Get the device pixel ratio per our environment.
+   * Default to 1.
+   */
+  var environment = Math.round(hasWindow ? window.devicePixelRatio || 1 : 1);
 
-    Retina.configure = function(options) {
-        if (options === null) {
-            options = {};
-        }
+  /*
+   * Define a pattern for capturing src url suffixes.
+   */
+  var srcReplace = /(\.[A-z]{3,4}\/?(\?.*)?)$/;
+  var inlineReplace = /url\(('|")?([^\)'"]+)('|")?\)/i;
 
-        for (var prop in options) {
-            if (options.hasOwnProperty(prop)) {
-                config[prop] = options[prop];
-            }
-        }
-    };
+  /*
+   * Define our selectors for elements to target.
+   */
+  var selector = '[data-rjs]';
 
-    Retina.init = function(context) {
-        if (context === null) {
-            context = root;
-        }
+  /*
+   * Define the attribute we'll use to mark an image as having been processed.
+   */
+  var processedAttr = 'data-rjs-processed';
 
-        var existing_onload = context.onload || function(){};
+  /**
+   * Shortcut for turning some iterable object into an array.
+   *
+   * @param  {Iterable} object Any iterable object.
+   *
+   * @return {Array}
+   */
+  function arrayify(object) {
+    return Array.prototype.slice.call(object);
+  }
 
-        context.onload = function() {
-            var images = document.getElementsByTagName('img'), retinaImages = [], i, image;
-            for (i = 0; i < images.length; i += 1) {
-                image = images[i];
-                if (!!!image.getAttributeNode('data-no-retina')) {
-                    retinaImages.push(new RetinaImage(image));
-                }
-            }
-            existing_onload();
-        };
-    };
+  /**
+   * Chooses the actual image size to fetch, (for example 2 or 3) that
+   * will be used to create a suffix like "@2x" or "@3x".
+   *
+   * @param  {String|Number} cap The number the user provided indicating that
+   *                             they have prepared images up to this size.
+   *
+   * @return {Number} The number we'll be using to create a suffix.
+   */
+  function chooseCap(cap) {
+    var numericCap = parseInt(cap, 10);
 
-    Retina.isRetina = function(){
-        var mediaQuery = '(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)';
+    /*
+     * If the environment's device pixel ratio is less than what the user
+     * provided, we'll only grab images at that size.
+     */
+    if (environment < numericCap) {
+      return environment;
 
-        if (root.devicePixelRatio > 1) {
-            return true;
-        }
-
-        if (root.matchMedia && root.matchMedia(mediaQuery).matches) {
-            return true;
-        }
-
-        return false;
-    };
-
-
-    var regexMatch = /\.\w+$/;
-    function suffixReplace (match) {
-        return config.retinaImageSuffix + match;
+      /*
+       * If the device pixel ratio is greater than or equal to what the
+       * user provided, we'll use what the user provided.
+       */
+    } else {
+      return numericCap;
     }
+  }
 
-    function RetinaImagePath(path, at_2x_path) {
-        this.path = path || '';
-        if (typeof at_2x_path !== 'undefined' && at_2x_path !== null) {
-            this.at_2x_path = at_2x_path;
-            this.perform_check = false;
+  /**
+   * Makes sure that, since we are going to swap out the source of an image,
+   * the image does not change size on the page.
+   *
+   * @param  {Element} image An image element in the DOM.
+   *
+   * @return {Element} The same element that was passed in.
+   */
+  function forceOriginalDimensions(image) {
+    if (!image.hasAttribute('data-no-resize')) {
+      if (image.offsetWidth === 0 && image.offsetHeight === 0) {
+        image.setAttribute('width', image.naturalWidth);
+        image.setAttribute('height', image.naturalHeight);
+      } else {
+        image.setAttribute('width', image.offsetWidth);
+        image.setAttribute('height', image.offsetHeight);
+      }
+    }
+    return image;
+  }
+
+  /**
+   * Determines whether the retina image actually exists on the server.
+   * If so, swaps out the retina image for the standard one. If not,
+   * leaves the original image alone.
+   *
+   * @param {Element} image  An image element in the DOM.
+   * @param {String}  newSrc The url to the retina image.
+   *
+   * @return {undefined}
+   */
+  function setSourceIfAvailable(image, retinaURL) {
+    var imgType = image.nodeName.toLowerCase();
+
+    /*
+     * Create a new image element and give it a load listener. When the
+     * load listener fires, it means the URL is correct and we will then
+     * attach it to the user's image.
+     */
+    var testImage = document.createElement('img');
+    testImage.addEventListener('load', function () {
+      /*
+       * If we're dealing with an image tag, force it's dimensions
+       * and set the source attribute. If not, go after the background-image
+       * inline style.
+       */
+      if (imgType === 'img') {
+        forceOriginalDimensions(image).setAttribute('src', retinaURL);
+      } else {
+        image.style.backgroundImage = 'url(' + retinaURL + ')';
+      }
+    });
+
+    /*
+     * Attach the retina URL to our proxy image to load in the new
+     * image resource.
+     */
+    testImage.setAttribute('src', retinaURL);
+
+    /*
+     * Mark our image as processed so that it won't be processed again.
+     */
+    image.setAttribute(processedAttr, true);
+  }
+
+  /**
+   * Attempts to do an image url swap on a given image.
+   *
+   * @param  {Element}       image An image in the DOM.
+   * @param  {String}        src   The original image source attribute.
+   * @param  {String|Number} rjs   The pixel density cap for images provided.
+   *
+   * @return {undefined}
+   */
+  function dynamicSwapImage(image, src) {
+    var rjs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+
+    var cap = chooseCap(rjs);
+
+    /*
+     * Don't do anything if the cap is less than 2 or there is no src.
+     */
+    if (src && cap > 1) {
+      var newSrc = src.replace(srcReplace, '@' + cap + 'x$1');
+      setSourceIfAvailable(image, newSrc);
+    }
+  }
+
+  /**
+   * Performs an image url swap on a given image with a provided url.
+   *
+   * @param  {Element} image  An image in the DOM.
+   * @param  {String}  src    The original image source attribute.
+   * @param  {String}  hdsrc  The path for a 2x image.
+   *
+   * @return {undefined}
+   */
+  function manualSwapImage(image, src, hdsrc) {
+    if (environment > 1) {
+      setSourceIfAvailable(image, hdsrc);
+    }
+  }
+
+  /**
+   * Collects all images matching our selector, and converts our
+   * NodeList into an Array so that Array methods will be available to it.
+   *
+   * @param {Iterable} images  Optional. An Array, jQuery selection, or NodeList
+   *                           of elements to affect with retina.js.
+   *
+   * @return {Iterable} Contains all elements matching our selector.
+   */
+  function getImages(images) {
+    if (!images) {
+      return typeof document !== 'undefined' ? arrayify(document.querySelectorAll(selector)) : [];
+    } else {
+      return typeof images.forEach === 'function' ? images : arrayify(images);
+    }
+  }
+
+  /**
+   * Converts a string like "url(hello.png)" into "hello.png".
+   *
+   * @param  {Element} img An HTML element with a background image.
+   *
+   * @return {String}
+   */
+  function cleanBgImg(img) {
+    return img.style.backgroundImage.replace(inlineReplace, '$2');
+  }
+
+  /**
+   * Gets all participating images and dynamically swaps out each one for its
+   * retina equivalent taking into account the environment capabilities and
+   * the densities for which the user has provided images.
+   *
+   * @param {Iterable} images  Optional. An Array, jQuery selection, or NodeList
+   *                           of elements to affect with retina.js. If not
+   *                           provided, retina.js will grab all images on the
+   *                           page.
+   *
+   * @return {undefined}
+   */
+  function retina(images) {
+    getImages(images).forEach(function (img) {
+      if (!img.getAttribute(processedAttr)) {
+        var isImg = img.nodeName.toLowerCase() === 'img';
+        var src = isImg ? img.getAttribute('src') : cleanBgImg(img);
+        var rjs = img.getAttribute('data-rjs');
+        var rjsIsNumber = !isNaN(parseInt(rjs, 10));
+
+        // do not try to load /null image!
+        if (rjs === null) {
+          return;
+        }
+
+        /*
+         * If the user provided a number, dynamically swap out the image.
+         * If the user provided a url, do it manually.
+         */
+        if (rjsIsNumber) {
+          dynamicSwapImage(img, src, rjs);
         } else {
-            if (undefined !== document.createElement) {
-                var locationObject = document.createElement('a');
-                locationObject.href = this.path;
-                locationObject.pathname = locationObject.pathname.replace(regexMatch, suffixReplace);
-                this.at_2x_path = locationObject.href;
-            } else {
-                var parts = this.path.split('?');
-                parts[0] = parts[0].replace(regexMatch, suffixReplace);
-                this.at_2x_path = parts.join('?');
-            }
-            this.perform_check = true;
+          manualSwapImage(img, src, rjs);
         }
-    }
+      }
+    });
+  }
 
-    root.RetinaImagePath = RetinaImagePath;
+  /*
+   * If this environment has `window`, activate the plugin.
+   */
+  if (hasWindow) {
+    window.addEventListener('load', function () {
+      retina();
+    });
+    window.retinajs = retina;
+  }
 
-    RetinaImagePath.confirmed_paths = [];
-
-    RetinaImagePath.prototype.is_external = function() {
-        return !!(this.path.match(/^https?\:/i) && !this.path.match('//' + document.domain) );
-    };
-
-    RetinaImagePath.prototype.check_2x_variant = function(callback) {
-        var http, that = this;
-        if (this.is_external()) {
-            return callback(false);
-        } else if (!this.perform_check && typeof this.at_2x_path !== 'undefined' && this.at_2x_path !== null) {
-            return callback(true);
-        } else if (this.at_2x_path in RetinaImagePath.confirmed_paths) {
-            return callback(true);
-        } else {
-            http = new XMLHttpRequest();
-            http.open('HEAD', this.at_2x_path);
-            http.onreadystatechange = function() {
-                if (http.readyState !== 4) {
-                    return callback(false);
-                }
-
-                if (http.status >= 200 && http.status <= 399) {
-                    if (config.check_mime_type) {
-                        var type = http.getResponseHeader('Content-Type');
-                        if (type === null || !type.match(/^image/i)) {
-                            return callback(false);
-                        }
-                    }
-
-                    RetinaImagePath.confirmed_paths.push(that.at_2x_path);
-                    return callback(true);
-                } else {
-                    return callback(false);
-                }
-            };
-            http.send();
-        }
-    };
-
-
-    function RetinaImage(el) {
-        this.el = el;
-        this.path = new RetinaImagePath(this.el.getAttribute('src'), this.el.getAttribute('data-at2x'));
-        var that = this;
-        this.path.check_2x_variant(function(hasVariant) {
-            if (hasVariant) {
-                that.swap();
-            }
-        });
-    }
-
-    root.RetinaImage = RetinaImage;
-
-    RetinaImage.prototype.swap = function(path) {
-        if (typeof path === 'undefined') {
-            path = this.path.at_2x_path;
-        }
-
-        var that = this;
-        function load() {
-            if (! that.el.complete) {
-                setTimeout(load, 5);
-            } else {
-                if (config.force_original_dimensions) {
-                    that.el.setAttribute('width', that.el.offsetWidth);
-                    that.el.setAttribute('height', that.el.offsetHeight);
-                }
-
-                that.el.setAttribute('src', path);
-            }
-        }
-        load();
-    };
-
-
-    if (Retina.isRetina()) {
-        Retina.init(root);
-    }
-})();
+  exports.default = retina;
+});

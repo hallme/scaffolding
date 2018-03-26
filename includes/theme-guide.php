@@ -5,7 +5,7 @@
  * This may be useful for clients as a user guide.
  * Edit however it may suit your needs.
  *
- * @since Scaffolding 1.1
+ * @package Scaffolding
  */
 
 /**

@@ -22,6 +22,7 @@ It currently slides out from the right.
 	background: none;
 	overflow: hidden;
 	white-space: nowrap;
+
 	@include transition(all 0.25s ease-in-out);
 
 	&:hover,
@@ -33,7 +34,9 @@ It currently slides out from the right.
 	// Font Awesome Icon
 	&:before {
 		font-family: "FontAwesome";
-		content: "\f0c9"; // bars icon
+		content: "\f0c9";
+
+		// bars icon
 		display: inline;
 		margin-right: 5px;
 	}
@@ -41,7 +44,6 @@ It currently slides out from the right.
 
 // Base Mobile Styles
 #main-navigation {
-
 	ul.menu {
 		background-color: #333;
 		bottom: 0;
@@ -61,6 +63,7 @@ It currently slides out from the right.
 			display: block;
 			margin: 0;
 			padding: 0;
+
 			@include transition(all 0.25s ease-in-out);
 
 			a {
@@ -70,6 +73,7 @@ It currently slides out from the right.
 				padding: 15px 5%;
 				text-decoration: none;
 				width: 80%;
+
 				@include transition(all 0.25s ease-in-out);
 
 				&:hover,
@@ -88,6 +92,7 @@ It currently slides out from the right.
 				padding: 15px 0;
 				text-align: center;
 				width: 20%;
+
 				@include transition(all 0.25s ease-in-out);
 
 				&:hover,
@@ -101,6 +106,7 @@ It currently slides out from the right.
 				padding: 15px;
 				text-decoration: none;
 				width: 100%;
+
 				@include transition(all 0.25s ease-in-out);
 
 				&:hover,
@@ -110,9 +116,9 @@ It currently slides out from the right.
 			&:hover,
 			&:focus {}
 
-			&.first-item {}
+			&:first-child {}
 
-			&.last-item {}
+			&:last-child {}
 
 			&.current-menu-item {
 				> a {
@@ -151,8 +157,8 @@ It currently slides out from the right.
 				right: -100%;
 				top: 0;
 				width: 100%;
-				@include transition(all 0.25s ease-in-out);
 
+				@include transition(all 0.25s ease-in-out);
 			}
 
 			/* sub menu - child */
@@ -173,7 +179,10 @@ body.menu-open {
 
 	#mobile-menu-button {
 		&:before {
-			content: "\f00d"; // times icon
+			content: "\f00d";
+
+			// times icon
+	
 		}
 	}
 
@@ -187,7 +196,6 @@ body.menu-open {
 
 /* TABLET & SMALLER LAPTOPS */
 @media only screen and (min-width: $screen-sm-min) {
-
 	#mobile-menu-button {
 		display: none !important;
 	}
@@ -246,21 +254,19 @@ body.menu-open {
 					}
 				}
 
-				&.first-item {
+				&:first-child {
 					a {
 						border-left: none;
 					}
 				}
 
-				&.last-item {
-
+				&:last-child {
 					/* Children */
 					ul.sub-menu {
 						left: auto;
 						right: 0;
 
 						li {
-
 							/* Grand Children */
 							ul.sub-menu {
 								left: auto;
@@ -295,6 +301,7 @@ body.menu-open {
 					top: 99.9%;
 					width: auto;
 					z-index: 1000;
+
 					@include transition(top 1s);
 
 					li {
@@ -313,10 +320,9 @@ body.menu-open {
 							&:focus {}
 						}
 
+						&:first-child {}
 
-						&.first-item {}
-
-						&.last-item {
+						&:last-child {
 							a {
 								border-bottom: none;
 							}
@@ -336,17 +342,20 @@ body.menu-open {
 						}
 					}
 				}
+			}
 
-			} /* end .menu li */
+			/* end .menu li */
 
 			/* Show the child ul */
 			li:hover > ul {
 				display: table;
 			}
+		}
 
-		} /* end ul.menu */
+		/* end ul.menu */
+	}
 
-	} /* end #main-navigation */
+	/* end #main-navigation */
 }
 
 /* DESKTOP */
@@ -354,24 +363,18 @@ body.menu-open {
 
 /* FULL VIEWING SIZE */
 @media only screen and (min-width: $screen-lg-min) {
-
 	#main-navigation {
-
 		ul.menu {
-
 			li {
+				&:first-child {}
 
-				&.first-item {}
-
-				&.last-item {
-
+				&:last-child {
 					/* Children */
 					ul.sub-menu {
 						left: 0;
 						right: auto;
 
 						li {
-
 							/* Grand Children */
 							ul.sub-menu {
 								left: 99.9%;
@@ -380,11 +383,13 @@ body.menu-open {
 						}
 					}
 				}
+			}
 
-			} /* end .menu li */
+			/* end .menu li */
+		}
 
-		} /* end ul.menu */
+		/* end ul.menu */
+	}
 
-	} /* end #main-navigation */
-
+	/* end #main-navigation */
 }

@@ -4,7 +4,7 @@ Author:
 
 Stylesheet: Responsive Gravity Forms Styles
 
-Usage: Uncheck box in Gravity Forms Settings to "Not" Output default CSS. 
+Usage: Uncheck box in Gravity Forms Settings to "Not" Output default CSS.
 Do not enable option "Enable enhanced user interface" on dropdowns - we're using Select2 rather than Chosen.
 
 Last reviewed with plugin Version 2.0.2.
@@ -55,20 +55,20 @@ textarea.large {
 ul.gfield_checkbox,
 ul.gfield_radio {
 	margin: 0.5em 0 0;
-	
+
 	li {
 		position: relative;
-		
-		label, 
+
+		label,
 		input {
 			margin-left: 5px;
 		}
-		
+
 		input[type="radio"],
 		input[type="checkbox"] {
 			position: absolute;
 			top: 0.3em;
-			
+
 			&[value="gf_other_choice"] {
 				line-height: $input__height;
 				height: $input__height;
@@ -76,12 +76,12 @@ ul.gfield_radio {
 				left: 0;
 			}
 		}
-		
+
 		label {
 			display: inline-block;
 			padding-left: 23px;
 		}
-		
+
 		input[type="text"] {
 			margin-left: 28px;
 			width: auto;
@@ -121,23 +121,16 @@ ul.gfield_radio {
 	}
 
 	.ginput_left,
-	.ginput_right  {
+	.ginput_right {
 		width: 100%;
 	}
 
-	input[type=text],
-	input[type=url],
-	input[type=email],
-	input[type=tel],
-	input[type=number],
-	input[type=password] {
-		width: 100%;
-
-		&:focus+label {
-			font-weight: bold;
-		}
-	}
-
+	input[type="text"],
+	input[type="url"],
+	input[type="email"],
+	input[type="tel"],
+	input[type="number"],
+	input[type="password"],
 	select {
 		width: 100%;
 	}
@@ -200,22 +193,24 @@ h3.gform_title {
 	letter-spacing: normal;
 }
 
-.field_description_above,
-.gform_wrapper .description,
-.gfield_description,
-.gsection_description {
-	padding: 4px 0 8px 0;
-}
-
-.field_description_below {
-	.description,
-	.gfield_description,
-	.gsection_description {
-		padding: 4px 0 0 0;
+.gform_wrapper {
+	.field_description_above {
+		.description,
+		.gfield_description,
+		.gsection_description {
+			padding: 4px 0 8px 0;
+		}
+	}
+	.field_description_below {
+		.description,
+		.gfield_description,
+		.gsection_description {
+			padding: 4px 0 0 0;
+		}
 	}
 }
 
-.gfield_date_year+.gfield_description {
+.gfield_date_year + .gfield_description {
 	padding: 0;
 }
 
@@ -233,7 +228,7 @@ form {
 	ul {
 		margin: 0;
 		list-style-type: none;
-		
+
 		li {
 			margin-left: 0;
 			list-style-type: none;
@@ -290,42 +285,45 @@ ul.gfield_checkbox {
 }
 
 .ginput_complex {
-	.ginput_left,
-	.ginput_right,
-	.ginput_full {
-		input:focus+label {
+	span {
+		input:focus + label,
+		select:focus + label,
+		textarea:focus + label,
+		.select2-container--focus ~ label {
 			font-weight: bold;
 		}
 	}
 }
 
-.form_sublabel_below {
-	.ginput_complex label,
-	.gfield_time_hour label,
-	.gfield_time_minute label,
-	.gfield_date_month label,
-	.gfield_date_day label,
-	.gfield_date_year label,
-	.instruction {
-		margin: 3px 0 0;
-	}
-	
-	.ginput_complex + .description, 
-	.ginput_complex + .gfield_description, 
-	.ginput_complex + .gsection_description {
-		margin-top: 0.3em;
-	}
-}
+.gform_wrapper {
+	.form_sublabel_below {
+		.ginput_complex label,
+		.gfield_time_hour label,
+		.gfield_time_minute label,
+		.gfield_date_month label,
+		.gfield_date_day label,
+		.gfield_date_year label,
+		.instruction {
+			margin: 3px 0 0;
+		}
 
-.form_sublabel_above {
-	.ginput_complex label,
-	.gfield_time_hour label,
-	.gfield_time_minute label,
-	.gfield_date_month label,
-	.gfield_date_day label,
-	.gfield_date_year label,
-	.instruction {
-		margin: 0 0 3px;
+		.ginput_complex + .description,
+		.ginput_complex + .gfield_description,
+		.ginput_complex + .gsection_description {
+			margin-top: 0.3em;
+		}
+	}
+
+	.form_sublabel_above {
+		.ginput_complex label,
+		.gfield_time_hour label,
+		.gfield_time_minute label,
+		.gfield_date_month label,
+		.gfield_date_day label,
+		.gfield_date_year label,
+		.instruction {
+			margin: 0 0 3px;
+		}
 	}
 }
 
@@ -335,7 +333,7 @@ ul.gfield_checkbox {
 .gfield_date_month label,
 .gfield_date_day label,
 .gfield_date_year label,
-.instruction {
+.gform_wrapper .instruction {
 	display: block;
 	font-size: 0.7em;
 	font-weight: normal;
@@ -359,6 +357,27 @@ ul.gfield_checkbox {
 	font-size: 1.3em;
 }
 
+.gform_wrapper {
+	.hidden_label {
+		.gfield_label {
+			clip: rect(1px, 1px, 1px, 1px);
+			position: absolute !important;
+			height: 1px;
+			width: 1px;
+			overflow: hidden;
+		}
+	}
+	
+	.top_label {
+		.hidden_label {
+			.ginput_container {
+				padding-top: 10px;
+			}
+		}
+	}
+}
+
+
 /* SECTIONS */
 
 .gsection {
@@ -366,7 +385,7 @@ ul.gfield_checkbox {
 	padding: 2em 0 0.5em 0;
 	margin: 0 0 1em;
 	clear: both;
-	
+
 	&:first-of-type {
 		padding: 0 0 0.5em 0;
 	}
@@ -390,7 +409,7 @@ ul.gfield_checkbox {
 	.field_name_last {
 		width: 49%;
 	}
-	
+
 	.left_label {
 		.gfield_label {
 			float: left;
@@ -407,12 +426,12 @@ ul.gfield_checkbox {
 			text-align: right;
 		}
 	}
-	
+
 	.left_label .gfield_description,
 	.right_label .gfield_description {
 		width: 69%;
 	}
-	
+
 	.left_label ul.gfield_checkbox,
 	.right_label ul.gfield_checkbox,
 	.left_label ul.gfield_radio,
@@ -420,7 +439,7 @@ ul.gfield_checkbox {
 		margin-left: 32%;
 		overflow: hidden;
 	}
-	
+
 	.right_label .gfield_description,
 	.left_label .gfield_description,
 	.left_label .instruction,
@@ -448,20 +467,20 @@ ul.gfield_checkbox {
 			.name_last {
 				float: left;
 			}
-			
+
 			.name_suffix {
 				float: right;
 			}
-			
+
 			.name_prefix,
 			.name_suffix {
 				width: 10%;
 			}
-			
+
 			.name_prefix {
 				margin-right: 2%;
 			}
-			
+
 			.name_first,
 			.name_middle,
 			.name_last {
@@ -476,13 +495,13 @@ ul.gfield_checkbox {
 			.name_last {
 				width: 32%;
 			}
-			
+
 			.name_first,
 			.name_middle {
 				float: left;
 				margin-right: 2%;
 			}
-			
+
 			.name_last {
 				float: right;
 			}
@@ -493,7 +512,7 @@ ul.gfield_checkbox {
 				float: left;
 				width: 49%;
 			}
-			
+
 			.name_last {
 				float: right;
 				width: 49%;
@@ -506,13 +525,13 @@ ul.gfield_checkbox {
 				margin-right: 2%;
 				width: 20%;
 			}
-			
+
 			.name_first {
 				float: left;
 				margin-right: 2%;
 				width: 38%;
 			}
-			
+
 			.name_last {
 				float: right;
 				width: 38%;
@@ -526,7 +545,7 @@ ul.gfield_checkbox {
 				margin-right: 2%;
 				width: 38%;
 			}
-			
+
 			.name_suffix {
 				float: right;
 				width: 20%;
@@ -547,7 +566,7 @@ ul.gfield_checkbox {
 			width: 49%;
 		}
 	}
-
+  
 }
 
 @media only screen and (min-width: $screen-md-min) {}

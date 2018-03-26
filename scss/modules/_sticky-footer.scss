@@ -31,10 +31,9 @@ body.sticky-footer {
 		height: 1px;
 		overflow: hidden;
 	}
-
 }
 
-html>body.sticky-footer #container,
-html>body.sticky-footer #content {
+html > body.sticky-footer #container,
+html > body.sticky-footer #content {
 	height: 100%;
 }

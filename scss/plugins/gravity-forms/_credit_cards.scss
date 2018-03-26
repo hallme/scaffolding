@@ -190,9 +190,9 @@ div.gform_card_icon {
 }
 
 .ginput_complex select.ginput_card_expiration.ginput_card_expiration_month,
-.ginput_complex .select2-container.ginput_card_expiration.ginput_card_expiration_month,
+.ginput_complex select.ginput_card_expiration.ginput_card_expiration_month + .select2-container,
 .ginput_complex select.ginput_card_expiration.ginput_card_expiration_year,
-.ginput_complex .select2-container.ginput_card_expiration.ginput_card_expiration_year {
+.ginput_complex select.ginput_card_expiration.ginput_card_expiration_year + .select2-container {
 	width: 49% !important;
 	display: -moz-inline-stack;
 	display: inline-block;
@@ -200,7 +200,7 @@ div.gform_card_icon {
 }
 
 .ginput_complex select.ginput_card_expiration.ginput_card_expiration_year,
-.ginput_complex .select2-container.ginput_card_expiration.ginput_card_expiration_year {
+.ginput_complex select.ginput_card_expiration.ginput_card_expiration_year + .select2-container {
 	float: right;
 }
 
@@ -216,7 +216,7 @@ div.gform_card_icon {
 }
 
 .ginput_complex .ginput_cardinfo_left select.ginput_card_expiration.ginput_card_expiration_month,
-.ginput_complex .ginput_cardinfo_left .select2-container.ginput_card_expiration.ginput_card_expiration_month {
+.ginput_complex .ginput_cardinfo_left select.ginput_card_expiration.ginput_card_expiration_month + .select2-container {
 	margin-right: 4px;
 }
 
@@ -227,7 +227,7 @@ div.gform_card_icon {
 .ginput_complex .ginput_cardinfo_right span.ginput_card_security_code_icon {
 	width: 32px;
 	height: 23px;
-	background-image: url('#{$plugins-path}gravityforms/images/gf-creditcard-icons.png');
+	background-image: url("#{$plugins-path}gravityforms/images/gf-creditcard-icons.png");
 	background-repeat: no-repeat;
 	background-position: 0 -128px;
 	position: relative;
@@ -243,21 +243,19 @@ div.gform_card_icon {
  ************************/
 
 @media only screen and (min-width: $screen-sm-min) {
-	
 	.ginput_complex .ginput_cardinfo_left,
 	.ginput_complex .ginput_cardinfo_right {
 		min-height: 43px;
 		position: relative;
 		float: left;
 	}
-	
+
 	.ginput_complex .ginput_cardinfo_left {
 		width: 50%;
 		margin-right: 1%;
 		margin-bottom: 0;
 		max-width: 400px;
 	}
-	
 }
 
 @media only screen and (min-width: $screen-md-min) {}

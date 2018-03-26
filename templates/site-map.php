@@ -3,7 +3,6 @@
  * Template Name: Site Map Page
  *
  * @package Scaffolding
- * @since Scaffolding 1.1
  */
 
 get_header();

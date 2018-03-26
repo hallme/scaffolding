@@ -73,6 +73,7 @@ remember less is more.
 
 @mixin wrap {
 	@include clearfix;
+
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 90%;
@@ -99,7 +100,9 @@ remember less is more.
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border: 1px solid rgba(0, 0, 0, 0.2);
-	@include box-shadow(0 1px 3px rgba(0,0,0,0.1));
+
+	@include box-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+
 	padding: 4px;
 }
 
@@ -129,7 +132,7 @@ span.amp {
 	border-top-width: 3px;
 	border-top-style: solid;
 	width: auto;
-	
+
 	&:before {
 		font-family: "FontAwesome";
 		display: inline-block;
@@ -167,41 +170,47 @@ span.amp {
 }
 
 // Device-specific hide/show classes. Written in reverse logic for IE compatibility
-@include responsive-invisibility('.mobile-only');
+@include responsive-invisibility(".mobile-only");
+
 @media only screen and (max-width: $screen-xs-max) {
-	@include responsive-visibility('.mobile-only');
+	@include responsive-visibility(".mobile-only");
 }
 
-@include responsive-visibility('.mobile-hide');
+@include responsive-visibility(".mobile-hide");
+
 @media only screen and (max-width: $screen-xs-max) {
-	@include responsive-invisibility('.mobile-hide');
+	@include responsive-invisibility(".mobile-hide");
 }
 
-@include responsive-invisibility('.tablet-only');
+@include responsive-invisibility(".tablet-only");
+
 @media only screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-	@include responsive-visibility('.tablet-only');
+	@include responsive-visibility(".tablet-only");
 }
 
-@include responsive-visibility('.tablet-hide');
+@include responsive-visibility(".tablet-hide");
+
 @media only screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-	@include responsive-invisibility('.tablet-hide');
+	@include responsive-invisibility(".tablet-hide");
 }
 
-@include responsive-invisibility('.desktop-only');
+@include responsive-invisibility(".desktop-only");
+
 @media only screen and (min-width: $screen-md-min) {
-	@include responsive-visibility('.desktop-only');
+	@include responsive-visibility(".desktop-only");
 }
 
-@include responsive-visibility('.desktop-hide');
+@include responsive-visibility(".desktop-hide");
+
 @media only screen and (min-width: $screen-md-min) {
-	@include responsive-invisibility('.desktop-hide');
+	@include responsive-invisibility(".desktop-hide");
 }
 
 /*************************
  * UTILITY STYLES
  ************************/
 
-.float-left	{
+.float-left {
 	float: left;
 }
 
@@ -231,6 +240,7 @@ span.amp {
 	background-color: transparent;
 	border: 0;
 	overflow: hidden;
+
 	/* IE 6/7 fallback */
 	*text-indent: -9999px;
 
@@ -293,10 +303,12 @@ span.amp {
 
 @mixin transition($transition...) {
 	// defining prefixes so we can use them in mixins below
-	$prefixes:      ("-webkit", "-moz", "-ms", "-o",  "");
+	$prefixes: "-webkit", "-moz", "-ms", "-o", "";
+
 	@each $prefix in $prefixes {
 		#{$prefix}-transition: $transition;
 	}
+
 	transition: $transition;
 }
 
@@ -320,12 +332,13 @@ span.amp {
  * http://css-tricks.com/centering-in-the-unknown/
  ************************/
 
-@mixin dynamicVerticalAlign() {
+@mixin dynamicVerticalAlign {
 	&:before {
 		content: '';
 		display: inline-block;
 		vertical-align: middle;
-		height: 100%; width: .1px;
+		height: 100%;
+		width: .1px;
 	}
 }
 
@@ -335,7 +348,9 @@ span.amp {
 
 @mixin truncateText($overflow: ellipsis) {
 	overflow: hidden;
-	text-overflow: $overflow; // values are: clip, ellipsis, or a string
+	text-overflow: $overflow;
+
+	// values are: clip, ellipsis, or a string
 	white-space: nowrap;
 }
 
@@ -344,14 +359,24 @@ span.amp {
  ************************/
 
 @mixin grayscale {
-	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
-	filter: gray; /* IE6-9 */
-	-webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
-	-webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
-	-webkit-backface-visibility: hidden; /* Fix for transition flickering */
+	filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");
+
+	/* Firefox 10+ */
+	filter: gray;
+
+	/* IE6-9 */
+	-webkit-filter: grayscale(100%);
+
+	/* Chrome 19+ & Safari 6+ */
+	-webkit-transition: all .6s ease;
+
+	/* Fade to color for Chrome and Safari */
+	-webkit-backface-visibility: hidden;
+
+	/* Fix for transition flickering */
 
 	&:hover {
-		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+		filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0'/></filter></svg>#grayscale");
 		-webkit-filter: grayscale(0%);
 	}
 }
@@ -363,9 +388,10 @@ span.amp {
 @mixin transparent($color, $alpha) {
 	$rgba: rgba($color, $alpha);
 	$ie-hex-str: ie-hex-str($rgba);
+
 	background-color: transparent;
 	background-color: $rgba;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
 	zoom: 1;
 }
 
@@ -399,7 +425,8 @@ span.amp {
 		display: -moz-inline-flex;
 		display: -ms-inline-flexbox;
 		display: inline-flex;
-	} @else {
+	}
+	@else {
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: -moz-flex;
@@ -419,11 +446,14 @@ span.amp {
 	// No Webkit Box fallback.
 	-webkit-flex-wrap: $value;
 	-moz-flex-wrap: $value;
+
 	@if $value == nowrap {
 		-ms-flex-wrap: none;
-	} @else { 
-		-ms-flex-wrap: $value; 
 	}
+	@else {
+		-ms-flex-wrap: $value;
+	}
+
 	flex-wrap: $value;
 }
 
@@ -438,16 +468,20 @@ span.amp {
 	@if $value == row-reverse {
 		-webkit-box-direction: reverse;
 		-webkit-box-orient: horizontal;
-	} @else if $value == column {
+	}
+	@else if $value == column {
 		-webkit-box-direction: normal;
 		-webkit-box-orient: vertical;
-	} @else if $value == column-reverse {
+	}
+	@else if $value == column-reverse {
 		-webkit-box-direction: reverse;
 		-webkit-box-orient: vertical;
-	} @else {
+	}
+	@else {
 		-webkit-box-direction: normal;
 		-webkit-box-orient: horizontal;
 	}
+
 	-webkit-flex-direction: $value;
 	-moz-flex-direction: $value;
 	-ms-flex-direction: $value;
@@ -465,18 +499,23 @@ span.amp {
 	@if $value == flex-start {
 		-webkit-box-pack: start;
 		-ms-flex-pack: start;
-	} @else if $value == flex-end {
+	}
+	@else if $value == flex-end {
 		-webkit-box-pack: end;
 		-ms-flex-pack: end;
-	} @else if $value == space-between {
+	}
+	@else if $value == space-between {
 		-webkit-box-pack: justify;
 		-ms-flex-pack: justify;
-	} @else if $value == space-around {
-		-ms-flex-pack: distribute;		
-	} @else {
+	}
+	@else if $value == space-around {
+		-ms-flex-pack: distribute;
+	}
+	@else {
 		-webkit-box-pack: $value;
 		-ms-flex-pack: $value;
 	}
+
 	-webkit-justify-content: $value;
 	-moz-justify-content: $value;
 	justify-content: $value;
@@ -493,13 +532,16 @@ span.amp {
 	@if $value == flex-start {
 		-webkit-box-align: start;
 		-ms-flex-align: start;
-	} @else if $value == flex-end {
+	}
+	@else if $value == flex-end {
 		-webkit-box-align: end;
 		-ms-flex-align: end;
-	} @else {
+	}
+	@else {
 		-webkit-box-align: $value;
 		-ms-flex-align: $value;
 	}
+
 	-webkit-align-items: $value;
 	-moz-align-items: $value;
 	align-items: $value;

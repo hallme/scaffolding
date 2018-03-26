@@ -80,7 +80,8 @@ input.datepicker.datepicker_with_icon {
 	margin: 5px auto 0;
 	font-family: $font__sans;
 	font-size: 0.875em;
-	@include box-shadow(0 0 10px 0 rgba(0,0,0,.5));
+
+	@include box-shadow(0 0 10px 0 rgba(0, 0, 0, 0.5));
 }
 
 .ui-datepicker a {
@@ -93,11 +94,15 @@ input.datepicker.datepicker_with_icon {
 }
 
 .ui-datepicker-header {
-	background-color: #666; /* set the header background color */
+	background-color: #666;
+
+	/* set the header background color */
 	color: #e0e0e0;
 	font-weight: bold;
-	@include box-shadow(inset 0 1px 1px 0 rgba(250,250,250,.2));
-	filter: dropshadow(color=#000, offx=1, offy=-1);
+
+	@include box-shadow(inset 0 1px 1px 0 rgba(250, 250, 250, 0.2));
+
+	filter: dropshadow(color = #000, offx = 1, offy = -1);
 	line-height: 40px;
 	min-height: 30px !important;
 	border-width: 1px 0 0 0;
@@ -158,12 +163,12 @@ input.datepicker.datepicker_with_icon {
 .ui-datepicker thead {
 	background: #f7f7f7;
 	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y3ZjdmNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmMWYxZjEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(top,  #f7f7f7 0%, #f1f1f1 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#f1f1f1));
-	background: -webkit-linear-gradient(top,  #f7f7f7 0%,#f1f1f1 100%);
-	background: -o-linear-gradient(top,  #f7f7f7 0%,#f1f1f1 100%);
-	background: -ms-linear-gradient(top,  #f7f7f7 0%,#f1f1f1 100%);
-	background: linear-gradient(to bottom,  #f7f7f7 0%,#f1f1f1 100%);
+	background: -moz-linear-gradient(top, #f7f7f7 0%, #f1f1f1 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #f1f1f1));
+	background: -webkit-linear-gradient(top, #f7f7f7 0%, #f1f1f1 100%);
+	background: -o-linear-gradient(top, #f7f7f7 0%, #f1f1f1 100%);
+	background: -ms-linear-gradient(top, #f7f7f7 0%, #f1f1f1 100%);
+	background: linear-gradient(to bottom, #f7f7f7 0%, #f1f1f1 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#f1f1f1',GradientType=0 );
 	border-bottom: 1px solid #bbb;
 }
@@ -175,7 +180,7 @@ input.datepicker.datepicker_with_icon {
 	padding: 5px 0;
 	color: #666666;
 	text-shadow: 1px 0px 0px #fff;
-	filter: dropshadow(color=#fff, offx=1, offy=0);
+	filter: dropshadow(color = #fff, offx = 1, offy = 0);
 }
 
 .ui-datepicker tbody td {
@@ -206,22 +211,22 @@ input.datepicker.datepicker_with_icon {
 	line-height: 30px;
 	color: #666666;
 	text-shadow: 1px 1px 0px #fff;
-	filter: dropshadow(color=#fff, offx=1, offy=1);
+	filter: dropshadow(color = #fff, offx = 1, offy = 1);
 }
 
 .ui-datepicker-calendar .ui-state-default {
 	background: #ededed;
 	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VkZWRlZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZWRlZGUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(top,  #ededed 0%, #dedede 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#dedede));
-	background: -webkit-linear-gradient(top,  #ededed 0%,#dedede 100%);
-	background: -o-linear-gradient(top,  #ededed 0%,#dedede 100%);
-	background: -ms-linear-gradient(top,  #ededed 0%,#dedede 100%);
-	background: linear-gradient(to bottom,  #ededed 0%,#dedede 100%);
+	background: -moz-linear-gradient(top, #ededed 0%, #dedede 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ededed), color-stop(100%, #dedede));
+	background: -webkit-linear-gradient(top, #ededed 0%, #dedede 100%);
+	background: -o-linear-gradient(top, #ededed 0%, #dedede 100%);
+	background: -ms-linear-gradient(top, #ededed 0%, #dedede 100%);
+	background: linear-gradient(to bottom, #ededed 0%, #dedede 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#dedede',GradientType=0 );
-	-webkit-box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, .5);
-	-moz-box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, .5);
-	box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, .5);
+	-webkit-box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, 0.5);
+	-moz-box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, 0.5);
+	box-shadow: inset 1px 1px 0px 0px rgba(250, 250, 250, 0.5);
 }
 
 .ui-datepicker-calendar .ui-state-hover {
@@ -229,14 +234,20 @@ input.datepicker.datepicker_with_icon {
 }
 
 .ui-datepicker-calendar .ui-state-active {
-	background: #FFF2AA; /* set the active date background color */
-	border: 1px solid #c19163; /* set the active date border color */
-	color: #666; /* set the active date font color */
-	-webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
-	-moz-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
-	box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+	background: #FFF2AA;
+
+	/* set the active date background color */
+	border: 1px solid #c19163;
+
+	/* set the active date border color */
+	color: #666;
+
+	/* set the active date font color */
+	-webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 	text-shadow: 0px 1px 0px #FFF;
-	filter: dropshadow(color=#FFF, offx=0, offy=1);
+	filter: dropshadow(color = #FFF, offx = 0, offy = 1);
 	position: relative;
 	margin: -1px;
 }
@@ -291,7 +302,7 @@ div.charleft.warningTextareaInfo {
 	color: #A1A1A1;
 }
 
-li.gf_hide_charleft div.charleft  {
+li.gf_hide_charleft div.charleft {
 	display: none !important;
 }
 
@@ -305,7 +316,7 @@ li.gf_hide_charleft div.charleft  {
 /* PRICING FIELDS */
 
 .ginput_price {
-	filter: alpha(opacity=70);
+	filter: alpha(opacity = 70);
 	-moz-opacity: 0.7;
 	-khtml-opacity: 0.7;
 	opacity: 0.7;
@@ -325,7 +336,7 @@ span.ginput_product_price_label {
 }
 
 span.ginput_product_price {
-	color: #900
+	color: #900;
 }
 
 span.ginput_quantity_label {
@@ -373,7 +384,7 @@ input.ginput_quantity {
 		margin: 0 0 6px 0 !important;
 		padding: 0 !important;
 		clear: both;
-		filter: alpha(opacity=60);
+		filter: alpha(opacity = 60);
 		-moz-opacity: 0.6;
 		-khtml-opacity: 0.6;
 		opacity: 0.6;
@@ -386,7 +397,7 @@ input.ginput_quantity {
 	overflow: hidden;
 	line-height: 20px !important;
 	border: 1px solid #CCC;
-	background-image: url('#{$plugins-path}gravityforms/images/gf-percentbar-bg.png');
+	background-image: url("#{$plugins-path}gravityforms/images/gf-percentbar-bg.png");
 	background-repeat: repeat-x;
 	background-position: bottom;
 	background-color: #FFF;
@@ -414,42 +425,42 @@ input.ginput_quantity {
 }
 
 .percentbar_blue {
-	background-image: url('#{$plugins-path}gravityforms/images/gf-percentbar-blue.png');
+	background-image: url("#{$plugins-path}gravityforms/images/gf-percentbar-blue.png");
 	background-repeat: repeat-x;
 	background-color: #0072BC;
 	color: #FFF;
 }
 
 .percentbar_gray {
-	background-image: url('#{$plugins-path}gravityforms/images/gf-percentbar-gray.png');
+	background-image: url("#{$plugins-path}gravityforms/images/gf-percentbar-gray.png");
 	background-repeat: repeat-x;
 	background-color: #666;
 	color: #FFF;
 }
 
 .percentbar_green {
-	background-image: url('#{$plugins-path}gravityforms/images/gf-percentbar-green.png');
+	background-image: url("#{$plugins-path}gravityforms/images/gf-percentbar-green.png");
 	background-repeat: repeat-x;
 	background-color: #94DC21;
 	color: #FFF;
 }
 
 .percentbar_orange {
-	background-image: url('#{$plugins-path}gravityforms/images/gf-percentbar-orange.png');
+	background-image: url("#{$plugins-path}gravityforms/images/gf-percentbar-orange.png");
 	background-repeat: repeat-x;
 	background-color: #DC7021;
 	color: #FFF;
 }
 
 .percentbar_red {
-	background-image: url('#{$plugins-path}gravityforms/images/gf-percentbar-red.png');
+	background-image: url("#{$plugins-path}gravityforms/images/gf-percentbar-red.png");
 	background-repeat: repeat-x;
 	background-color: #DC2521;
 	color: #FFF;
 }
 
 .percentbar_custom {
-	background-image: url('#{$plugins-path}gravityforms/images/gf-percentbar-custom.png');
+	background-image: url("#{$plugins-path}gravityforms/images/gf-percentbar-custom.png");
 	background-repeat: repeat-x;
 }
 
@@ -466,7 +477,7 @@ input.ginput_quantity {
 	font-size: 14px;
 	height: 20px;
 	line-height: 20px !important;
-	filter: alpha(opacity=20);
+	filter: alpha(opacity = 20);
 	-moz-opacity: 0.2;
 	-khtml-opacity: 0.2;
 	opacity: 0.2;
@@ -482,7 +493,7 @@ input.ginput_quantity {
 	}
 
 	&.gf_step_active {
-		filter: alpha(opacity=100);
+		filter: alpha(opacity = 100);
 		-moz-opacity: 1.0;
 		-khtml-opacity: 1.0;
 		opacity: 1.0;
@@ -549,7 +560,7 @@ table.gfield_list td {
 
 table.gfield_list {
 	border-spacing: 0;
-	border-collapse:collapse;
+	border-collapse: collapse;
 }
 
 table.gfield_list thead th {
@@ -569,12 +580,12 @@ table.gfield_list tr {
 
 table.gfield_list th,
 table.gfield_list td {
-	padding:0 0 0.5em 0;
+	padding: 0 0 0.5em 0;
 }
 
 table.gfield_list th + th,
 table.gfield_list td + td {
-	padding:0 0 0.5em 0.7em;
+	padding: 0 0 0.5em 0.7em;
 }
 
 .left_label .gfield_list, .right_label .gfield_list {
@@ -593,13 +604,13 @@ table.gfield_list td + td {
 	width: 46%;
 }
 
-.gfield_list input{
+.gfield_list input {
 	width: 98%;
 }
 
 .gfield_icon_disabled {
 	cursor: default !important;
-	filter: alpha(opacity=60);
+	filter: alpha(opacity = 60);
 	-moz-opacity: 0.6;
 	-khtml-opacity: 0.6;
 	opacity: 0.6;
@@ -644,7 +655,7 @@ table.gfield_list td.gfield_list_icons {
 	display: block;
 	margin-top: 1em;
 	text-decoration: underline;
-	
+
 	&:hover {
 		text-decoration: none;
 	}
@@ -669,23 +680,23 @@ form div.gform_body ul.gform_fields li.gfield.gfield_html ul {
 
 div.gform_body ul.gform_fields li.gfield.gfield_html ol li,
 form div.gform_body ul.gform_fields li.gfield.gfield_html ol li {
-	list-style-type: decimal!important;
-	overflow:visible;
+	list-style-type: decimal !important;
+	overflow: visible;
 	margin: 0 0 0.5em;
 	padding-left: 0;
 }
 
 div.gform_body ul.gform_fields li.gfield.gfield_html ol,
 form div.gform_body ul.gform_fields li.gfield.gfield_html ol {
-	list-style-type: decimal!important;
+	list-style-type: decimal !important;
 	margin: 1em 0 1.5em 2.0em;
 	padding-left: 0;
 }
 
 div.gform_body ul.gform_fields li.gfield.gfield_html ol li ul,
 form div.gform_body ul.gform_fields li.gfield.gfield_html ol li ul li {
-    list-style-type: disc !important;
-    padding-left: 0;
+	list-style-type: disc !important;
+	padding-left: 0;
 }
 
 div.gform_body ul.gform_fields li.gfield.gfield_html ol li ul {
@@ -718,28 +729,26 @@ div.gform_body ul.gform_fields li.gfield.gfield_html dl dd {
  ************************/
 
 @media only screen and (min-width: $screen-sm-min) {
-	
 	.gform_save_link {
 		display: inline-block;
 		margin-left: 1em;
 		margin-top: 0;
 	}
-	
+
 	.left_label div.charleft,
 	.right_label div.charleft {
 		margin-left: 32%;
 	}
-	
+
 	.right_label .gform_fileupload_multifile,
 	.left_label .gform_fileupload_multifile {
 		margin-left: 31%;
 	}
-	
+
 	.left_label li.gfield_html_formatted,
 	.right_label li.gfield_html_formatted {
 		margin-left: 32%;
 	}
-	
 }
 
 @media only screen and (min-width: $screen-md-min) {}

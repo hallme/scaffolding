@@ -59,24 +59,19 @@ function getScrollBarWidth () {
 // As the page loads, call these scripts
 jQuery(document).ready(function($) {
 
-	// Select2 - https://select2.github.io/
-	if ($.fn.select2) {
-		var setup_select2 = function() {
-			// Add search only if results exceed number
-			var search = 20;
-			
-			// Disable search on touch devices for cleaner UX
-			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-				search = -1;
-			}
-			
-			$('select').select2({
-				minimumResultsForSearch: search,
+	// SelectWoo - https://github.com/woocommerce/selectWoo
+	if ($.fn.selectWoo) {
+		var setup_selectWoo = function() {
+			$('select').each(function(){
+				$(this).selectWoo({
+					minimumResultsForSearch: 20,
+					width: 'null',
+				});
 			});
 		};
-		$(document).ajaxComplete(setup_select2);
-		$(document).bind('gform_post_render', setup_select2);
-		setup_select2();
+		$(document).ajaxComplete(setup_selectWoo);
+		$(document).bind('gform_post_render', setup_selectWoo);
+		setup_selectWoo();
 	}
 
 	// Lightbox - http://dimsemenov.com/plugins/magnific-popup/
@@ -132,7 +127,6 @@ jQuery(document).ready(function($) {
 
 	// Equal Height Divs - http://css-tricks.com/equal-height-blocks-in-rows/
 	equalheight = function(container){
-
 		var currentTallest = 0,
 		currentRowStart = 0,
 		rowDivs = new Array(),
@@ -199,49 +193,15 @@ jQuery(document).ready(function($) {
 		if (responsive_viewport >= 768) {
 			$('#main-navigation .menu-item-has-children').doubleTapToGo();
 		}
-	})
+	});
 
 	$(window).resize(function(e) {
-		if (Modernizr && Modernizr.touch) {
-			e.preventDefault();
-		} else {
-			responsive_viewport = $(window).width() + getScrollBarWidth();
-			if (responsive_viewport >= 768) {
-				$('body').removeClass('menu-open');
-			} else if (responsive_viewport < 768 && !menu.is(':hidden')) {
-				$('body').removeClass('menu-open');
-			}
+		responsive_viewport = $(window).width() + getScrollBarWidth();
+		if (responsive_viewport >= 768 && $('body').hasClass('menu-open')) {
+			$('body').removeClass('menu-open');
 		}
 	});
 	// end responsive nav
-
-	// if is smaller than 481px
-	if (responsive_viewport < 481) {
-		// if mobile device and not on the home page scroll to the content on page load
-		if (!$('body').hasClass("home")) {
-			var new_position = jQuery('#main').offset();
-			if (typeof new_position != 'undefined') {
-				jQuery('html, body').animate({scrollTop:new_position.top}, 2000);
-			}
-		}
-	}
-
-	// if is larger than 481px
-	if (responsive_viewport >= 481){}
-
-	// if is larger than or equal to 768px
-	if (responsive_viewport >= 768) {
-		// load gravatars
-		$('.comment img[data-gravatar]').each(function() {
-			$(this).attr('src',$(this).attr('data-gravatar'));
-		});
-	}
-
-	// if is smaller than 1024px
-	if (responsive_viewport < 1024) {}
-
-	// if is larger than or equal to 1024px
-	if (responsive_viewport >= 1024) {}
 
 	// hide #back-top first
 	$("#back-top").hide();
@@ -265,30 +225,6 @@ jQuery(document).ready(function($) {
 			return false;
 		});
 	});
-
-	/*
-	// Released under MIT license: http://www.opensource.org/licenses/mit-license.php
-	$('[placeholder]').focus(function() {
-		var input = $(this);
-		if (input.val() == input.attr('placeholder')) {
-			input.val('');
-			input.removeClass('placeholder');
-		}
-	}).blur(function() {
-		var input = $(this);
-		if (input.val() == '' || input.val() == input.attr('placeholder')) {
-			input.addClass('placeholder');
-			input.val(input.attr('placeholder'));
-		}
-	}).blur().parents('form').submit(function() {
-		$(this).find('[placeholder]').each(function() {
-			var input = $(this);
-			if (input.val() == input.attr('placeholder')) {
-				input.val('');
-			}
-		})
-	});
-	*/
 
 }); /* end of as page load scripts */
 

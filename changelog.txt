@@ -1,5 +1,31 @@
 # Changelog
 
+## Version 2.1
+
+* Remove filter stripping version from scripts and styles
+* Improved mobile navigation and bug fixes
+* Replaced Select2 with SelectWoo
+* Update Font Awesome to version 4.7.0
+* Remove image alignment on mobile
+* Added default Tinymce settings for client proofing
+* Add button styles
+* Update Normalize to version 5.0.0
+* Remove searchform filter in favor of template file
+* Updated Bootstrap to version 3.3.7
+* Pagination improvements
+* Added gulp script
+* Remove `set_post_thumbnail_size`
+* General template cleanup
+* Remove filter stripping image dimensions
+* Updated placeholder styles
+* Gravity Forms style edits
+* Remove first and last classes in favor of pseudo classes
+* Added Gravity Forms customization include file
+* Remove support for IE 7
+* Update Retina.js to version 2.1.1
+* Update gravatars to use `get_avatar` function
+* Hyphenate long titles
+
 ## Version 2.0
 
 * Added this file
@@ -27,7 +53,6 @@
 * Gravity Forms style updates - compatibility with Version 2.0.2
 * Added flexbox mixins
 * Table style improvements
-
 
 ## Version 1.0
 

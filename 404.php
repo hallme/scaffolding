@@ -3,7 +3,6 @@
  * The template for displaying 404 pages (Not Found)
  *
  * @package Scaffolding
- * @since Scaffolding 1.0
  */
 
 get_header(); ?>

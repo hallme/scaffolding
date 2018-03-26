@@ -13,7 +13,10 @@ Stylesheet: Pagination Stylesheet
 	list-style: none;
 	text-align: center;
 	margin: 2em -2px 1em;
-	
+	@include flexbox(flex);
+	@include flex-wrap(wrap);
+	@include justify-content(center);
+
 	&:empty {
 		display: none;
 		margin: 0;
@@ -22,18 +25,19 @@ Stylesheet: Pagination Stylesheet
 	li {
 		display: inline-block;
 		margin: 2px;
-		width: 48%;
-		
+		min-width: 3em;
+
 		&:empty {
 			display: none;
 			margin: 0;
 		}
-		
+
 		a,
 		span {
 			display: block;
 			padding: 0.675em;
 			border: 1px solid #DDD;
+			text-align: center;
 		}
 
 		a {
@@ -58,11 +62,13 @@ Stylesheet: Pagination Stylesheet
 	// previous and next page links
 	li.sc-prev-link,
 	li.sc-next-link {
+		display: none;
+		
 		a {
 			color: #FFF;
 			background-color: $color__primary;
 			border-color: $color__primary;
-			
+
 			&:hover,
 			&:focus {
 				background-color: darken($color__primary, 10%);
@@ -78,7 +84,7 @@ Stylesheet: Pagination Stylesheet
 			color: #FFF;
 			background-color: $color__secondary;
 			border-color: $color__secondary;
-			
+
 			&:hover,
 			&:focus {
 				background-color: darken($color__secondary, 10%);
@@ -86,12 +92,10 @@ Stylesheet: Pagination Stylesheet
 			}
 		}
 	}
-
 }
 
 // fallback previous & next links
 .wp-prev-next {
-
 	ul {}
 
 	.prev-link {
@@ -101,27 +105,30 @@ Stylesheet: Pagination Stylesheet
 	.next-link {
 		float: right;
 	}
-
 }
 
 /**
  * Large Mobile Devices
  */
-
 @media only screen and (min-width: 481px) {
-	
 	.scaffolding-page-navi {
-		
-        li {
-			width: auto;
-
-            a,
+		li {
+			a,
 			span {
 				padding: 0.5em 1.25em;
-				
 			}
-        }
+		}
+	}
+}
 
-    }
-	
+/**
+ * Large Mobile Devices
+ */
+@media only screen and (min-width: $screen-sm-min) {
+	.scaffolding-page-navi {
+		li.sc-prev-link,
+		li.sc-next-link {
+			display: inline-block;
+		}
+	}
 }

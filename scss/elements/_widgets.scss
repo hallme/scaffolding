@@ -10,7 +10,7 @@ Stylesheet: Widgets Stylesheet
 	margin: 2.2em 0;
 	padding: 0;
 
-	&.first-widget {
+	&:first-child {
 		margin: 0 0 2.2em;
 
 		.widgettitle {
@@ -18,7 +18,11 @@ Stylesheet: Widgets Stylesheet
 		}
 	}
 
-	&.only-widget {
+	&:last-child {
+		margin: 2.2em 0 0;
+	}
+
+	&:only-child {
 		margin: 0;
 
 		.widgettitle {
@@ -26,10 +30,6 @@ Stylesheet: Widgets Stylesheet
 		}
 	}
 
-	&.last-widget {
-		margin: 2.2em 0 0;
-	}
-	
 	.widgettitle {
 		border-bottom: 2px solid #444;
 		margin-bottom: 0.75em;
@@ -39,12 +39,13 @@ Stylesheet: Widgets Stylesheet
 	ul,
 	ol {
 		list-style: none;
-		
+
 		li {
 			margin-left: 0;
 			margin-bottom: 0.75em;
 
 			&:first-child {}
+
 			&:last-child {}
 
 			a {}
@@ -57,7 +58,7 @@ Stylesheet: Widgets Stylesheet
 			}
 		}
 	}
-	
+
 	// hyphenate long words
 	a,
 	p,
@@ -79,7 +80,7 @@ Stylesheet: Widgets Stylesheet
 /* Archives */
 .widget_archive {
 	select {}
-	
+
 	option {}
 }
 
@@ -87,25 +88,27 @@ Stylesheet: Widgets Stylesheet
 .widget_calendar {}
 
 #calendar_wrap {
-	overflow-x: auto; // make sure table doesn't overflow
+	overflow-x: auto;
+
+	// make sure table doesn't overflow
 }
 
 #wp-calendar {
 	caption {
 		margin-bottom: 0.5em;
 	}
-	
+
 	tr {}
-	
+
 	td {
 		text-align: center;
 		vertical-align: middle;
 	}
-	
+
 	th {}
-	
+
 	thead {}
-	
+
 	tfoot {
 		td {
 			background: #FFF;
@@ -114,24 +117,24 @@ Stylesheet: Widgets Stylesheet
 			padding-right: 0;
 		}
 	}
-	
+
 	tbody {}
-	
+
 	#next,
 	#prev {
 		a {
 			font-size: 0.9em;
 		}
 	}
-	
+
 	#next {
 		text-align: right;
 	}
-	
+
 	#prev {
 		text-align: left;
 	}
-	
+
 	.pad {
 		background: #FFF;
 	}
@@ -140,7 +143,7 @@ Stylesheet: Widgets Stylesheet
 /* Categories */
 .widget_categories {
 	select {}
-	
+
 	option {}
 }
 
@@ -174,11 +177,11 @@ Stylesheet: Widgets Stylesheet
 /* Recent Comments */
 .widget_recent_comments {
 	#recentcomments {}
-	
+
 	.recentcomments {}
-	
+
 	a {}
-	
+
 	.comment-author-link {}
 }
 
@@ -187,7 +190,7 @@ Stylesheet: Widgets Stylesheet
 	ul {
 		li {
 			a {}
-			
+
 			.post-date {
 				display: block;
 				color: #999;
@@ -203,21 +206,21 @@ Stylesheet: Widgets Stylesheet
 	ul {
 		li {
 			margin-bottom: 1em;
-			
+
 			.rsswidget {}
-			
+
 			.rss-date {
 				display: block;
 				color: #999;
 				font-size: 0.875em;
 				font-style: italic;
 			}
-			
+
 			.rssSummary {
 				margin: 0.5em 0;
 				font-size: 0.875em;
 			}
-			
+
 			cite {
 				color: #999;
 			}
@@ -228,24 +231,24 @@ Stylesheet: Widgets Stylesheet
 /* Search */
 .widget_search {
 	#searchform {}
-	
+
 	label {}
-	
+
 	#s {}
-	
+
 	#searchsubmit {}
 }
 
 /* Tag Cloud */
 .widget_tag_cloud {
 	.tagcloud {}
-	
+
 	a {}
 }
 
 /* Text */
 .widget_text {
 	.textwidget {}
-	
+
 	p {}
 }

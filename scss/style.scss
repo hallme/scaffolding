@@ -34,7 +34,7 @@ Here you can easily toggle on/off modules and files.
 @import "plugins/gravity-forms/base"; // gravity forms styles - uncheck box to NOT output default CSS
 
 /** STEP 6: Libraries **/
-@import "libs/select2"; // better cross browser select input - see https://select2.github.io/
+@import "libs/selectWoo"; // better cross browser select input - see https://github.com/woocommerce/selectWoo
 @import "libs/magnific-popup"; // magnific lightbox styles - see https://github.com/dimsemenov/Magnific-Popup for more info
 
 /** STEP 7: Media Queries **/
@@ -50,19 +50,16 @@ TABLET & SMALLER LAPTOPS
 Here you can begin to add more resource-intensive styles.
 */
 @media only screen and (min-width: $screen-sm-min) {
-
 	@import "media-queries/sm";
-
 }
 
 /*
 DESKTOP
 */
 @media only screen and (min-width: $screen-md-min) {
-
 	@import "media-queries/md";
-	//@import "modules/sticky-footer"; // need to add sticky-footer class to the body
 
+	//@import "modules/sticky-footer"; // need to add sticky-footer class to the body
 }
 
 /*
@@ -70,9 +67,7 @@ FULL VIEWING SIZE
 This is for the larger monitors and possibly full screen viewers.
 */
 @media only screen and (min-width: $screen-lg-min) {
-
 	@import "media-queries/lg";
-
 }
 
 /*
@@ -100,7 +95,5 @@ sense to print at the bottom. Things like nav, ads, and forms should
 be set to display none.
 */
 @media print {
-
 	@import "media-queries/print";
-
 }

@@ -15,7 +15,7 @@ table {
 	thead {
 		text-align: center;
 	}
-	
+
 	th,
 	td {
 		padding: 4px;
@@ -48,7 +48,6 @@ table {
 			background-color: $table__bg-odd-color;
 		}
 	}
-	
 }
 
 /************************
@@ -56,14 +55,12 @@ table {
  ************************/
 
 @media only screen and (min-width: $screen-sm-min) {
-
 	table {
 		th,
 		td {
 			padding: 8px;
 		}
 	}
-
 }
 
 @media only screen and (min-width: $screen-md-min) {}

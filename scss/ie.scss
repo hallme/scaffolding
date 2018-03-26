@@ -19,45 +19,7 @@ For example, you can use something like:
 You can also target specific versions by using the classes applied to
 the html element. These can sometimes change, so take a look inside the
 header.php file to see what they are:
-
-.lt-ie8 .class { ... }
 */
-
-// IE 7 Fixes
-.lt-ie8 {
-
-	// Fix Main Navigation Inline issue
-	#main-navigation {
-		ul.menu {
-			li {
-				float: left;
-			}
-		}
-	}
-
-	// Disable the sticky footer in IE7
-	html,
-	body.sticky-footer {
-		height: 100%;
-		margin: 0;
-	}
-
-	body.sticky-footer {
-		#container {
-			display: block;
-			width: auto;
-		}
-
-		#container .header,
-		#container .banner-wrap,
-		#content,
-		#container .footer {
-			display: block;
-			height: auto;
-			overflow: hidden;
-		}
-	}
-}
 
 // IE 8 Fixes
 .lt-ie9 {}

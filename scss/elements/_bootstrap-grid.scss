@@ -26,58 +26,67 @@ v3.3.7 (http://getbootstrap.com)
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
 @mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
-	@for $i from (1 + 1) through $grid-columns {
+	@for $i from 1 + 1 through $grid-columns {
 		$list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
 	}
+
 	#{$list} {
 		position: relative;
+
 		// Prevent columns from collapsing when empty
 		min-height: 1px;
+
 		// Inner gutter via padding
-		padding-left:  ceil(($grid-gutter-width / 2));
-		padding-right: floor(($grid-gutter-width / 2));
+		padding-left: ceil($grid-gutter-width / 2);
+		padding-right: floor($grid-gutter-width / 2);
 	}
 }
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
 @mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
-	@for $i from (1 + 1) through $grid-columns {
+	@for $i from 1 + 1 through $grid-columns {
 		$list: "#{$list}, .col-#{$class}-#{$i}";
 	}
+
 	#{$list} {
 		float: left;
 	}
 }
 
 @mixin calc-grid-column($index, $class, $type) {
-	@if ($type == width) and ($index > 0) {
+	@if $type == width and $index > 0 {
 		.col-#{$class}-#{$index} {
-			width: percentage(($index / $grid-columns));
+			width: percentage($index / $grid-columns);
 		}
 	}
-	@if ($type == push) and ($index > 0) {
+
+	@if $type == push and $index > 0 {
 		.col-#{$class}-push-#{$index} {
-			left: percentage(($index / $grid-columns));
+			left: percentage($index / $grid-columns);
 		}
 	}
-	@if ($type == push) and ($index == 0) {
+
+	@if $type == push and $index == 0 {
 		.col-#{$class}-push-0 {
 			left: auto;
 		}
 	}
-	@if ($type == pull) and ($index > 0) {
+
+	@if $type == pull and $index > 0 {
 		.col-#{$class}-pull-#{$index} {
-			right: percentage(($index / $grid-columns));
+			right: percentage($index / $grid-columns);
 		}
 	}
-	@if ($type == pull) and ($index == 0) {
+
+	@if $type == pull and $index == 0 {
 		.col-#{$class}-pull-0 {
 			right: auto;
 		}
 	}
-	@if ($type == offset) {
+
+	@if $type == offset {
 		.col-#{$class}-offset-#{$index} {
-			margin-left: percentage(($index / $grid-columns));
+			margin-left: percentage($index / $grid-columns);
 		}
 	}
 }
@@ -98,7 +107,6 @@ v3.3.7 (http://getbootstrap.com)
 	@include loop-grid-columns($grid-columns, $class, offset);
 }
 
-
 /**
  * Grid system
  * Generate semantic grid columns with these mixins.
@@ -108,15 +116,17 @@ v3.3.7 (http://getbootstrap.com)
 @mixin container-fixed($gutter: $grid-gutter-width) {
 	margin-right: auto;
 	margin-left: auto;
-	padding-left: floor(($gutter / 2));
-	padding-right: ceil(($gutter / 2));
+	padding-left: floor($gutter / 2);
+	padding-right: ceil($gutter / 2);
+
 	@include clearfix;
 }
 
 // Creates a wrapper for a series of columns
 @mixin make-row($gutter: $grid-gutter-width) {
-	margin-left: ceil(($gutter / -2));
-	margin-right: floor(($gutter / -2));
+	margin-left: ceil($gutter / -2);
+	margin-right: floor($gutter / -2);
+
 	@include clearfix;
 }
 
@@ -124,52 +134,52 @@ v3.3.7 (http://getbootstrap.com)
 @mixin make-xs-column($columns, $gutter: $grid-gutter-width) {
 	position: relative;
 	float: left;
-	width: percentage(($columns / $grid-columns));
+	width: percentage($columns / $grid-columns);
 	min-height: 1px;
-	padding-left: ($gutter / 2);
-	padding-right: ($gutter / 2);
+	padding-left: $gutter / 2;
+	padding-right: $gutter / 2;
 }
 
 @mixin make-xs-column-offset($columns) {
-	margin-left: percentage(($columns / $grid-columns));
+	margin-left: percentage($columns / $grid-columns);
 }
 
 @mixin make-xs-column-push($columns) {
-	left: percentage(($columns / $grid-columns));
+	left: percentage($columns / $grid-columns);
 }
 
 @mixin make-xs-column-pull($columns) {
-	right: percentage(($columns / $grid-columns));
+	right: percentage($columns / $grid-columns);
 }
 
 // Generate the small columns
 @mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
 	position: relative;
 	min-height: 1px;
-	padding-left: ($gutter / 2);
-	padding-right: ($gutter / 2);
+	padding-left: $gutter / 2;
+	padding-right: $gutter / 2;
 
 	@media (min-width: $screen-sm-min) {
 		float: left;
-		width: percentage(($columns / $grid-columns));
+		width: percentage($columns / $grid-columns);
 	}
 }
 
 @mixin make-sm-column-offset($columns) {
 	@media (min-width: $screen-sm-min) {
-		margin-left: percentage(($columns / $grid-columns));
+		margin-left: percentage($columns / $grid-columns);
 	}
 }
 
 @mixin make-sm-column-push($columns) {
 	@media (min-width: $screen-sm-min) {
-		left: percentage(($columns / $grid-columns));
+		left: percentage($columns / $grid-columns);
 	}
 }
 
 @mixin make-sm-column-pull($columns) {
 	@media (min-width: $screen-sm-min) {
-		right: percentage(($columns / $grid-columns));
+		right: percentage($columns / $grid-columns);
 	}
 }
 
@@ -177,30 +187,30 @@ v3.3.7 (http://getbootstrap.com)
 @mixin make-md-column($columns, $gutter: $grid-gutter-width) {
 	position: relative;
 	min-height: 1px;
-	padding-left: ($gutter / 2);
-	padding-right: ($gutter / 2);
+	padding-left: $gutter / 2;
+	padding-right: $gutter / 2;
 
 	@media (min-width: $screen-md-min) {
 		float: left;
-		width: percentage(($columns / $grid-columns));
+		width: percentage($columns / $grid-columns);
 	}
 }
 
 @mixin make-md-column-offset($columns) {
 	@media (min-width: $screen-md-min) {
-		margin-left: percentage(($columns / $grid-columns));
+		margin-left: percentage($columns / $grid-columns);
 	}
 }
 
 @mixin make-md-column-push($columns) {
 	@media (min-width: $screen-md-min) {
-		left: percentage(($columns / $grid-columns));
+		left: percentage($columns / $grid-columns);
 	}
 }
 
 @mixin make-md-column-pull($columns) {
 	@media (min-width: $screen-md-min) {
-		right: percentage(($columns / $grid-columns));
+		right: percentage($columns / $grid-columns);
 	}
 }
 
@@ -208,33 +218,32 @@ v3.3.7 (http://getbootstrap.com)
 @mixin make-lg-column($columns, $gutter: $grid-gutter-width) {
 	position: relative;
 	min-height: 1px;
-	padding-left: ($gutter / 2);
-	padding-right: ($gutter / 2);
+	padding-left: $gutter / 2;
+	padding-right: $gutter / 2;
 
 	@media (min-width: $screen-lg-min) {
 		float: left;
-		width: percentage(($columns / $grid-columns));
+		width: percentage($columns / $grid-columns);
 	}
 }
 
 @mixin make-lg-column-offset($columns) {
 	@media (min-width: $screen-lg-min) {
-		margin-left: percentage(($columns / $grid-columns));
+		margin-left: percentage($columns / $grid-columns);
 	}
 }
 
 @mixin make-lg-column-push($columns) {
 	@media (min-width: $screen-lg-min) {
-		left: percentage(($columns / $grid-columns));
+		left: percentage($columns / $grid-columns);
 	}
 }
 
 @mixin make-lg-column-pull($columns) {
 	@media (min-width: $screen-lg-min) {
-		right: percentage(($columns / $grid-columns));
+		right: percentage($columns / $grid-columns);
 	}
 }
-
 
 /**
  * Container widths
@@ -247,14 +256,15 @@ v3.3.7 (http://getbootstrap.com)
 	@media (min-width: $screen-sm-min) {
 		width: $container-sm;
 	}
+
 	@media (min-width: $screen-md-min) {
 		width: $container-md;
 	}
+
 	@media (min-width: $screen-lg-min) {
 		width: $container-lg;
 	}
 }
-
 
 /**
  * Fluid container
@@ -271,7 +281,6 @@ v3.3.7 (http://getbootstrap.com)
 	@include wrap;
 }
 
-
 /** 
  * Row
  *
@@ -282,14 +291,12 @@ v3.3.7 (http://getbootstrap.com)
 	@include make-row;
 }
 
-
 /**
  * Columns
  * Common styles for small and large grid columns
  */
 
 @include make-grid-columns;
-
 
 /**
  * Extra small grid
@@ -298,7 +305,6 @@ v3.3.7 (http://getbootstrap.com)
  */
 
 @include make-grid(xs);
-
 
 /**
  * Small grid
@@ -310,7 +316,6 @@ v3.3.7 (http://getbootstrap.com)
 	@include make-grid(sm);
 }
 
-
 /**
  * Medium grid
  *
@@ -320,7 +325,6 @@ v3.3.7 (http://getbootstrap.com)
 @media (min-width: $screen-md-min) {
 	@include make-grid(md);
 }
-
 
 /**
  * Large grid

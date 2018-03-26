@@ -21,7 +21,7 @@ a:focus {
 a:active {}
 
 a:link {
-	-webkit-tap-highlight-color: rgba(0,0,0,0.3);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
 }
 
 a.read-more {
@@ -39,20 +39,21 @@ a.read-more {
 	text-transform: uppercase;
 	border: 0;
 	outline: 0;
+
 	@include transition(background-color 0.25s ease-in-out);
-	
+
 	&:hover,
 	&:focus,
 	&:active,
 	&.active {
 		text-decoration: none;
 	}
-	
+
 	&:disabled,
 	&.disabled,
 	&:disabled[disabled] {
 		cursor: not-allowed;
-		filter: alpha(opacity=65);
+		filter: alpha(opacity = 65);
 		opacity: 0.65;
 	}
 }
@@ -64,23 +65,23 @@ button.sc-btn {
 }
 
 // button colors
-@mixin button-color( $bgcolor, $txtcolor ) {
+@mixin button-color($bgcolor, $txtcolor) {
 	background-color: $bgcolor;
 	color: $txtcolor;
-	
+
 	&:hover,
 	&:focus,
 	&:active,
 	&.active {
-		background-color: darken( $bgcolor, 10% );
+		background-color: darken($bgcolor, 10%);
 		color: $txtcolor;
 	}
-	
+
 	&:active,
 	&.active {
-		background-color: darken( $bgcolor, 20% );
+		background-color: darken($bgcolor, 20%);
 	}
-	
+
 	&:disabled,
 	&.disabled,
 	&:disabled[disabled] {
@@ -94,12 +95,12 @@ button.sc-btn {
 
 a.sc-btn--primary,
 button.sc-btn--primary {
-	@include button-color( $color__primary, #FFF );
+	@include button-color($color__primary, #FFF);
 }
 
 a.sc-btn--secondary,
 button.sc-btn--secondary {
-	@include button-color( $color__secondary, #FFF );
+	@include button-color($color__secondary, #FFF);
 }
 
 // button sizes
@@ -141,7 +142,7 @@ button.sc-btn--narrow {
 	display: inline-block;
 	padding-left: 1em;
 	padding-right: 1em;
-	
+
 	@media only screen and (min-width: $screen-md-min) {
 		padding-left: 3em;
 		padding-right: 3em;

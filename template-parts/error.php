@@ -3,7 +3,6 @@
  * Error Messages
  *
  * @package Scaffolding
- * @since Scaffolding 1.0
  */
 ?>
 
@@ -11,7 +10,7 @@
 
 	<header class="page-header">
 		
-		<h1><?php _e( 'Oops, Post Not Found!', 'scaffolding' ); ?></h1>
+		<h1><?php _e( 'Nothing Found', 'scaffolding' ); ?></h1>
 		
 	</header>
 

@@ -3,7 +3,6 @@
  * Pagination
  *
  * @package Scaffolding
- * @since Scaffolding 1.0
  */
 ?>
 

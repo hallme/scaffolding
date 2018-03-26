@@ -16,7 +16,9 @@ http://codex.wordpress.org/Creating_Admin_Themes
 
 body.login {}
 
-#login {} /* the form box */
+#login {}
+
+/* the form box */
 
 /*
  * This is the Wordpress logo in the admin area.
@@ -39,8 +41,10 @@ body.login {}
 form {
 	background: white;
 	border: 1px solid #E5E5E5;
+
 	@include border-radius(3px);
 	@include box-shadow(none);
+
 	font-weight: normal;
 	margin-left: 8px;
 	padding: 26px 24px 46px;
@@ -49,7 +53,9 @@ form {
 body form .input {
 	background: #FBFBFB;
 	border: 1px solid #E5E5E5;
+
 	@include box-shadow(rgba(200, 200, 200, 0.2) 1px 1px 2px inset);
+
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
 	font-size: 24px;
 	font-weight: 200;
@@ -65,4 +71,6 @@ body form .input {
  * You'll have to override some of the default styles
  * but since we're referencing the id, it should be easy.
  */
-#wp-submit {} /* login button*/
+#wp-submit {}
+
+/* login button*/

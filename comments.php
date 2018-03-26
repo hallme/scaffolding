@@ -7,7 +7,6 @@
  * @link http://codex.wordpress.org/Template_Hierarchy
  *
  * @package Scaffolding
- * @since Scaffolding 1.0
  */
 
 // Do not delete these lines
@@ -44,7 +43,13 @@ if ( have_comments() ) : ?>
 		<?php endif; // check for comment navigation ?>
 
 		<ol class="commentlist">
-			<?php wp_list_comments( 'type=comment&callback=scaffolding_comments' ); ?>
+			<?php 
+				wp_list_comments( array(
+					'type' 		=> 'comment',
+					'style'		=> 'ol',
+					'callback'	=> scaffolding_comments,
+				) ); 
+			?>
 		</ol>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>

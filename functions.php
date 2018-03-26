@@ -9,7 +9,6 @@
  * @link https://codex.wordpress.org/Theme_Development
  *
  * @package Scaffolding
- * @since Scaffolding 1.0
  *
  * @todo language support, customizer functions
  *
@@ -35,13 +34,14 @@
  * 11.0 - Custom/Additional Functions
  */
 
+define( 'SCAFFOLDING_THEME_VERSION', '20171102' );
+define( 'SCAFFOLDING_INCLUDE_PATH', dirname(__FILE__) . '/includes/' );
 
 /************************************
  * 1.0 - INCLUDE FILES
  ************************************/
 
 // Add any additional files to include here
-define( 'SCAFFOLDING_INCLUDE_PATH', dirname(__FILE__) . '/includes/' );
 require_once( SCAFFOLDING_INCLUDE_PATH . 'base-functions.php' );
 
 if ( function_exists( 'is_woocommerce' ) ) {
@@ -50,6 +50,11 @@ if ( function_exists( 'is_woocommerce' ) ) {
 
 require_once( SCAFFOLDING_INCLUDE_PATH . 'tinymce-settings.php' );
 //require_once( SCAFFOLDING_INCLUDE_PATH . 'theme-guide.php' );
+
+// Gravity Forms Customizations
+if ( class_exists( 'GFForms' ) ) {
+	require_once( SCAFFOLDING_INCLUDE_PATH . 'gf-customizations.php' );
+}
 
 
 /************************************
@@ -80,20 +85,22 @@ function scaffolding_scripts_and_styles() {
 	 */
 
 	// Main stylesheet
-	wp_enqueue_style( 'scaffolding-stylesheet', get_stylesheet_directory_uri() . '/css/style.css', array(), '', 'all' );
+	wp_enqueue_style( 'scaffolding-stylesheet', get_stylesheet_directory_uri() . '/css/style.css', array(), SCAFFOLDING_THEME_VERSION );
 
 	// Font Awesome (icon set) - http://fortawesome.github.io/Font-Awesome/
 	wp_enqueue_style( 'scaffolding-font-awesome', get_stylesheet_directory_uri() . '/libs/font-awesome/css/font-awesome.min.css', array(), '4.7.0' );
 
 	// IE-only stylesheet
-	wp_enqueue_style( 'scaffolding-ie-only', get_stylesheet_directory_uri() . '/css/ie.css', array(), '' );
+	/* Not currently in use
+	wp_enqueue_style( 'scaffolding-ie-only', get_stylesheet_directory_uri() . '/css/ie.css', array(), SCAFFOLDING_THEME_VERSION );
 	$wp_styles->add_data( 'scaffolding-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
+	*/
 
 	// Modernizr - http://modernizr.com/
-	wp_enqueue_script( 'scaffolding-modernizr', get_stylesheet_directory_uri() . '/libs/js/custom-modernizr.min.js', array(), false );
+	wp_enqueue_script( 'scaffolding-modernizr', get_stylesheet_directory_uri() . '/libs/js/custom-modernizr.min.js', array(), '3.2.0', false );
 
 	// Respond - https://github.com/scottjehl/Respond
-	wp_enqueue_script( 'scaffolding-respondjs', get_stylesheet_directory_uri() . '/libs/js/respond.min.js', array(), false );
+	wp_enqueue_script( 'scaffolding-respondjs', get_stylesheet_directory_uri() . '/libs/js/respond.min.js', array(), '1.4.2', false );
 	$wp_scripts->add_data( 'scaffolding-respondjs', 'conditional', 'lt IE 9' ); // add conditional wrapper around respond script
 
 	/**
@@ -101,13 +108,13 @@ function scaffolding_scripts_and_styles() {
 	 */
 
 	// Retina.js - http://imulus.github.io/retinajs/
-	wp_enqueue_script( 'scaffolding-retinajs', get_stylesheet_directory_uri() . '/libs/js/retina.min.js', array(), '1.4.2', true );
+	wp_enqueue_script( 'scaffolding-retinajs', get_stylesheet_directory_uri() . '/libs/js/retina.min.js', array(), '2.1.1', true );
 
 	// Magnific Popup (lightbox) - http://dimsemenov.com/plugins/magnific-popup/
-	wp_enqueue_script( 'scaffolding-magnific-popup-js', get_stylesheet_directory_uri() . '/libs/js/jquery.magnific-popup.min.js', array( 'jquery' ), '1.0.0', true );
+	wp_enqueue_script( 'scaffolding-magnific-popup-js', get_stylesheet_directory_uri() . '/libs/js/jquery.magnific-popup.min.js', array( 'jquery' ), '1.1.0', true );
 
-	// Select2 - https://select2.github.io/
-	wp_enqueue_script( 'scaffolding-select2', get_stylesheet_directory_uri() . '/libs/js/select2.min.js', array( 'jquery' ), '3.5.4', true );
+	// SelectWoo - https://github.com/woocommerce/selectWoo
+	wp_enqueue_script( 'scaffolding-selectwoo', get_stylesheet_directory_uri() . '/libs/js/selectWoo.full.min.js', array( 'jquery' ), '1.0.1', true );
 
 	// Comment reply script for threaded comments
 	if ( is_singular() && comments_open() && ( 1 == get_option('thread_comments' ) ) ) {
@@ -115,7 +122,7 @@ function scaffolding_scripts_and_styles() {
 	}
 
 	// Add Scaffolding scripts file in the footer
-	wp_enqueue_script( 'scaffolding-js', get_stylesheet_directory_uri() . '/js/scripts.js', array( 'jquery' ), '', true );
+	wp_enqueue_script( 'scaffolding-js', get_stylesheet_directory_uri() . '/js/scripts.js', array( 'jquery' ), SCAFFOLDING_THEME_VERSION, true );
 
 } // end scaffolding_scripts_and_styles()
 
@@ -139,9 +146,6 @@ function scaffolding_theme_support() {
 
 	// Support for thumbnails
 	add_theme_support( 'post-thumbnails' );
-
-	// Set default thumbnail size
-	set_post_thumbnail_size( 125, 125, true );
 
 	// Support for RSS
 	add_theme_support( 'automatic-feed-links' );
@@ -387,14 +391,19 @@ register_default_headers( array(
  *
  * @since Scaffolding 1.0
  */
-function scaffolding_custom_headers_callback() { ?>
-	<style type="text/css">
-		#banner {
-			background-image: url( <?php header_image(); ?> );
-			-ms-behavior: url( <?php echo get_template_directory_uri() ?>/includes/backgroundsize.min.htc );
-		}
-	</style>
-	<?php
+function scaffolding_custom_headers_callback() {
+
+	if ( has_header_image() ) {
+		?>
+		<style type="text/css">
+			#banner {
+				display: block;
+				background-image: url( <?php header_image(); ?> );
+				-ms-behavior: url( <?php echo get_template_directory_uri() ?>/includes/backgroundsize.min.htc );
+			}
+		</style>
+		<?php
+	}
 } // end scaffolding_custom_headers_callback()
 
 
@@ -464,24 +473,14 @@ add_action( 'pre_get_posts', 'scaffolding_noindex_filter' );
  * @since Scaffolding 1.0
  */
 function scaffolding_comments( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment; ?>
-	<li <?php comment_class(); ?>>
+	$GLOBALS['comment'] = $comment;
+	$tag = ( 'div' === $args['style'] ) ? 'div' : 'li'; ?>
+	<<?php echo $tag; ?> <?php comment_class(); ?>>
 		<article id="comment-<?php comment_ID(); ?>" class="clearfix">
 			<header class="comment-author vcard">
-				<?php
-				/*
-				This is the new responsive optimized comment image. It used the new HTML5 data-attribute to display comment gravatars on larger screens only. What this means is that on larger posts, mobile sites don't have a ton of requests for comment images. This makes load time incredibly fast! If you'd like to change it back, just replace it with the regular wordpress gravatar call:
-				echo get_avatar($comment,$size='32',$default='<path_to_url>' );
-				*/
-				?>
-				<?php
-				// create variable
-				$bgauthemail = get_comment_author_email();
-				?>
-				<img data-gravatar="http://www.gravatar.com/avatar/<?php echo md5( $bgauthemail ); ?>?s=32" class="load-gravatar avatar avatar-48 photo" height="32" width="32" src="<?php echo get_template_directory_uri(); ?>/images/nothing.gif" />
+				<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'], '', get_comment_author() ); ?>
 				<?php printf( __( '<cite class="fn">%s</cite>', 'scaffolding' ), get_comment_author_link() ) ?>
-				<time datetime="<?php echo comment_time( 'Y-m-d' ); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time( __( 'F jS, Y', 'scaffolding' ) ); ?> </a></time>
-				<?php edit_comment_link( __( '(Edit)', 'scaffolding'),'  ','' ) ?>
+				<time datetime="<?php echo comment_time( 'Y-m-d' ); ?>"><a class="comment-date-link" href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time( __( 'F jS, Y', 'scaffolding' ) ); ?> </a> <em><?php edit_comment_link( __( '(Edit)', 'scaffolding'),'  ','' ) ?></em></time>
 			</header>
 			<?php if ( '0' == $comment->comment_approved ) : ?>
 				<div class="alert info">
@@ -493,7 +492,7 @@ function scaffolding_comments( $comment, $args, $depth ) {
 			</section>
 			<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ) ?>
 		</article>
-	<?php /* </li> is added by WordPress automatically */ ?>
+	<?php /* </li> or </div> is added by WordPress automatically */ ?>
 <?php
 } // end scaffolding_comments()
 

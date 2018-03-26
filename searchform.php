@@ -1,9 +1,8 @@
 <?php
 /**
- * The template for displaying search forms in Underscores.me
+ * The template for displaying search forms
  *
  * @package Scaffolding
- * @since Scaffolding 1.0
  */
 ?>
 

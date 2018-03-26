@@ -26,8 +26,10 @@ body {
 
 	#container {
 		height: 100%;
+
 		// styles for mobile nav slide in
 		position: relative;
+
 		@include transition(all 0.25s ease-in-out);
 	}
 }
@@ -44,19 +46,23 @@ body {
 
 #logo {
 	float: left;
-	
+
 	&.h1 {
 		margin: 0;
 	}
 }
 
 #banner {
+	display: none;
 	background-position: top center;
 	background-repeat: no-repeat;
 	background-size: cover;
 
 	.spacer {
-		padding-top: 26%; // change this value based on the aspect ratio of your header image
+		padding-top: 26%;
+
+		// change this value based on the aspect ratio of your header image
+
 	}
 }
 
@@ -71,6 +77,7 @@ body {
 
 	// headers
 	.page-header {}
+
 	.article-header {}
 
 	// titles
@@ -82,14 +89,30 @@ body {
 	.search-title {}
 
 	// want to style individual post classes? Booya!
-	.post-id {}         // post by id (i.e. post-3)
-	.post {}            // general post style
-	.page {}            // general article on a page style
-	.attachment {}      // general style on an attatchment
-	.sticky {}          // sticky post style
-	.hentry {}          // hentry class
-	.category-slug {}   // style by category (i.e. category-videos)
-	.tag-slug {}        // style by tag (i.e. tag-news)
+	.post-id {}
+
+	// post by id (i.e. post-3)
+	.post {}
+
+	// general post style
+	.page {}
+
+	// general article on a page style
+	.attachment {}
+
+	// general style on an attatchment
+	.sticky {}
+
+	// sticky post style
+	.hentry {}
+
+	// hentry class
+	.category-slug {}
+
+	// style by category (i.e. category-videos)
+	.tag-slug {}
+
+	// style by tag (i.e. tag-news)
 
 	/* post meta */
 	.entry-meta {
@@ -103,24 +126,31 @@ body {
 			color: #999;
 		}
 	}
+
 	.categories {}
 
 	// entry content
 	.page-content {}
+
 	.entry-content {}
+
 	.archive-description {}
 
 	// footers
 	.page-footer {}
-	.entry-footer {}
 
+	.entry-footer {}
 }
 
 // Style individual templates
 .home {}
+
 .blog {}
+
 .archive {}
+
 .search {}
+
 .error404 {}
 
 .blog,
@@ -131,33 +161,40 @@ body {
 			border-bottom: 1px solid #DDD;
 			padding-top: 1em;
 			padding-bottom: 1em;
-			
+
 			.entry-header {
 				margin-top: 2em;
 				margin-bottom: 1em;
 			}
-			
+
 			.entry-title {
 				margin: 0;
+				// hyphenate long words
+				overflow-wrap: break-word;
+				word-wrap: break-word;
+				-webkit-hyphens: auto;
+				-ms-hyphens: auto;
+				-moz-hyphens: auto;
+				hyphens: auto;
 			}
-			
+
 			.entry-meta {
 				margin: 0.5em 0 0;
 			}
-			
+
 			.entry-content,
 			.entry-footer {
 				margin-top: -1em;
 				margin-bottom: 1em;
 			}
-			
-			&.first-post {
+
+			&:first-child {
 				.entry-header {
 					margin-top: 0;
 				}
 			}
 
-			&.only-post {
+			&:only-child {
 				border-bottom: 0;
 			}
 		}
@@ -189,7 +226,7 @@ body {
 	clear: both;
 	color: #999;
 	font-size: 0.875em;
-	
+
 	.copyright {
 		margin-bottom: 0;
 		text-align: center;
@@ -224,7 +261,7 @@ ul.footer-menu {
 				border-left: 0;
 			}
 		}
-		
+
 		&:last-child {
 			a {
 				padding-right: 0;
@@ -233,7 +270,10 @@ ul.footer-menu {
 	}
 
 	ul.sub-menu {
-		display: none; // hide child ul as design does not support it
+		display: none;
+
+		// hide child ul as design does not support it
+
 	}
 }
 
@@ -247,11 +287,15 @@ ul.footer-menu {
 
 	a {
 		background: #000;
+
 		@include border-radius(500px);
+
 		display: block;
 		opacity: 0.2;
 		text-decoration: none;
+
 		@include transition(all 1s ease-in-out);
+
 		width: 40px;
 
 		&:hover,
@@ -271,5 +315,4 @@ ul.footer-menu {
 		text-align: center;
 		width: 40px;
 	}
-
 }

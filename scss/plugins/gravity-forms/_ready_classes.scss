@@ -18,26 +18,23 @@ li.gf_inline div.ginput_container {
 .top_label,
 .left_label,
 .right_label {
-
 	input.small,
 	select.small,
-	.select2-container.small,
+	select.small + .select2-container,
 	textarea.small,
 	input.medium,
 	select.medium,
-	.select2-container.medium,
+	select.medium + .select2-container,
 	textarea.medium,
 	input.large,
 	select.large,
-	.select2-container.large,
+	select.large + .select2-container,
 	textarea.large {
 		width: 100%;
 	}
-	
 }
 
 .top_label {
-
 	li.gfield.gf_inline {
 		vertical-align: top;
 		width: auto !important;
@@ -78,7 +75,7 @@ li.gf_inline div.ginput_container {
 			width: 5em !important;
 		}
 
-		select  {
+		select {
 			width: auto !important;
 		}
 
@@ -102,7 +99,9 @@ li.gf_inline div.ginput_container {
 		div.gfield_time_ampm {
 			width: auto;
 		}
-	} /* end li.gfield.gf_inline */
+	}
+
+	/* end li.gfield.gf_inline */
 
 	/* 2 column */
 
@@ -114,8 +113,8 @@ li.gf_inline div.ginput_container {
 		input.large,
 		select.medium,
 		select.large,
-		.select2-container.medium,
-		.select2-container.large {
+		select.medium + .select2-container,
+		select.large + .select2-container {
 			width: 100%;
 		}
 
@@ -128,34 +127,34 @@ li.gf_inline div.ginput_container {
 		}
 	}
 
-	li.gfield.gf_left_half+li.gsection,
-	li.gfield.gf_right_half+li.gsection {
+	li.gfield.gf_left_half + li.gsection,
+	li.gfield.gf_right_half + li.gsection {
 		padding: 16px 0 8px 0;
 	}
 
-	li.gfield.gf_left_half+li.gfield.gsection.gf_left_half,
-	li.gfield.gf_right_half+li.gfield.gsection.gf_left_half,
-	li.gfield.gf_left_half+li.gfield.gsection.gf_right_half,
-	li.gfield.gf_right_half+li.gfield.gsection.gf_right_half,
-	li.gfield.gsection.gf_left_half+li.gfield.gsection.gf_left_half,
-	li.gfield.gsection.gf_right_half+li.gfield.gsection.gf_left_half,
-	li.gfield.gsection.gf_right_half+li.gfield.gsection.gf_right_half {
+	li.gfield.gf_left_half + li.gfield.gsection.gf_left_half,
+	li.gfield.gf_right_half + li.gfield.gsection.gf_left_half,
+	li.gfield.gf_left_half + li.gfield.gsection.gf_right_half,
+	li.gfield.gf_right_half + li.gfield.gsection.gf_right_half,
+	li.gfield.gsection.gf_left_half + li.gfield.gsection.gf_left_half,
+	li.gfield.gsection.gf_right_half + li.gfield.gsection.gf_left_half,
+	li.gfield.gsection.gf_right_half + li.gfield.gsection.gf_right_half {
 		padding: 16px 0 8px 0;
 	}
 
-	li.gfield.gsection.gf_left_half+li.gfield.gsection.gf_right_half {
+	li.gfield.gsection.gf_left_half + li.gfield.gsection.gf_right_half {
 		padding: 0 0 8px 0;
 	}
 
-	li.gfield.gsection.gf_left_half+li.gfield.gsection.gf_right_half+li.gfield.gsection.gf_left_half+li.gfield.gsection.gf_right_half {
+	li.gfield.gsection.gf_left_half + li.gfield.gsection.gf_right_half + li.gfield.gsection.gf_left_half + li.gfield.gsection.gf_right_half {
 		padding: 16px 0 8px 0;
 	}
 
-	li.gfield.gf_left_half+li.gfield,
-	li.gfield.gf_right_half+li.gfield,
-	li.gfield.gf_left_half+.gform_footer,
-	li.gfield.gf_right_half+.gform_footer {
-		clear: both
+	li.gfield.gf_left_half + li.gfield,
+	li.gfield.gf_right_half + li.gfield,
+	li.gfield.gf_left_half + .gform_footer,
+	li.gfield.gf_right_half + .gform_footer {
+		clear: both;
 	}
 
 	/* 3 column */
@@ -172,21 +171,22 @@ li.gf_inline div.ginput_container {
 		width: 100%;
 	}
 
-	li.gfield.gf_left_third+li.gsection,
-	li.gfield.gf_right_third+li.gsection {
+	li.gfield.gf_left_third + li.gsection,
+	li.gfield.gf_right_third + li.gsection {
 		padding: 16px 0 8px 0;
 	}
 
-	li.gfield.gf_left_third+li.gfield,
-	li.gfield.gf_middle_third+li.gfield,
-	li.gfield.gf_right_third+li.gfield,
-	li.gfield.gf_left_third+.gform_footer,
-	li.gfield.gf_middle_third+.gform_footer,
-	li.gfield.gf_right_third+.gform_footer {
+	li.gfield.gf_left_third + li.gfield,
+	li.gfield.gf_middle_third + li.gfield,
+	li.gfield.gf_right_third + li.gfield,
+	li.gfield.gf_left_third + .gform_footer,
+	li.gfield.gf_middle_third + .gform_footer,
+	li.gfield.gf_right_third + .gform_footer {
 		clear: both;
 	}
+}
 
-} /* end .top_label */
+/* end .top_label */
 
 /* radio/checkbox sub-column */
 
@@ -343,12 +343,12 @@ form div.gform_ul.gform_fields li.gfield.gsection.gf_scroll_text div.gsection_de
 	}
 
 	ol {
-		list-style-type: decimal!important;
+		list-style-type: decimal !important;
 		margin: 1em 0 1.5em 2.0em;
 		padding-left: 0;
 
 		li {
-			overflow:visible;
+			overflow: visible;
 			margin: 0 0 0.5em;
 			padding-left: 0;
 
@@ -452,7 +452,8 @@ div.gform_confirmation_wrapper.gf_confirmation_yellow_gradient {
 	background-color: #FFFBD2;
 	margin: 30px 0;
 	border: 1px solid #E6DB55;
-	@include box-shadow(0 0 5px rgba(221,215,131,0.75));
+
+	@include box-shadow(0 0 5px rgba(221, 215, 131, 0.75));
 
 	div#gforms_confirmation_message {
 		margin: 0;
@@ -461,15 +462,15 @@ div.gform_confirmation_wrapper.gf_confirmation_yellow_gradient {
 		font-size: 1.8em;
 		border-top: 2px solid #FFF;
 		border-bottom: 1px solid #E6DB55;
-		background-color:#FFFBCC;
-		color:#424242;
+		background-color: #FFFBCC;
+		color: #424242;
 		background: #fffce5;
-		background: -moz-linear-gradient(top,  #fffce5 0%, #fff9bf 100%);
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fffce5), color-stop(100%,#fff9bf));
-		background: -webkit-linear-gradient(top,  #fffce5 0%,#fff9bf 100%);
-		background: -o-linear-gradient(top,  #fffce5 0%,#fff9bf 100%);
-		background: -ms-linear-gradient(top,  #fffce5 0%,#fff9bf 100%);
-		background: linear-gradient(to bottom,  #fffce5 0%,#fff9bf 100%);
+		background: -moz-linear-gradient(top, #fffce5 0%, #fff9bf 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fffce5), color-stop(100%, #fff9bf));
+		background: -webkit-linear-gradient(top, #fffce5 0%, #fff9bf 100%);
+		background: -o-linear-gradient(top, #fffce5 0%, #fff9bf 100%);
+		background: -ms-linear-gradient(top, #fffce5 0%, #fff9bf 100%);
+		background: linear-gradient(to bottom, #fffce5 0%, #fff9bf 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffce5', endColorstr='#fff9bf',GradientType=0 );
 	}
 }
@@ -479,7 +480,8 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 	background-color: #f1fcdf;
 	margin: 30px 0;
 	border: 1px solid #a7c37c;
-	@include box-shadow(0 0 5px rgba(86,122,86,0.4));
+
+	@include box-shadow(0 0 5px rgba(86, 122, 86, 0.4));
 
 	div#gforms_confirmation_message {
 		margin: 0;
@@ -488,16 +490,16 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 		font-size: 1.8em;
 		border-top: 2px solid #effade;
 		border-bottom: 1px solid #a7c37c;
-		background-color:#FFFBCC;
+		background-color: #FFFBCC;
 		text-shadow: #DFB 1px 1px;
 		color: #030;
-		background: rgb(219,242,183);
-		background: -moz-linear-gradient(top,  rgba(219,242,183,1) 0%, rgba(180,208,136,1) 100%);
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(219,242,183,1)), color-stop(100%,rgba(180,208,136,1)));
-		background: -webkit-linear-gradient(top,  rgba(219,242,183,1) 0%,rgba(180,208,136,1) 100%);
-		background: -o-linear-gradient(top,  rgba(219,242,183,1) 0%,rgba(180,208,136,1) 100%);
-		background: -ms-linear-gradient(top,  rgba(219,242,183,1) 0%,rgba(180,208,136,1) 100%);
-		background: linear-gradient(to bottom,  rgba(219,242,183,1) 0%,rgba(180,208,136,1) 100%);
+		background: rgb(219, 242, 183);
+		background: -moz-linear-gradient(top, rgba(219, 242, 183, 1) 0%, rgba(180, 208, 136, 1) 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(219, 242, 183, 1)), color-stop(100%, rgba(180, 208, 136, 1)));
+		background: -webkit-linear-gradient(top, rgba(219, 242, 183, 1) 0%, rgba(180, 208, 136, 1) 100%);
+		background: -o-linear-gradient(top, rgba(219, 242, 183, 1) 0%, rgba(180, 208, 136, 1) 100%);
+		background: -ms-linear-gradient(top, rgba(219, 242, 183, 1) 0%, rgba(180, 208, 136, 1) 100%);
+		background: linear-gradient(to bottom, rgba(219, 242, 183, 1) 0%, rgba(180, 208, 136, 1) 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbf2b7', endColorstr='#b4d088',GradientType=0 );
 	}
 }
@@ -512,14 +514,16 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 		left: 10px;
 		width: 50%;
 		top: 80%;
-		max-width:40%;
+		max-width: 40%;
 		background: rgba(0, 0, 0, 0.2);
-		@include box-shadow(0 15px 10px rgba(0,0,0,0.2));
+
+		@include box-shadow(0 15px 10px rgba(0, 0, 0, 0.2));
 		@include transform(rotate(-3deg));
 	}
 
 	&:after {
 		@include transform(rotate(3deg));
+
 		right: 10px;
 		left: auto;
 	}
@@ -530,36 +534,36 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
  ************************/
 
 @media only screen and (min-width: $screen-sm-min) {
-	
+
 	.right_label input.small,
 	.right_label select.small,
-	.right_label .select2-container.small,
+	.right_label select.small + .select2-container,
 	.right_label textarea.small,
 	.left_label input.small,
 	.left_label select.small,
-	.left_label .select2-container.small,
+	.left_label select.small + .select2-container,
 	.left_label textarea.small {
 		width: 15%;
 	}
 
 	.right_label input.medium,
 	.right_label select.medium,
-	.right_label .select2-container.medium,
+	.right_label select.medium + .select2-container,
 	.right_label textarea.medium,
 	.left_label input.medium,
 	.left_label select.medium,
-	.left_label .select2-container.medium,
+	.left_label select.medium + .select2-container,
 	.left_label textarea.medium {
 		width: 35%;
 	}
 
 	.right_label input.large,
 	.right_label select.large,
-	.right_label .select2-container.large,
+	.right_label select.large + .select2-container,
 	.right_label textarea.large,
 	.left_label input.large,
 	.left_label select.large,
-	.left_label .select2-container.large,
+	.left_label select.large + .select2-container,
 	.left_label textarea.large {
 		width: 69%;
 	}
@@ -568,27 +572,26 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 	.left_label .ginput_complex {
 		width: 69%;
 	}
-	
+
 	.top_label {
-		
 		input.large,
 		select.large,
-		.select2-container.large,
-		textarea.large {
+		select.large + .select2-container,
+		textarea.large,
+		textarea.medium,
+		textarea.small {
 			width: 100%;
 		}
 
 		input.small,
 		select.small,
-		.select2-container.small,
-		textarea.small {
+		select.small + .select2-container {
 			width: 25%;
 		}
 
 		input.medium,
 		select.medium,
-		.select2-container.medium,
-		textarea.medium {
+		select.medium + .select2-container {
 			width: 49%;
 		}
 
@@ -597,6 +600,7 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 			ul.gfield_checkbox {
 				li {
 					display: inline-block;
+
 					label {
 						margin-right: 2em;
 					}
@@ -628,11 +632,11 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 		li.gfield.gf_right_half {
 			input.large,
 			select.large,
-			.select2-container.large,
+			select.large + .select2-container,
 			textarea.large,
 			input.medium,
 			select.medium,
-			.select2-container.medium,
+			select.medium + .select2-container,
 			textarea.medium {
 				width: 100% !important;
 			}
@@ -641,14 +645,14 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 		li.gfield.gf_left_third,
 		li.gfield.gf_middle_third,
 		li.gfield.gf_right_third {
-			width: 32%;
+			width: 33.3%;
 
 			input.medium,
 			input.large,
 			select.medium,
 			select.large,
-			.select2-container.medium,
-			.select2-container.large {
+			select.medium + .select2-container,
+			select.large + .select2-container {
 				width: 100%;
 			}
 		}
@@ -666,7 +670,6 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 
 		li.gfield.gf_middle_third {
 			float: left;
-			margin-left: 2% !important;
 			clear: none !important;
 		}
 
@@ -678,7 +681,9 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 			float: right;
 			clear: right !important;
 		}
-	} /* end .top_label */
+	}
+
+	/* end .top_label */
 
 	li.gfield.gf_list_2col,
 	li.gfield.gf_list_3col,
@@ -696,11 +701,11 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 		width: 50%;
 		float: left;
 		padding-right: 1em;
-		
+
 		&:nth-child(2n) {
 			clear: right;
 		}
-		
+
 		&:nth-child(2n+1) {
 			clear: left;
 		}
@@ -713,11 +718,11 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 		width: 33%;
 		float: left;
 		padding-right: 1em;
-		
+
 		&:nth-child(3n) {
 			clear: right;
 		}
-		
+
 		&:nth-child(3n+1) {
 			clear: left;
 		}
@@ -728,11 +733,11 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 		width: 25%;
 		float: left;
 		padding-right: 1em;
-		
+
 		&:nth-child(4n) {
 			clear: right;
 		}
-		
+
 		&:nth-child(4n+1) {
 			clear: left;
 		}
@@ -743,11 +748,11 @@ div.gform_confirmation_wrapper.gf_confirmation_green_gradient {
 		width: 20%;
 		float: left;
 		padding-right: 1em;
-		
+
 		&:nth-child(5n) {
 			clear: right;
 		}
-		
+
 		&:nth-child(5n+1) {
 			clear: left;
 		}

@@ -5,7 +5,6 @@
  * Contains the closing of the "main" div and all content after.
  *
  * @package Scaffolding
- * @since Scaffolding 1.0
  */
 ?>
 

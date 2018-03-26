@@ -30,13 +30,13 @@ li.gfield.gfield_creditcard_warning div.gfield_creditcard_warning_message {
 	font-family: $font__sans;
 	padding: 10px 20px 10px 45px;
 	min-height: 25px;
-	background-image: url('#{$plugins-path}gravityforms/images/stopbanner.png');
+	background-image: url("#{$plugins-path}gravityforms/images/stopbanner.png");
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	background-color: #a00;
 	border-bottom: 1px solid #620101;
 	color: #FFF;
-	text-shadow: 0 1px 1px rgba(0,0,0,0.50);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 	line-height: 1.3em;
 	letter-spacing: 0.2pt;
 }
@@ -46,13 +46,12 @@ li.gfield + li.gfield.gfield_creditcard_warning {
 }
 
 .gfield_error {
-	
 	/*
 	.gfield_label {
 		color: $color__alert-red;
 	}
 	*/
-	
+
 	input[type=text],
 	input[type=url],
 	input[type=email],
@@ -61,14 +60,14 @@ li.gfield + li.gfield.gfield_creditcard_warning {
 	input[type=password],
 	textarea,
 	input,
-	.select2-container .select2-choice {
+	.select2-container .select2-selection {
 		border: 1px solid $color__alert-red;
-		
+
 		&:focus {
 			border: 1px solid $color__alert-red;
 		}
 	}
-	
+
 	.gform_fileupload_multifile .gform_drop_area {
 		border: 2px dotted $color__alert-red;
 	}
@@ -91,17 +90,20 @@ li.gfield.gfield_error.gfield_contains_required div.ginput_container  {
 
 div.validation_error {
 	@include alert;
+
 	font-weight: bold;
 	margin-bottom: 1.6em;
 	border-top-color: $color__alert-red;
 
 	&:before {
-		content: "\f071"; // exclamation-triangle
+		content: "\f071";
+
+		// exclamation-triangle
 		color: $color__alert-red;
 	}
 }
 
-div.gf_page_steps+div.validation_error {
+div.gf_page_steps + div.validation_error {
 	margin-top: 16px;
 }
 
@@ -193,7 +195,6 @@ li.gfield_error ul.gfield_radio {
 }
 
 /* MATH CHALLENGE */
-
 
 .math_small input {
 	width: 69px;

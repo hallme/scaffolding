@@ -16,6 +16,12 @@ Stylesheet: Comments Stylesheet
 
 	#reply-title {
 		font-weight: bold;
+		
+		small {
+			display: block;
+			font-weight: normal;
+			margin-top: 1em;
+		}
 	}
 
 	form {
@@ -26,7 +32,6 @@ Stylesheet: Comments Stylesheet
 		}
 
 		ul {
-
 			margin: 0;
 
 			li {
@@ -114,7 +119,6 @@ Stylesheet: Comments Stylesheet
 	.nocomments {
 		margin: 0 20px 1.1em;
 	}
-
 }
 
 /************************
@@ -123,10 +127,8 @@ Stylesheet: Comments Stylesheet
 
 /* h3 comment title */
 #comments {
-
 	/* number of comments span */
 	span {}
-
 }
 
 #comment-nav-above {
@@ -140,7 +142,7 @@ Stylesheet: Comments Stylesheet
 
 .comment-navigation {
 	@include clearfix;
-	
+
 	.nav-previous {
 		float: left;
 	}
@@ -158,7 +160,7 @@ Stylesheet: Comments Stylesheet
 	li {
 		clear: both;
 		list-style-type: none;
-		margin-bottom: 1.5em;
+		margin-bottom: 1em;
 		overflow: hidden;
 		padding: 0;
 		position: relative;
@@ -176,15 +178,24 @@ Stylesheet: Comments Stylesheet
 
 			/* variations */
 			.comment {}
-			.alt {}
-			.odd {}
-			.even {}
-			.depth-1 {}           /* change number for different depth */
-			.byuser {}
-			.bypostauthor {}
-			.comment-author-admin {}
 
-		} /* end .commentlist li ul.children */
+			.alt {}
+
+			.odd {}
+
+			.even {}
+
+			.depth-1 {}
+
+			/* change number for different depth */
+			.byuser {}
+
+			.bypostauthor {}
+
+			.comment-author-admin {}
+		}
+
+		/* end .commentlist li ul.children */
 	}
 
 	li[class*=depth-] {
@@ -197,23 +208,38 @@ Stylesheet: Comments Stylesheet
 	}
 
 	li.depth-2 {}
+
 	li.depth-3 {}
+
 	li.depth-4 {}
+
 	li.depth-5 {}
 
 	/* general comment classes */
 	.alt {}
+
 	.odd {}
+
 	.even {}
+
 	.parent {}
+
 	.comment {}
+
 	.children {}
+
 	.pingback {}
+
 	.bypostauthor {}
+
 	.comment-author {}
+
 	.comment-author-admin {}
+
 	.thread-alt {}
+
 	.thread-odd {}
+
 	.thread-even {}
 
 	/* vcard */
@@ -232,13 +258,16 @@ Stylesheet: Comments Stylesheet
 		}
 
 		time {
-			float: right;
-			margin-left: 10px;
-
+			display: block;
+			margin-left: 50px;
+			
 			a {
-				color: #999;
-				font-size: 1.25em;
+				font-size: 0.9em;
 				font-weight: 300;
+			}
+
+			.comment-date-link {
+				color: #999;
 				text-decoration: none;
 
 				&:hover {
@@ -256,11 +285,17 @@ Stylesheet: Comments Stylesheet
 			margin: 0;
 			position: absolute;
 			top: 0;
+
 			@include border-radius(50%);
 		}
+		
+		.comment-edit-link {
+			margin-left: 0.5em;
+			font-size: 0.875em;
+		}
+	}
 
-	} /* end .commentlist .vcard */
-
+	/* end .commentlist .vcard */
 
 	/* comment meta */
 	.comment-meta {
@@ -298,8 +333,9 @@ Stylesheet: Comments Stylesheet
 				overflow: visible;
 			}
 		}
+	}
 
-	} /* end .commentlist .comment_content */
+	/* end .commentlist .comment_content */
 
 	/* comment reply link */
 	.comment-reply-link {
@@ -322,7 +358,9 @@ Stylesheet: Comments Stylesheet
 			font-family: "FontAwesome";
 			padding-left: 5px;
 		}
+	}
 
-	} /* end .commentlist .comment-reply-link */
+	/* end .commentlist .comment-reply-link */
+}
 
-} /* end .commentlist */
+/* end .commentlist */

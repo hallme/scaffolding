@@ -5,8 +5,10 @@
  * These functions also handle backwards compatibility with WordPress as TinyMCE 3 and TinyMCE 4
  * handle this differently.
  *
- * http://www.kevinleary.net/customizing-tinymce-wysiwyg-editor-wordpress/
- * https://shellcreeper.com/complete-guide-to-style-format-drop-down-in-wp-editor/
+ * @link http://www.kevinleary.net/customizing-tinymce-wysiwyg-editor-wordpress/
+ * @link https://shellcreeper.com/complete-guide-to-style-format-drop-down-in-wp-editor/
+ *
+ * @package Scaffolding
  */
 
 /**
@@ -200,18 +202,8 @@ function scaffolding_tinymce_modify_styleselect( $settings ) {
 
 	// Add styles in tinymce config as json data
 	$settings['style_formats'] = json_encode( $new_settings );
-
-	// Return new settings
-	return $settings;
-
-}
-add_filter( 'tiny_mce_before_init', 'scaffolding_tinymce_modify_styleselect' );
-
-/**
- * TinyMCE: Modify text colors
- * Update this to include the theme's color palette and remove the defaults
- */
-function scaffolding_tinymce_modify_text_colors( $init ) {
+	
+	// Update this to include the theme's color palette and remove the defaults
 	$default_colors = '
 		"000000", "Black",
 		"993300", "Burnt orange",
@@ -255,7 +247,11 @@ function scaffolding_tinymce_modify_text_colors( $init ) {
 		"FFFFFF", "White"
 	';
 	$custom_colors = '';
-	$init['textcolor_map'] = '['.$default_colors.','.$custom_colors.']';
-	$init['textcolor_rows'] = 6; // expand colour grid to 6 rows
-	return $init;
+	$settings['textcolor_map'] = '['.$default_colors.','.$custom_colors.']';
+	$settings['textcolor_rows'] = 6; // expand colour grid to 6 rows
+
+	// Return new settings
+	return $settings;
+
 }
+add_filter( 'tiny_mce_before_init', 'scaffolding_tinymce_modify_styleselect' );
