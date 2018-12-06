@@ -1,0 +1,50 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Layout
+
+******************************************************************/
+
+html {
+	height: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	height: auto;
+	overflow-x: hidden;
+
+	#container {
+		height: 100%;
+		// styles for mobile nav slide in
+		position: relative;
+		@include transition(all 0.25s ease-in-out);
+	}
+}
+
+@include media-breakpoint-up('md') {
+	
+	.has-left-sidebar {	
+		#main {
+			padding-left: 35px;
+		}
+	}
+
+	.has-right-sidebar {
+		#main {
+			padding-right: 35px;
+		}
+	}
+	
+}
+
+@include media-breakpoint-up('lg') {
+	
+	.has-both-sidebars {
+		#main {
+			padding-left: 35px;
+		}
+	}
+
+}

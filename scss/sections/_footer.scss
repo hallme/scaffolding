@@ -1,0 +1,96 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Footer
+
+******************************************************************/
+
+#colophon {
+	background-color: $color__black;
+	clear: both;
+	color: $color__tertiary;
+	font-size: 0.875em;
+
+	.copyright {
+		margin-bottom: 0;
+		text-align: center;
+	}
+
+	a {
+		color: $color__tertiary;
+	}
+}
+
+#inner-footer {
+	padding-top: 2em;
+	padding-bottom: 2em;
+}
+
+ul.footer-menu {
+	margin: 0 1px;
+	padding: 0;
+	text-align: center;
+
+	li {
+		display: inline-block;
+		margin: 0 -1px;
+		padding: 0;
+
+		a {
+			border-left: 1px solid $color__tertiary;
+			color: $color__tertiary;
+			display: block;
+			line-height: 1;
+			padding: 0 0.675em;
+		}
+
+		&:first-child {
+			a {
+				padding-left: 0;
+				border-left: 0;
+			}
+		}
+
+		&:last-child {
+			a {
+				padding-right: 0;
+			}
+		}
+	}
+
+	ul.sub-menu {
+		display: none; // hide child ul as design does not support it
+	}
+}
+
+// scroll to top link
+#back-top {
+	margin: 0;
+	bottom: 25px;
+	right: 30px;
+	position: fixed;
+	z-index: 9999;
+
+	a {
+		background-color: rgba(0,0,0,0.55);
+		color: #FFF;
+		display: block;
+		font-size: 1.675em;
+		height: 1.675em;
+		text-align: center;
+		text-decoration: none;
+		width: 1.675em;
+		border-radius: 500px;
+		@include transition(background-color 0.5s ease-in-out);
+
+		&:hover,
+		&:focus {
+			background-color: #000;
+		}
+	}
+
+	.fas {
+		line-height: 1.675em;
+	}
+}

@@ -1,0 +1,349 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles
+
+******************************************************************/
+
+.woocommerce {
+	
+	//
+	// Review list
+	//
+	
+	#reviews {
+        clear: both;
+		
+        h2 {
+            font-size: 1.875em;
+			
+			small {
+				float: right;
+				font-size: 15px;
+				line-height: 21px;
+				margin: 10px 0 0 0;
+
+				a {
+					text-decoration:none;
+					color: #444;
+				}
+			}
+		}
+		
+        h3 {
+            margin: 0;
+            font-size: 1.25em;
+        }
+		
+        #respond {
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+		
+        #comment {
+            height: 75px;
+        }
+		
+        #comments {
+			
+            .add_review {
+                @include clearfix;
+            }
+			
+            h2 {
+                font-size: 1em;
+				font-style: italic;
+				font-weight: 300;
+                padding: 0;
+                margin: 1em 0 0;
+				display: none;
+            }
+			
+            ol.commentlist {
+                @include clearfix;
+                margin: 1em 0 0;
+                width: 100%;
+                background: none;
+                list-style: none;
+				border-bottom: 0;
+				
+                li {
+                    padding: 0;
+                    margin: 0 0 1em;
+                    border: 0;
+                    position: relative;
+                    background: 0;
+                    border-bottom: 1px solid #EEE;
+					
+                    img.avatar {
+                        float: left;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        padding: 3px;
+                        width: 32px;
+                        height: auto;
+                        margin: 0;
+                        line-height: 1;
+                        @include border-radius(100px);
+                    }
+					
+					.comment_container {
+						padding-top: 5px;
+						position: relative;
+					}
+					
+                    .comment-text {
+                        @include clearfix;
+						
+                        p {
+                            margin: 0 0 1em;
+                        }
+						
+                        p.meta {
+                            font-size: 0.875em;
+							margin: 0 0 0.5em;
+							padding-left: 42px;
+							
+							[itemprop="datePublished"] {
+								font-weight: 300;
+							}
+                        }
+                    }
+                }
+				
+                ul.children {
+                    list-style: none outside;
+                    margin: 20px 0 0 50px;
+
+                    .star-rating {
+                        display: none;
+                    }
+                }
+				
+                #respond {
+                    border: 1px solid #DFDFDF;
+                    padding: 1em 1em 0;
+                    margin: 20px 0 0 50px;
+                }
+            }
+			
+            .commentlist > li:before {
+                content: "";
+            }
+        }
+    }
+
+	//
+	// Start rating
+	//
+	
+	.star-rating {
+        float: right;
+        overflow: hidden;
+        position: relative;
+        height: 1em;
+        line-height: 1em;
+        font-size: 0.875em;
+        width: 5.6em;
+        margin-top: 3px;
+		font-family: "FontAwesome";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		
+        &:before {
+			content: "\f006\f006\f006\f006\f006";
+            color: $star;
+            float: left;
+            top: 0;
+            left: 0;
+            position: absolute;
+        }
+		
+        span {
+			text-align: left;
+            overflow: hidden;
+            float: left;
+            top: 0;
+            left: 0;
+            position: absolute;
+            padding-top: 1.5em;
+        }
+		
+        span:before {
+			content: "\f005\f005\f005\f005\f005";
+            top: 0;
+            position: absolute;
+            left: 0;
+            color: $star;
+        }
+    }
+
+	.woocommerce-product-rating {
+		@include clearfix;
+        line-height: 2em;
+		margin-bottom: 0.25em;
+        display: block;
+
+        .star-rating {
+            margin: 0.5em 4px 0 0;
+            float: left;
+			font-size: 1em;
+        }
+    }
+
+	.products {
+        .star-rating {
+            display: block;
+            margin: 0 auto 1em;
+            float: none;
+        }
+    }
+
+	.hreview-aggregate {
+		.star-rating {
+			margin: 10px 0 0 0;
+		}
+	}
+	
+	p.stars {
+        position: relative;
+        font-size: 0.875em;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+
+        a {
+            display: inline-block;
+            font-weight: 700;
+            margin-right: 1em;
+            text-indent: -9999px;
+            position: relative;
+
+            &:last-child {
+                border-right: 0;
+            }
+
+            &.star-1,
+            &.star-2,
+            &.star-3,
+            &.star-4,
+            &.star-5 {
+                border-right: 1px solid $input__border-color;
+
+                &:after {
+					font-family: "FontAwesome";
+                    text-indent: 0;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    color: $star;
+                }
+
+            }
+
+            &.star-1 {
+                width: 2em;
+
+                &:after {
+					content: "\f006";
+                }
+
+                &:hover:after,
+                &.active:after {
+					content: "\f005";
+                }
+            }
+
+            &.star-2 {
+                width: 3em;
+
+                &:after {
+					content: "\f006\f006";
+                }
+
+                &:hover:after,
+                &.active:after {
+					content: "\f005\f005";
+                }
+            }
+
+            &.star-3 {
+                width: 4em;
+
+                &:after {
+					content: "\f006\f006\f006";
+                }
+
+                &:hover:after,
+                &.active:after {
+					content: "\f005\f005\f005";
+                }
+            }
+
+            &.star-4 {
+                width: 5em;
+
+                &:after {
+					content: "\f006\f006\f006\f006";
+                }
+
+                &:hover:after,
+                &.active:after {
+					content: "\f005\f005\f005\f005";
+                }
+            }
+
+            &.star-5 {
+                width: 6em;
+                border: 0;
+
+                &:after {
+					content: "\f006\f006\f006\f006\f006";
+                }
+
+                &:hover:after,
+                &.active:after {
+					content: "\f005\f005\f005\f005\f005";
+                }
+            }
+        }
+    }
+	
+	//
+	// Review form
+	//
+	
+	#review_form {
+        #respond {
+            position: static;
+            margin: 0 0 1.5em;
+            width: auto;
+            padding: 0;
+            background: transparent none;
+			
+            p {
+                margin: 0 0 10px;
+            }
+			
+            .form-submit {
+				margin: 18px 0 -5px;
+				
+                input {
+                    left: auto;
+                }
+            }
+			
+			select,
+			.select2-container {
+				display: none !important;
+			}
+			
+            textarea {
+                width: 100%;
+            }
+        }
+    }
+	
+}

@@ -1,0 +1,32 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Sidebar
+
+******************************************************************/
+
+.sidebar {
+	margin-top: 2em;
+}
+
+@include media-breakpoint-up('md') {
+	
+	.has-left-sidebar,
+	.has-right-sidebar {
+		.sidebar {
+			margin-top: 0.5em;
+		}
+	}
+	
+}
+
+@include media-breakpoint-up('lg') {
+
+	.has-both-sidebars {
+		.sidebar {
+			margin-top: 0.5em;
+		}
+	}
+	
+}

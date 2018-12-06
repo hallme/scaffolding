@@ -54,6 +54,11 @@ if ( class_exists( 'GFForms' ) ) {
 // commonWP Support https://wordpress.org/plugins/commonwp/
 require_once SCAFFOLDING_INCLUDE_PATH . 'commonwp.php';
 
+// WooCommerce Customizations.
+if ( function_exists( 'is_woocommerce' ) ) {
+	require_once SCAFFOLDING_INCLUDE_PATH . 'woocommerce-overrides.php';
+}
+
 
 /************************************
  * 2.0 - SCRIPTS & STYLES

@@ -44,8 +44,7 @@ remember less is more.
 @mixin alert {
 	@include flexbox(inline-flex);
 	@include align-items(center);
-	position: relative;
-	padding: 1em 2em;
+	padding: 1em 1.5em;
 	margin: 0 0 2em;
 	background-color: #EEE;
 	border-top-width: 3px;
@@ -57,7 +56,8 @@ remember less is more.
 		font-weight: 900;
 		font-size: 1.5em;
 		display: inline-block;
-		margin-right: 0.875em;
+		float: left;
+		margin-right: 1em;
 	}
 }
 

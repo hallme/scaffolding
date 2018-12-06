@@ -1,0 +1,159 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Main Content
+
+******************************************************************/
+
+#banner {
+	display: none;
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	.spacer {
+		padding-top: 19.44%; // change this value based on the aspect ratio of your header image
+	}
+}
+
+#content {}
+
+#inner-content {
+	padding-top: 2em;
+	padding-bottom: 2em;
+
+	// headers
+
+	.page-header {}
+
+	.article-header {}
+
+	// titles
+
+	.page-title,
+	.single-title {
+		margin-top: 0;
+	}
+
+	.search-title {}
+
+	// individual post classes
+
+	.post-id {}
+
+	.post {}
+
+	.page {}
+
+	.attachment {}
+
+	.sticky {}
+
+	.hentry {}
+
+	.category-slug {}
+
+	.tag-slug {}
+
+	// post meta
+
+	.entry-meta {
+		color: $color__tertiary;
+		font-style: italic;
+
+		time {}
+	}
+
+	.tags {
+		.tags-title {
+			color: $color__tertiary;
+		}
+	}
+
+	.categories {}
+
+	// entry content
+
+	.page-content {}
+
+	.entry-content {}
+
+	.archive-description {}
+
+	// footers
+
+	.page-footer {}
+
+	.entry-footer {}
+}
+
+// Style individual templates
+.home {}
+
+.blog {}
+
+.archive {}
+
+.search {}
+
+.error404 {}
+
+.blog,
+.archive,
+.search {
+	#inner-content {
+		.page-header {
+			margin-bottom: 1em;
+		}
+
+		article {
+			border-bottom: 1px solid #DDD;
+			padding-top: 1em;
+			padding-bottom: 1em;
+
+			.entry-header {
+				margin-top: 1em;
+				margin-bottom: 1em;
+			}
+
+			.entry-title {
+				margin: 0;
+				// hyphenate long words
+				overflow-wrap: break-word;
+				word-wrap: break-word;
+				-webkit-hyphens: auto;
+				-ms-hyphens: auto;
+				-moz-hyphens: auto;
+				hyphens: auto;
+			}
+
+			.entry-meta {
+				margin: 0.5em 0 0;
+			}
+
+			.entry-header + .entry-content,
+			.entry-content + .entry-footer {
+				margin-top: -1em;
+			}
+
+			&:first-child {
+				.entry-header {
+					margin-top: 0;
+				}
+			}
+
+			&:only-child {
+				border-bottom: 0;
+			}
+		}
+	}
+}
+
+.single {
+	#inner-content {
+		.entry-meta {
+			margin: -0.5em 0 1em;
+		}
+	}
+}

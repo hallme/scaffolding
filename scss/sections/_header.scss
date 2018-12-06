@@ -1,0 +1,24 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Header
+
+******************************************************************/
+
+#masthead {}
+
+#inner-header {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#logo {
+	&.h1 {
+		margin: 0;
+	}
+	
+	a {
+		text-decoration: none;
+	}
+}

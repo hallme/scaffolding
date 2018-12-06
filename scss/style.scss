@@ -40,19 +40,30 @@ Here you can easily toggle on/off modules and files.
 @import "elements/widgets";
 
 //
-// STEP 4: Modules
+// STEP 4: Sections
+//
+
+@import "sections/layout";
+@import "sections/header";
+@import "sections/main-content";
+@import "sections/sidebar";
+@import "sections/footer";
+
+//
+// STEP 5: Modules
 //
 
 @import "modules/sticky-footer"; // need to add sticky-footer class to the body
 
 //
-// STEP 5: Plugins
+// STEP 6: Plugins
 //
 
 @import "plugins/gravity-forms/base"; // gravity forms styles - uncheck box to NOT output default CSS
+@import "plugins/woocommerce/base"; // woocommerce styles
 
 //
-// STEP 6: Libraries
+// STEP 7: Libraries
 //
 
 @import "libs/selectWoo"; // better cross browser select input - see https://github.com/woocommerce/selectWoo
@@ -60,44 +71,8 @@ Here you can easily toggle on/off modules and files.
 @import "libs/retinajs"; // retinajs mixin for adding retina images - see http://imulus.github.io/retinajs/
 
 //
-// STEP 7: Media Queries
+// STEP 8: Media Queries
 //
-
-// BASE (MOBILE) STYLES
-// This is where you add the majority of your styles. These will be loaded on all devices, so make sure this holds the bare minimum any device needs to view your site.
-@import "media-queries/xs";
-
-// SMALL MOBILE STYLES
-@media only screen and (min-width: map-get($grid-breakpoints, 'sm')) {
-
-	@import "media-queries/sm";
-
-}
-
-// TABLET
-@media only screen and (min-width: map-get($grid-breakpoints, 'md')) {
-
-	@import "media-queries/md";
-
-}
-
-// DESKTOP
-@media only screen and (min-width: map-get($grid-breakpoints, 'lg')) {
-
-	@import "media-queries/lg";
-
-}
-
-// LARGE DESKTOP
-@media only screen and (min-width: map-get($grid-breakpoints, 'xl')) {
-
-	@import "media-queries/xl";
-
-}
-
-// CUSTOM
-// This is where you have custom breakpoints.
-// @import "media-queries/custom";
 
 // RETINA (2x RESOLUTION DEVICES)
 // This applies to the retina iPhone (4s) and iPad (2+) along with other displays with a 2x resolution.
