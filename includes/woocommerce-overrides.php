@@ -56,15 +56,7 @@ add_action( 'wp_enqueue_scripts', 'scaffolding_woo_enqueue_assets', 9999 );
 
 /************************************
  * GLOBAL
- ************************************/
-
-/**
- * Add a custom placeholder image
  */
-function scaffolding_woocommerce_placeholder_img_src() {
-	return get_stylesheet_directory_uri() . '/images/no-image.jpg'; // update this
-}
-add_filter( 'woocommerce_placeholder_img_src', 'scaffolding_woocommerce_placeholder_img_src' );
 
 /**
  * Remove default woo sidebar
