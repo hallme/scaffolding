@@ -69,32 +69,47 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 
+/**
+ * Output opening content wrapper.
+ */
 function scaffolding_woocommerce_output_content_wrapper() {
 	global $sc_layout_class;
-	echo '<div id="inner-content" class="container"><div class="row ' . $sc_layout_class['row'] . '"><div id="main" class="' . $sc_layout_class['main'] . ' clearfix" role="main">';
+	echo '<div id="inner-content" class="container"><div class="row ' . esc_attr( $sc_layout_class['row'] ) . '"><div id="main" class="' . esc_attr( $sc_layout_class['main'] ) . ' clearfix" role="main">';
 }
 add_action( 'woocommerce_before_main_content', 'scaffolding_woocommerce_output_content_wrapper', 10 );
 
+/**
+ * Output closing content wrapper.
+ */
 function scaffolding_woocommerce_output_content_wrapper_end() {
 	echo '</div>';
 }
 add_action( 'woocommerce_after_main_content', 'scaffolding_woocommerce_output_content_wrapper_end', 10 );
 
+/**
+ * Get sidebar template.
+ */
 function scaffolding_woocommerce_sidebar() {
 	get_sidebar();
 }
 add_action( 'woocommerce_after_main_content', 'scaffolding_woocommerce_sidebar', 15 );
 
+/**
+ * Output closing content wrappers.
+ */
 function scaffolding_woocommerce_output_main_wrapper_end() {
-	echo '</div></div>'; // close .row, #inner-content
+	echo '</div></div>'; // close .row, #inner-content.
 }
 add_action( 'woocommerce_after_main_content', 'scaffolding_woocommerce_output_main_wrapper_end', 20 );
 
 /**
- * Remove breadcrumbs from being called here
- * using sitewide, called in header
+ * Remove breadcrumbs from being called here.
  */
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+
+/**
+ * Add breadcrumbs to be used site-wide.
+ */
 function scaffolding_woocommerce_breadcrumbs() {
 	if ( function_exists( 'woocommerce_breadcrumb' ) && ! is_front_page() ) {
 		woocommerce_breadcrumb();
@@ -104,6 +119,8 @@ add_action( 'scaffolding_after_content_begin', 'scaffolding_woocommerce_breadcru
 
 /**
  * Customize breadcrumb args
+ *
+ * @param array $defaults Array of arguments.
  */
 function scaffolding_woocommerce_breadcrumb_defaults( $defaults ) {
 	$defaults['wrap_before'] = '<div class="breadcrumb-wrapper clearfix"><nav class="woocommerce-breadcrumb container" ' . ( is_single() ? 'itemprop="breadcrumb"' : '' ) . '>';
