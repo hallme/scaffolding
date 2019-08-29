@@ -6,7 +6,8 @@ Stylesheet: Pagination Stylesheet
 
 ******************************************************************/
 
-.scaffolding-page-navi {
+.scaffolding-page-navi,
+.woocommerce-pagination {
 	ul {
 		list-style: none;
 		text-align: center;
@@ -85,7 +86,8 @@ Stylesheet: Pagination Stylesheet
 
 @include media-breakpoint-down('sm') {
 
-	.scaffolding-page-navi {
+	.scaffolding-page-navi,
+	.woocommerce-pagination {
 		a {
 			&.next,
 			&.prev {
@@ -102,7 +104,8 @@ Stylesheet: Pagination Stylesheet
 
 @include media-breakpoint-up('sm') {
 
-	.scaffolding-page-navi {
+	.scaffolding-page-navi,
+	.woocommerce-pagination {
 		ul {
 			li {
 				a,

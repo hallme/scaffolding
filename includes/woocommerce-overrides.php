@@ -130,28 +130,18 @@ function scaffolding_woocommerce_breadcrumb_defaults( $defaults ) {
 add_filter( 'woocommerce_breadcrumb_defaults', 'scaffolding_woocommerce_breadcrumb_defaults' );
 
 /**
- * Update pagination to use scaffolding for consistency
+ * Update pagination args to match our theme pagination
+ *
+ * @see template-parts/pager.php
+ * @param array $args Pagination arguments.
+ * @return array
  */
-function scaffolding_woocommerce_pagination() {
-	global $wp_query;
-
-	if ( is_tax() ) {
-		$display_type = get_woocommerce_term_meta( $wp_query->queried_object_id, 'display_type', true );
-	} elseif ( is_shop() ) {
-		$display_type = get_option( 'woocommerce_shop_page_display', true );
-	} else {
-		$display_type = '';
-	}
-
-	// apparently pagination does not work on terms/shop with 'subcategories' as the display type
-	if ( ( is_tax() || is_shop() ) && $display_type == 'subcategories' ) {
-		return;
-	} else {
-		scaffolding_page_navi( '', '', $wp_query );
-	}
+function scaffolding_woocommerce_pagination_args( $args ) {
+	$args['prev_text'] = '<i class="fa fa-angle-double-left"></i> Previous Page';
+	$args['next_text'] = 'Next Page <i class="fa fa-angle-double-right"></i>';
+	return $args;
 }
-remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
-add_action( 'woocommerce_after_shop_loop', 'scaffolding_woocommerce_pagination', 10 );
+add_filter( 'woocommerce_pagination_args', 'scaffolding_woocommerce_pagination_args' );
 
 
 /************************************
