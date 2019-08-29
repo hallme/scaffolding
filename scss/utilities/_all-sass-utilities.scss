@@ -2,7 +2,7 @@
 Site Name:
 Author:
 
-Stylesheet: All Utility Includes
+Stylesheet: All SASS Utilities
 
 ******************************************************************/
 
@@ -10,6 +10,3 @@ Stylesheet: All Utility Includes
 @import "functions";
 @import "variables";
 @import "mixins";
-@import "classes";
-@import "bootstrap-grid";
-@import "accessibility";
