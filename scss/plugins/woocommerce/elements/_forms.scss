@@ -1,0 +1,161 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles
+
+******************************************************************/
+
+.woocommerce {
+
+	form {
+		[class*="field-wrapper"] {
+			@include flexbox(flex);
+			@include flex-wrap(wrap);
+			@include justify-content(space-between);
+
+			.form-row-first,
+			.form-row-last {
+				@include make-col(5.7, $grid-columns);
+				width: 100%;
+			}
+
+			.form-row-wide,
+			.notes {
+				@include make-col(12, $grid-columns);
+				width: 100%;
+			}
+		}
+
+		.form-row {
+			margin-top: 0;
+
+			input + span {
+				display: inline-block;
+				margin-top: 2px;
+
+				em {
+					font-size: 0.9em;
+					color: $subtext;
+				}
+			}
+		}
+	}
+
+	.blockUI.blockOverlay {
+		position: relative;
+		@include loader;
+	}
+
+	.loader {
+		@include loader;
+	}
+
+	.woocommerce-input-wrapper {
+		display: block;
+	}
+
+	.required {
+		color: $color__alert-red;
+	}
+
+	abbr[title] {
+		text-decoration: none;
+	}
+
+	small.note {
+		display: block;
+		color: $subtext;
+		font-size: 0.857em;
+		margin-top: 10px;
+	}
+
+	.quantity {
+		.qty {
+			width: 50px;
+			text-align: center;
+		}
+	}
+
+	.woocommerce-form__label-for-checkbox.inline {
+		margin-left: 1em;
+	}
+
+	label.inline {
+		display: inline !important;
+	}
+
+	.select2-container {
+		width: 100%;
+	}
+
+}
+
+//
+// Form validation
+//
+
+.woocommerce-invalid {
+	.select2-container .select2-choice,
+	input.input-text {
+		border-color: $color__alert-red;
+	}
+
+	.select2-container-active .select2-choice {
+		border-color: darken( $color__alert-red, 15% );
+	}
+
+	select {
+		outline: 1px ridge $color__alert-red;
+	}
+}
+
+.woocommerce-validated {
+	.select2-container .select2-choice,
+	input.input-text {
+		border-color: $color__alert-green;
+	}
+
+	.select2-container-active .select2-choice {
+		border-color: darken( $color__alert-green, 15% );
+	}
+
+	select {
+		outline: 1px ridge $color__alert-green;
+	}
+}
+
+//
+//  Password strength meter
+//
+
+.woocommerce-password-strength {
+	text-align: center;
+	font-weight: 600;
+	padding: 3px 0px;
+
+	&.strong {
+		background-color: #c1e1b9;
+		border-color: #83c373;
+	}
+
+	&.short {
+		background-color: #f1adad;
+		border-color: #e35b5b;
+	}
+
+	&.bad {
+		background-color: #fbc5a9;
+		border-color: #f78b53;
+	}
+
+	&.good {
+		background-color: #ffe399;
+		border-color: #ffc733;
+	}
+}
+
+.woocommerce-password-hint {
+	margin: 0.5em 0 0;
+	display: block;
+}

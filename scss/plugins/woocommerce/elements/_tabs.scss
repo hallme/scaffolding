@@ -25,7 +25,6 @@ Stylesheet: Responsive WooCommerce Styles
 			a {
 				display: block;
 				padding: 0.5em 1em;
-				font-weight: 300;
 				color: $highlight;
 				text-decoration: none;
 
@@ -41,7 +40,6 @@ Stylesheet: Responsive WooCommerce Styles
 
 				a {
 					color: inherit;
-					font-weight: 400;
 				}
 			}
 
@@ -73,7 +71,7 @@ Stylesheet: Responsive WooCommerce Styles
 //
 
 @include media-breakpoint-up('md') {
-	
+
 	.woocommerce-tabs {
 		clear: both;
 
@@ -107,13 +105,13 @@ Stylesheet: Responsive WooCommerce Styles
 				}
 			}
 		}
-		
+
 		.panel {
 			padding: 1em 2em;
 			margin: -1px 0 2em;
 		}
 	}
-	
+
 }
 
 //

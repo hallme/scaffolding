@@ -1,0 +1,133 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles
+
+******************************************************************/
+
+//
+// Store Notice
+//
+
+.woocommerce-store-notice {
+	display: none;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+	padding-left: 15px;
+	padding-right: calc(2em + 15px);
+	margin: 0 auto;
+	text-align: center;
+	background-color: $color__tertiary;
+	color: #FFF;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 999;
+}
+
+a.woocommerce-store-notice__dismiss-link {
+	display: block;
+	position: absolute;
+	top: 6px;
+	right: 15px;
+	color: #FFF;
+	background: darken($color__tertiary, 10%);
+	border-radius: 100%;
+	width: 1.35em;
+	height: 1.35em;
+	line-height: 1;
+	overflow: hidden;
+	z-index: 10;
+
+	&:before {
+		display: inline-block;
+		font-size: 0.875em;
+		line-height: 1.55em;
+		content: fa-content($fa-var-times);
+		font-family: 'Font Awesome 5 Free';
+		font-weight: 900;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+}
+
+.admin-bar .woocommerce-store-notice.sticky {
+	top: 46px;
+}
+
+@media screen and (min-width: 782px) {
+
+	.admin-bar .woocommerce-store-notice.sticky {
+		top: 32px;
+	}
+
+}
+
+//
+// Messaging
+//
+
+.woocommerce-message,
+.woocommerce-error,
+.woocommerce-info {
+	@include alert;
+	margin: 0 0 2em;
+	color: #444;
+	list-style: none outside;
+
+	.button {
+		margin-top: 0.5em;
+		font-weight: 400;
+	}
+
+	li {
+		@include flexbox(inline-flex);
+		@include flex-direction(column-reverse);
+		@include justify-content(center);
+		@include align-items(flex-start);
+		list-style: none outside;
+		padding-left: 0;
+		margin-left: 0;
+		margin-bottom: 0;
+	}
+
+	a:not(.button) {
+		color: $subtext;
+		text-decoration: underline;
+		margin-left: 0.5em;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.woocommerce-message {
+	border-top-color: $color__alert-green;
+
+	&:before {
+		content: "\f164"; // thumbs-up
+		color: $color__alert-green;
+	}
+}
+
+.woocommerce-info {
+	border-top-color: $color__alert-yellow;
+
+	&:before {
+		color: $color__alert-yellow;
+		content: "\f05a"; // info-circle
+	}
+}
+
+.woocommerce-error {
+	border-top-color: $color__alert-red;
+
+	&:before {
+		content: "\f071"; // exclamation-triangle
+		color: $color__alert-red;
+	}
+}

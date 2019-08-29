@@ -20,7 +20,7 @@ function scaffolding_woocommerce_setup() {
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
 }
-add_action( 'after_setup_theme', 'scaffolding_woocommerce_setup' );													
+add_action( 'after_setup_theme', 'scaffolding_woocommerce_setup' );
 
 /**
  * Remove default styles (we use our own)
@@ -28,22 +28,30 @@ add_action( 'after_setup_theme', 'scaffolding_woocommerce_setup' );
 add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 /**
- * Remove Select2 and SelectWoo
+ * Enqueue/dequeue assets
  */
-function scaffolding_dequeue_selectwoo() {
+function scaffolding_woo_enqueue_assets() {
+	// Enqueue our styles.
+	$woo_css_version = filemtime( get_theme_file_path( '/css/plugins/woocommerce/style.css' ) );
+	wp_enqueue_style( 'spoonful-woo-stylesheet', get_stylesheet_directory_uri() . '/css/plugins/woocommerce/style.css', array(), $woo_css_version );
+
+	// Remove select2 script (we enqueue our own).
 	if ( wp_script_is( 'select2', 'enqueued' ) ) {
 		wp_dequeue_script( 'select2' );
 	}
 
+	// Remove selectWoo script (we enqueue our own).
 	if ( wp_script_is( 'selectWoo', 'enqueued' ) ) {
 		wp_dequeue_script( 'selectWoo' );
 	}
 
+	// Remove select2 style (we enqueue our own).
+	// They never changed the stylesheet name to selectWoo.
 	if ( wp_style_is( 'select2', 'enqueued' ) ) {
 		wp_dequeue_style( 'select2' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'scaffolding_dequeue_selectwoo', 100 );
+add_action( 'wp_enqueue_scripts', 'scaffolding_woo_enqueue_assets', 9999 );
 
 
 /************************************
@@ -54,7 +62,7 @@ add_action( 'wp_enqueue_scripts', 'scaffolding_dequeue_selectwoo', 100 );
  * Add a custom placeholder image
  */
 function scaffolding_woocommerce_placeholder_img_src() {
-	return get_stylesheet_directory_uri().'/images/no-image.jpg'; // update this
+	return get_stylesheet_directory_uri() . '/images/no-image.jpg'; // update this
 }
 add_filter( 'woocommerce_placeholder_img_src', 'scaffolding_woocommerce_placeholder_img_src' );
 
@@ -98,16 +106,16 @@ remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 
 function scaffolding_woocommerce_breadcrumbs() {
 	if ( function_exists( 'woocommerce_breadcrumb' ) && ! is_front_page() ) {
 		woocommerce_breadcrumb();
-	} 
+	}
 }
 add_action( 'scaffolding_after_content_begin', 'scaffolding_woocommerce_breadcrumbs' );
 
 /**
  * Customize breadcrumb args
-  */
+ */
 function scaffolding_woocommerce_breadcrumb_defaults( $defaults ) {
 	$defaults['wrap_before'] = '<div class="breadcrumb-wrapper clearfix"><nav class="woocommerce-breadcrumb container" ' . ( is_single() ? 'itemprop="breadcrumb"' : '' ) . '>';
-	$defaults['wrap_after'] = '</nav></div>';
+	$defaults['wrap_after']  = '</nav></div>';
 	return $defaults;
 }
 add_filter( 'woocommerce_breadcrumb_defaults', 'scaffolding_woocommerce_breadcrumb_defaults' );
@@ -147,9 +155,9 @@ add_action( 'woocommerce_after_shop_loop', 'scaffolding_woocommerce_pagination',
  * adds first and last classes to products according to active sidebars
  */
 function scaffolding_loop_shop_columns() {
-	if ( is_active_sidebar('left-sidebar') && is_active_sidebar('right-sidebar') ) {
+	if ( is_active_sidebar( 'left-sidebar' ) && is_active_sidebar( 'right-sidebar' ) ) {
 		return 2;
-	} elseif ( is_active_sidebar('left-sidebar') || is_active_sidebar('right-sidebar') ) {
+	} elseif ( is_active_sidebar( 'left-sidebar' ) || is_active_sidebar( 'right-sidebar' ) ) {
 		return 3;
 	} else {
 		return 4;
@@ -201,9 +209,9 @@ add_filter( 'woocommerce_cross_sells_total', 'scaffolding_woocommerce_cross_sell
 
 /************************************
  * CHECKOUT
- ************************************/
+ */
 
 
 /************************************
  * MY ACCOUNT
- ************************************/
+ */

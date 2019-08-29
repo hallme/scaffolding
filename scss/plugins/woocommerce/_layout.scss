@@ -11,34 +11,28 @@ Stylesheet: Responsive WooCommerce Styles
 //
 
 .woocommerce {
-	
+
 	ul.products {
-		@include flexbox(flex);
-		@include flex-wrap(wrap);
-		margin-left: ($grid-gutter-width / -2);
-		margin-right: ($grid-gutter-width / -2);
+		@include make-row();
 
 		li.product {
-			float: left;
 			display: inline-block;
 			margin-left: 0;
 			margin-right: 0;
 			margin-bottom: 2em;
 			max-width: none;
-			text-align: center;
 			@include flexbox(flex);
 			@include flex-direction(column);
-			padding-left: ($grid-gutter-width / 2);
-			padding-right: ($grid-gutter-width / 2);
-
-			.inner-product {
-				@include flexbox(flex);
-				@include flex-direction(column);
-				@include flex-grow(1);
-			}
+			@include make-col-ready();
 
 			.woocommerce-LoopProduct-link {
 				@include flex-grow(1);
+			}
+		}
+
+		&.columns-1 {
+			li.product {
+				@include make-col(12);
 			}
 		}
 
@@ -46,27 +40,35 @@ Stylesheet: Responsive WooCommerce Styles
 		&.columns-3,
 		&.columns-2 {
 			li.product {
-				width: 50%;
+				@include make-col(6);
 			}
 		}
 	}
-	
-}
 
-//
-// Flexbox Fix
-// used in conjunction with Modernizr
-//
+	//
+	// General Columns
+	//
 
-.flexbox {
-	.woocommerce {
-		ul.products {
-			&:before,
-			&:after {
-				content: normal !important; // fixes browser bug
-			}
+	.col2-set {
+		@include make-row();
+
+		.col-1,
+		.col-2 {
+			@include make-col-ready;
+			@include make-col(12, $grid-columns);
+
+			// override bootstrap grid
+			// way to go woo, same classname
+			max-width: 100%;
 		}
 	}
+
+	// Set WooCommerce lightbox background color
+	.pswp__bg {
+		background-color: $color__black;
+	}
+
+
 }
 
 //
@@ -74,73 +76,48 @@ Stylesheet: Responsive WooCommerce Styles
 //
 
 .single-product {
-
 	div.product {
+		.woocommerce-product-gallery--with-images {
+			.flex-control-thumbs {
+				@include make-row();
 
-		div.thumbnails {
-			@include clearfix;
-
-			// default is one row, three columns
-			
-			a {
-				float: left;
-				width: 30.75%;
-				margin-right: 3.8%;
-				margin-bottom: 3.8%;
-				
-				&.first {
-					clear: both;
-					
-					img {
-						margin: 0;
-					}
-				}
-				
-				&.last {
-					margin-right: 0;
-					
-					img {
-						float: right;
-					}
-				}
-			}
-
-			&.columns-1 {
-				a {
-					width: 100%;
-					margin-right: 0;
-					float: none;
-				}
-			}
-
-			&.columns-2 {
-				a {
-					width: 48%;
-				}
-			}
-
-			&.columns-4 {
-				a {
-					width: 22.05%;
-				}
-			}
-
-			&.columns-5 {
-				a {
-					width: 16.9%;
+				li {
+					margin-left: 0;
+					margin-bottom: 0.5em;
+					@include make-col-ready();
+					@include make-col(12, $grid-columns);
 				}
 			}
 		}
-		
-		div.images {
-			.flex-control-thumbs {
-				@include flexbox(flex);
-				@include flex-wrap(wrap);
 
+		.woocommerce-product-gallery--columns-2 {
+			.flex-control-thumbs {
 				li {
-					width: 24.9%;
-					float: left;
-					margin: 0;
+					@include make-col(6, $grid-columns);
+				}
+			}
+		}
+
+		.woocommerce-product-gallery--columns-3 {
+			.flex-control-thumbs {
+				li {
+					@include make-col(4, $grid-columns);
+				}
+			}
+		}
+
+		.woocommerce-product-gallery--columns-4 {
+			.flex-control-thumbs {
+				li {
+					@include make-col(3, $grid-columns);
+				}
+			}
+		}
+
+		.woocommerce-product-gallery--columns-5 {
+			.flex-control-thumbs {
+				li {
+					@include make-col(2.5, $grid-columns);
 				}
 			}
 		}
@@ -152,19 +129,19 @@ Stylesheet: Responsive WooCommerce Styles
 //
 
 @include media-breakpoint-up('sm') {
-	
+
 	.woocommerce {
 
 		//
 		// Product loops
 		//
-		
+
 		.related,
 		.upsells.products {
 			@include clearfix;
 			clear: both;
 		}
-		
+
 	}
 
 }
@@ -174,40 +151,7 @@ Stylesheet: Responsive WooCommerce Styles
 //
 
 @include media-breakpoint-up('md') {
-	
-	.woocommerce {
-	
-		//
-		// General Columns
-		//
-		
-		.col2-set {
-			@include clearfix;
-			width: 100%;
 
-			.col-1 {
-				float: left;
-				width: 48%;
-				// override bootstrap grid
-				// way to go woo, same classname
-				max-width: 100%;
-				padding-left: 0;
-				padding-right: 0;
-			}
-			
-			.col-2 {
-				float: right;
-				width: 48%;
-				// override bootstrap grid
-				// way to go woo, same classname
-				max-width: 100%;
-				padding-left: 0;
-				padding-right: 0;
-			}
-		}
-		
-	}
-	
 	.woocommerce-result-count {
 		position: relative;
 		min-height: 1px;
@@ -221,128 +165,63 @@ Stylesheet: Responsive WooCommerce Styles
 		float: right;
 		width: 30%;
 	}
-	
-	//
-	// Product
-	//
-	
-	.single-product {
-		div.product {
-			div.images {
-				float: left;
-				margin-right: 5%;
-				margin-bottom: 2em;
-				width: 45%;
-			}
 
-			div.summary {
-				float: right;
-				margin-bottom: 2em;
-				width: 50%;
-			}
-		}
-	}
-	
-	//
-	// Cart
-	//
-	
-	.woocommerce-cart {
-		.cart-collaterals {
-			@include clearfix;
-			width: 100%;
-
-			.related {
-				width: 30.75%;
-				float: left;
-			}
-
-			.cross-sells {
-				width: 48%;
-				float: left;
-
-				ul.products {
-					float: none;
-
-					li {
-						width: 48%;
-					}
-				}
-			}
-
-			.shipping_calculator {
-				width: 48%;
-				@include clearfix;
-				clear: right;
-				float: right;
-
-				.col2-set {
-					.col-1,
-					.col-2 {
-						width: 47%;
-					}
-				}
-			}
-
-			.cart_totals {
-				float: right;
-				width: 48%;
-			}
-		}
-		
-	}
-	
 	//
 	// My Account
 	//
-	
+
 	.woocommerce-account {
-		.form-row-first,
-		.form-row-last {
-			width: 49% !important;
+		.woocommerce {
+			@include clearfix;
 		}
-		
-		.form-row-first {
-			float: left;
+
+		// only if there is no registeration form
+		.woocommerce-form-login,
+		.woocommerce-ResetPassword {
+			max-width: percentage(5.7 / $grid-columns);
 		}
-		
-		.form-row-last {
-			float: right;
+
+		.col2-set {
+			// reset the max-width if we have two columns
+			.woocommerce-form-login {
+				max-width: none;
+			}
 		}
 	}
-	
+
 	.woocommerce-MyAccount-navigation {
 		float: left;
-		width: 25%;
+		width: percentage(4 / $grid-columns);
 	}
 
 	.woocommerce-MyAccount-content {
 		float: right;
-		width: 75%;
+		width: percentage(8 / $grid-columns);
+		padding-left: $grid-gutter-width;
 	}
-	
+
 	//
 	// Checkout
 	//
-	
+
 	.woocommerce-checkout {
 		.checkout_coupon {
 			@include clearfix;
-			
+
 			.form-row-first {
 				float: left;
 				width: 63%;
 			}
-			
+
 			.form-row-last {
 				float: right;
 				width: 35%;
 			}
 		}
-		
+
 		.login {
 			@include clearfix;
-			
+
 			.form-row-first,
 			.form-row-last {
 				width: 49% !important;
@@ -366,29 +245,134 @@ Stylesheet: Responsive WooCommerce Styles
 //
 
 @include media-breakpoint-up('lg') {
-	
+
 	.woocommerce {
-	
+
 		//
 		// Product loops
 		//
-		
+
 		ul.products {
+			&.columns-2 {
+				li.product {
+					@include make-col(6);
+
+					img {
+						max-width: 50%;
+						@include flex(0 0 50%);
+					}
+				}
+			}
+
 			&.columns-3 {
 				li.product {
-					width: 33.333%;
+					@include make-col(4);
 				}
 			}
-			
+
 			&.columns-4 {
 				li.product {
-					width: 25%;
+					@include make-col(3);
 				}
 			}
+
+			&.columns-5 {
+				li.product {
+					@include make-col(2.5);
+				}
+			}
+
+			li.product {
+				margin-bottom: 2em;
+			}
 		}
-		
+
+
+		//
+		// General Columns
+		//
+
+		.col2-set {
+			.col-1,
+			.col-2 {
+				@include make-col(6, $grid-columns);
+			}
+		}
+
 	}
-	
+
+	//
+	// Product
+	//
+
+	.single-product {
+		div.product {
+			div.images {
+				float: left;
+				margin-right: 5%;
+				width: 45%;
+			}
+
+			div.summary {
+				float: right;
+				width: 50%;
+			}
+		}
+	}
+
+	//
+	// Cart
+	//
+
+	.woocommerce-cart {
+		.cart-collaterals {
+			@include clearfix;
+			width: 100%;
+
+			.related {
+				width: 30.75%;
+				float: left;
+			}
+
+			.cross-sells {
+				width: 48%;
+				float: left;
+			}
+
+			.shipping_calculator {
+				width: 48%;
+				@include clearfix;
+				clear: right;
+				float: right;
+
+				.col2-set {
+					.col-1,
+					.col-2 {
+						width: 47%;
+					}
+				}
+			}
+
+			.cart_totals {
+				float: right;
+				width: 48%;
+			}
+		}
+
+	}
+
+	//
+	// My Account
+	//
+
+	.woocommerce-MyAccount-navigation {
+		width: percentage(3 / $grid-columns);
+	}
+
+	.woocommerce-MyAccount-content {
+		width: percentage(9 / $grid-columns);
+	}
+
 }
 
 //

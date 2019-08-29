@@ -1,0 +1,215 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles
+
+******************************************************************/
+
+a.button,
+button.button,
+input.button,
+#respond input#submit {
+	position: relative;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+
+	&:after {
+		@include fa-icon;
+		font-family: "Font Awesome 5 Free";
+		font-weight: 900;
+		vertical-align: unset;
+	}
+
+	&.loading {
+		opacity: 0.25;
+		padding-right: 2.618em;
+
+		&:after {
+			content: "\f110";
+			position: absolute;
+			right: 1em;
+			@include animation(spin, 2s, infinite, linear);
+		}
+	}
+
+	&.added {
+		&:after {
+			content: "\f00c";
+			margin-left: 0.53em;
+		}
+	}
+
+	&:disabled,
+	&.disabled,
+	&:disabled[disabled] {
+		cursor: not-allowed;
+		filter: alpha(opacity=65);
+		opacity: 0.65;
+	}
+}
+
+// Primary Buttons
+
+a.add_to_cart_button,
+a.button[data-product_id],
+button.single_add_to_cart_button,
+a.checkout-button,
+input[name="save_account_details"],
+input[name="save_address"],
+.button.view {
+	background-color: $primary;
+	color: $primarytext;
+
+	&:hover,
+	&:focus {
+		background-color: darken($primary, 10%);
+		color: $primarytext;
+	}
+
+	&:disabled,
+	&.disabled,
+	&:disabled[disabled] {
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $primary;
+		}
+	}
+}
+
+// Secondary Buttons
+
+button[name="apply_coupon"],
+button[name="update_cart"],
+button[name="calc_shipping"],
+.cross-sells a.add_to_cart_button,
+.woocommerce-message .button,
+.woocommerce-error .button,
+.woocommerce-info .button,
+.woocommerce-Button--next,
+.woocommerce-Button--previous {
+	background-color: $secondary;
+	color: $secondarytext;
+
+	&:hover,
+	&:focus {
+		background-color: darken($secondary, 10%);
+		color: $secondarytext;
+	}
+
+	&:disabled,
+	&.disabled,
+	&:disabled[disabled] {
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $secondary;
+		}
+	}
+}
+
+// Large Buttons
+
+a.checkout-button,
+#place_order,
+input[name="save_account_details"],
+input[name="save_address"] {
+	font-size: 1.125em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
+// Normal Buttons
+
+a.wc-backward,
+input.button[name="login"],
+input.button[name="register"],
+button[name="apply_coupon"],
+button[name="update_cart"],
+button[name="calc_shipping"],
+a.add_to_cart_button,
+a.button[data-product_id],
+button.single_add_to_cart_button {
+	font-size: 1em;
+	padding-top: 0.675em;
+	padding-bottom: 0.675em;
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
+// Small Buttons
+
+.woocommerce-message .button,
+.woocommerce-error .button,
+.woocommerce-info .button,
+.woocommerce-Button--next,
+.woocommerce-Button--previous {
+	font-size: 0.875em;
+	padding-top: 0.675em;
+	padding-bottom: 0.675em;
+	padding-left: 1em;
+	padding-right: 1em;
+	width: auto;
+	white-space: nowrap;
+}
+
+.button.view {
+	display: inline-block;
+	font-size: 0.875em;
+	padding: 0.5em;
+	text-align: center;
+}
+
+a.added_to_cart {
+	white-space: nowrap;
+	display: inline-block;
+	margin-bottom: 1em;
+}
+
+a.remove {
+	display: block;
+	font-size: 1.875em;
+	line-height: 30px;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	border-radius: 100%;
+	color: $color__alert-red;
+	text-decoration: none;
+	font-weight: 700;
+	border: 0;
+
+	&:hover {
+		color: #fff !important;
+		background: $color__alert-red;
+	}
+}
+
+// Set Height Buttons
+
+form.cart a.add_to_cart_button,
+form.cart button.single_add_to_cart_button,
+button[name="apply_coupon"],
+button[name="update_cart"],
+button[name="calc_shipping"] {
+	height: $input__height;
+	line-height: $input__height;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+form.cart a.add_to_cart_button,
+form.cart button.single_add_to_cart_button {
+	width: auto;
+}
+
+button[name="apply_coupon"],
+button[name="update_cart"],
+button[name="calc_shipping"] {
+	width: 100%;
+}
