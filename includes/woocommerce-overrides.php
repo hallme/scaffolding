@@ -164,21 +164,6 @@ function scaffolding_loop_shop_columns() {
 }
 add_filter( 'loop_shop_columns', 'scaffolding_loop_shop_columns', 999 );
 
-/**
- * Add inner wrapper in product li
- */
-function scaffolding_woocommerce_open_inner_product() {
-	echo '<div class="inner-product">';
-}
-add_action( 'woocommerce_before_shop_loop_item', 'scaffolding_woocommerce_open_inner_product', 0 );
-add_action( 'woocommerce_before_subcategory', 'scaffolding_woocommerce_open_inner_product', 0 );
-
-function scaffolding_woocommerce_close_inner_product() {
-	echo '</div>';
-}
-add_action( 'woocommerce_after_shop_loop_item', 'scaffolding_woocommerce_close_inner_product', 99 );
-add_action( 'woocommerce_after_subcategory', 'scaffolding_woocommerce_close_inner_product', 99 );
-
 
 /************************************
  * SINGLE PRODUCT
