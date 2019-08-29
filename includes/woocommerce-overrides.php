@@ -177,6 +177,19 @@ function scaffolding_woocommerce_product_thumbnails_columns() {
 }
 add_filter( 'woocommerce_product_thumbnails_columns', 'scaffolding_woocommerce_product_thumbnails_columns' );
 
+/**
+ * Flexslider gallery options
+ *
+ * @param array $args Flexslider options.
+ */
+function scaffolding_woocommerce_single_product_carousel_options( $args ) {
+	if ( wp_is_mobile() ) {
+		$args['controlNav'] = true; // default nav.
+	}
+	return $args;
+}
+add_filter( 'woocommerce_single_product_carousel_options', 'scaffolding_woocommerce_single_product_carousel_options' );
+
 
 /************************************
  * CART
