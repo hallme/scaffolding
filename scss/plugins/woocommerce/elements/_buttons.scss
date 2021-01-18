@@ -1,0 +1,121 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Buttons
+
+******************************************************************/
+
+.woocommerce {
+	a.button,
+	button.button,
+	input.button,
+	#respond input#submit {
+		font-size: 100%;
+		margin: 0;
+		line-height: 1;
+		cursor: pointer;
+		position: relative;
+		text-decoration: none;
+		overflow: visible;
+		padding: 0.618em 1em;
+		font-weight: 700;
+		left: auto;
+		color: $secondarytext;
+		background-color: $secondary;
+		border: 0;
+		display: inline-block;
+		background-image: none;
+		box-shadow: none;
+		text-shadow: none;
+		text-transform: none;
+		border-radius: 0;
+
+		&.loading {
+			opacity: 0.25;
+			padding-right: 2.618em;
+
+			&:after {
+				font-family: "WooCommerce";
+				content: "\e01c";
+				vertical-align: top;
+				font-weight: 400;
+				position: absolute;
+				top: 0.618em;
+				right: 1em;
+				animation: spin 2s linear infinite;
+			}
+		}
+
+		&.added:after {
+			font-family: "WooCommerce";
+			content: "\e017";
+			margin-left: 0.53em;
+			vertical-align: bottom;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: darken($secondary, 5%);
+			text-decoration: none;
+			background-image: none;
+			color: $secondarytext;
+		}
+
+		&.alt {
+			background-color: $primary;
+			color: $primarytext;
+			-webkit-font-smoothing: antialiased;
+
+			&:hover,
+			&:focus {
+				background-color: darken($primary, 5%);
+				color: $primarytext;
+			}
+
+			&.disabled,
+			&:disabled,
+			&:disabled[disabled],
+			&.disabled:hover,
+			&:disabled:hover,
+			&:disabled[disabled]:hover,
+			&.disabled:focus,
+			&:disabled:focus,
+			&:disabled[disabled]:focus {
+				background-color: $primary;
+				color: $primarytext;
+			}
+		}
+
+		&:disabled,
+		&.disabled,
+		&:disabled[disabled],
+		&.disabled:hover,
+		&:disabled:hover,
+		&:disabled[disabled]:hover,
+		&.disabled:focus,
+		&:disabled:focus,
+		&:disabled[disabled]:focus {
+			color: $secondarytext;
+			background-color: $secondary;
+			cursor: not-allowed;
+		}
+	}
+
+	.cart .button,
+	.cart input.button {
+		float: none;
+	}
+
+	a.added_to_cart {
+		padding-top: 0.5em;
+		display: block;
+	}
+
+	a.checkout-button,
+	button#place_order {
+		font-size: 1.25em;
+		padding: 1em 2em;
+		text-align: center;
+	}
+}

@@ -11,6 +11,7 @@ Stylesheet: Comments Stylesheet
 
 	#reply-title {
 		font-weight: bold;
+		font-size: 1.5em;
 
 		small {
 			display: block;
@@ -67,14 +68,6 @@ Stylesheet: Comments Stylesheet
 
 		.required {
 			color: $color__alert-red;
-		}
-
-		// this is a wp error
-		.comment-form-comment {
-			label:after {
-				content: " *";
-				color: $color__alert-red;
-			}
 		}
 
 		.comment-form-cookies-consent {

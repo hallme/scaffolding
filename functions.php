@@ -46,6 +46,10 @@ require_once SCAFFOLDING_INCLUDE_PATH . 'base-functions.php';
 require_once SCAFFOLDING_INCLUDE_PATH . 'class-scaffolding-walker-nav-menu.php';
 require_once SCAFFOLDING_INCLUDE_PATH . 'tinymce-settings.php';
 // require_once( SCAFFOLDING_INCLUDE_PATH . 'theme-guide.php' );
+// WooCommerce Customizations.
+if ( function_exists( 'is_woocommerce' ) ) {
+	require_once SCAFFOLDING_INCLUDE_PATH . 'woocommerce-customizations.php';
+}
 // Gravity Forms Customizations.
 if ( class_exists( 'GFForms' ) ) {
 	require_once SCAFFOLDING_INCLUDE_PATH . 'gf-customizations.php';

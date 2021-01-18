@@ -1,0 +1,162 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Reviews
+
+******************************************************************/
+
+.woocommerce {
+	#reviews {
+		h2 small {
+			float: right;
+			color: $subtext;
+			font-size: 15px;
+			margin: 10px 0 0;
+
+			a {
+				text-decoration: none;
+				color: $subtext;
+			}
+		}
+
+		h3 {
+			margin: 0;
+		}
+
+		#respond {
+			margin: 0;
+			border: 0;
+			padding: 0;
+		}
+
+		#comment {
+			@include mediaright();
+			height: 75px;
+		}
+
+		#comments {
+			.add_review {
+				@include clearfix();
+			}
+
+			h2 {
+				clear: none;
+			}
+
+			ol.commentlist {
+				@include clearfix();
+				margin: 0;
+				width: 100%;
+				background: none;
+				list-style: none;
+
+				li {
+					padding: 0;
+					margin: 0 0 20px;
+					border: 0;
+					position: relative;
+					background: 0;
+					border: 0;
+
+					.meta {
+						color: $subtext;
+						font-size: 0.75em;
+					}
+
+					img.avatar {
+						float: left;
+						position: absolute;
+						top: 0;
+						left: 0;
+						padding: 3px;
+						width: 32px;
+						height: auto;
+						background: $secondary;
+						border: 1px solid darken($secondary, 3%);
+						margin: 0;
+						box-shadow: none;
+					}
+
+					.comment-text {
+						margin: 0 0 0 50px;
+						border: 1px solid darken($secondary, 3%);
+						padding: 1em 1em 0;
+						@include clearfix();
+
+						.star-rating {
+							margin-bottom: 1em;
+						}
+
+						p.meta {
+							font-size: 0.83em;
+							margin-top: 0;
+						}
+					}
+				}
+
+				ul.children {
+					list-style: none outside;
+					margin: 20px 0 0 50px;
+
+					.star-rating {
+						display: none;
+					}
+				}
+
+				#respond {
+					border: 1px solid darken($secondary, 3%);
+					padding: 1em 1em 0;
+					margin: 20px 0 0 50px;
+				}
+			}
+
+			.commentlist > li::before {
+				content: "";
+			}
+		}
+	}
+
+	#review_form #respond {
+		@include clearfix();
+		position: static;
+		margin: 0;
+		width: auto;
+		padding: 0;
+		background: transparent none;
+		border: 0;
+
+		p {
+			margin: 0 0 10px;
+		}
+
+		.form-submit input {
+			left: auto;
+		}
+
+		textarea {
+			box-sizing: border-box;
+			width: 100%;
+		}
+	}
+}
+
+@include media-breakpoint-up('sm') {
+
+	.woocommerce {
+		#reviews {
+			#comments {
+				ol.commentlist {
+					li {
+						.comment-text {
+							.star-rating {
+								float: right;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

@@ -41,7 +41,6 @@ a.read-more {
 	font-weight: bold;
 	text-transform: uppercase;
 	border: 0;
-	outline: 0;
 	@include transition(background-color 0.25s ease-in-out);
 
 	&:hover,
@@ -55,8 +54,6 @@ a.read-more {
 	&.disabled,
 	&:disabled[disabled] {
 		cursor: not-allowed;
-		filter: alpha(opacity = 65);
-		opacity: 0.65;
 	}
 }
 

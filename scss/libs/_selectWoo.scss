@@ -38,7 +38,7 @@ Select2 gives you a customizable select box with support for searching, tagging,
 	cursor: pointer;
 	display: block;
 	height: $input__height;
-	margin: 0 0 -4px;
+	margin: 0;
 	user-select: none;
 	-webkit-user-select: none;
 }
@@ -86,6 +86,7 @@ Select2 gives you a customizable select box with support for searching, tagging,
 	border: none;
 	font-size: 100%;
 	margin: 0;
+	margin-top: 5px;
 	padding: 0;
 }
 
@@ -221,7 +222,6 @@ Select2 gives you a customizable select box with support for searching, tagging,
 }
 
 .select2-selection--single .select2-selection__rendered {
-	color: $color__primary;
 	line-height: $input__height;
 }
 

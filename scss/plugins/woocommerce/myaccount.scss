@@ -1,0 +1,175 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - My Account Pages
+
+Last reviewed with plugin Version 4.8.0.
+
+******************************************************************/
+
+//
+// IMPORT THEME UTILITIES
+//
+
+@import "../../utilities/functions";
+@import "../../utilities/variables";
+@import "../../utilities/mixins";
+
+//
+// IMPORT WOO UTILITIES
+//
+
+@import "utilities/variables";
+@import "utilities/mixins";
+
+//
+// IMPORT WOO ELEMENTS
+//
+
+@import "elements/password-strength";
+@import "elements/payment";
+
+.woocommerce-account {
+	.woocommerce-MyAccount-navigation {
+		margin-bottom: 2em;
+
+		ul {
+			list-style-type: none;
+
+			li {
+				margin-left: 0;
+			}
+		}
+	}
+
+	.addresses {
+		margin-top: 2em;
+
+		.title {
+			@include clearfix();
+
+			h3 {
+				float: left;
+				margin-top: 0;
+			}
+
+			.edit {
+				float: right;
+			}
+		}
+	}
+
+	.woocommerce-EditAccountForm {
+		.form-row-first {
+			width: 47.5%;
+			float: left;
+		}
+
+		.form-row-last {
+			width: 47.5%;
+			float: right;
+		}
+	}
+
+	ol.commentlist.notes li.note {
+		p.meta {
+			font-weight: 700;
+			margin-bottom: 0;
+		}
+
+		.description p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	table.woocommerce-MyAccount-downloads {
+		td,
+		th {
+			vertical-align: top;
+			text-align: center;
+
+			&:first-child {
+				text-align: left;
+			}
+
+			&:last-child {
+				text-align: left;
+			}
+
+			.woocommerce-MyAccount-downloads-file::before {
+				content: "\2193";
+				display: inline-block;
+			}
+		}
+	}
+
+	ul.digital-downloads {
+		margin-left: 0;
+		padding-left: 0;
+
+		li {
+			list-style: none;
+			margin-left: 0;
+			padding-left: 0;
+
+			&::before {
+
+				@include iconbefore( "\e00a" );
+			}
+
+			.count {
+				float: right;
+			}
+		}
+	}
+}
+
+@include media-breakpoint-down('sm') {
+
+	.woocommerce {
+		table.my_account_orders {
+			tr {
+				td {
+					&.order-actions {
+						text-align: left;
+
+						&::before {
+							display: none;
+						}
+
+						.button {
+							float: none;
+							margin: 0.125em 0.25em 0.125em 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+@include media-breakpoint-up('md') {
+
+	.woocommerce-account {
+		div.woocommerce {
+			@include clearfix;
+		}
+
+		.woocommerce-MyAccount-navigation {
+			float: left;
+			width: 20%;
+		}
+
+		.woocommerce-MyAccount-content {
+			float: right;
+			width: 80%;
+		}
+
+		form {
+			max-width: 550px;
+		}
+	}
+
+}

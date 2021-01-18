@@ -53,16 +53,11 @@ jQuery( document ).ready(
 		// SelectWoo - https://github.com/woocommerce/selectWoo .
 		if ($.fn.selectWoo) {
 			var setup_selectWoo = function() {
-				$( 'select' ).each(
-					function(){
-						$( this ).selectWoo(
-							{
-								minimumResultsForSearch: 20,
-								width: 'null',
-							}
-						);
-					}
-				);
+				$( 'select' ).not('#rating').each( function(){
+					$( this ).selectWoo({
+						width: 'null',
+					});
+				});
 			};
 			$( document ).ajaxComplete( setup_selectWoo );
 			$( document ).bind( 'gform_post_render', setup_selectWoo );

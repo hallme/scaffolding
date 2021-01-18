@@ -1,0 +1,284 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Forms
+
+******************************************************************/
+
+.woocommerce {
+	.quantity .qty {
+		width: 3.631em;
+		text-align: center;
+	}
+
+	form {
+		[class*="field-wrapper"] {
+			@include flexbox(flex);
+			@include flex-wrap(wrap);
+			@include justify-content(space-between);
+
+			.form-row-first,
+			.form-row-last {
+				@include make-col(5.7, $grid-columns);
+				width: 100%;
+			}
+
+			.form-row-wide,
+			.notes {
+				@include make-col(12, $grid-columns);
+				width: 100%;
+			}
+		}
+
+		.form-row {
+			margin-top: 0;
+			margin-bottom: 1em;
+
+			label {
+				&:not(.inline) {
+					display: block;
+				}
+
+				&.checkbox {
+					display: inline;
+				}
+
+				&.hidden {
+					visibility: hidden;
+				}
+
+				&.inline {
+					display: inline;
+				}
+			}
+
+			.woocommerce-input-wrapper {
+				.description {
+					background: #1e85be;
+					color: #fff;
+					padding: 1em;
+					margin: 0.5em 0 0;
+					clear: both;
+					display: none;
+					position: relative;
+
+					a {
+						color: #fff;
+						text-decoration: underline;
+						border: 0;
+						box-shadow: none;
+					}
+
+					&::before {
+						left: 50%;
+						top: 0%;
+						margin-top: -4px;
+						transform: translateX(-50%) rotate(180deg);
+						content: "";
+						position: absolute;
+						border-width: 4px 6px 0 6px;
+						border-style: solid;
+						border-color: #1e85be transparent transparent transparent;
+						z-index: 100;
+						display: block;
+					}
+				}
+			}
+
+			select {
+				cursor: pointer;
+				margin: 0;
+				width: 100%;
+			}
+
+			.select2-container {
+				width: 100%;
+			}
+
+			.required {
+				color: red;
+				font-weight: 700;
+				border: 0 !important;
+				text-decoration: none;
+				visibility: hidden; // Only show optional by default.
+			}
+
+			.optional {
+				visibility: visible;
+			}
+
+			.input-checkbox {
+				display: inline;
+				margin: -2px 8px 0 0;
+				text-align: center;
+				vertical-align: middle;
+			}
+
+			input.input-text,
+			textarea {
+				box-sizing: border-box;
+				width: 100%;
+				margin: 0;
+				outline: 0;
+				line-height: normal;
+			}
+
+			textarea {
+				height: 4em;
+				line-height: 1.5;
+				display: block;
+				box-shadow: none;
+			}
+
+			abbr[title] {
+				text-decoration: none;
+			}
+
+			small.note {
+				display: block;
+				color: $subtext;
+				font-size: 0.857em;
+				margin-top: 10px;
+			}
+
+			&.woocommerce-invalid {
+				label {
+					color: $red;
+				}
+
+				.select2-container,
+				input.input-text,
+				select {
+					border-color: $red;
+				}
+			}
+
+			&.woocommerce-validated {
+				.select2-container,
+				input.input-text,
+				select {
+					border-color: darken($green, 5%);
+				}
+			}
+		}
+
+		.password-input {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			position: relative;
+
+			input[type="password"] {
+				padding-right: 2.5rem;
+			}
+
+			/* Hide the Edge "reveal password" native button */
+			input::-ms-reveal {
+				display: none;
+			}
+		}
+
+		.show-password-input {
+			position: absolute;
+			right: 0.7em;
+			top: 0.7em;
+			cursor: pointer;
+		}
+
+		.show-password-input::after {
+			@include iconafter( "\e010" ); 	// Icon styles and glyph
+		}
+
+		.show-password-input.display-password::after {
+			color: #585858;
+		}
+	}
+
+	.blockUI.blockOverlay {
+		position: relative;
+		@include loader();
+	}
+
+	.loader {
+		@include loader();
+	}
+
+	form.login,
+	form.checkout_coupon,
+	form.register {
+		border: 1px solid darken($secondary, 10%);
+		padding: 20px;
+		margin: 2em 0;
+		text-align: left;
+	}
+}
+
+.woocommerce-form-login {
+	button.button {
+		margin-top: 0.5em;
+	}
+
+	.woocommerce-form-login__rememberme {
+		display: inline-block;
+	}
+}
+
+.woocommerce-no-js {
+	form.woocommerce-form-login,
+	form.woocommerce-form-coupon {
+		display: block !important;
+	}
+
+	.woocommerce-form-login-toggle,
+	.woocommerce-form-coupon-toggle,
+	.showcoupon {
+		display: none !important;
+	}
+}
+
+@include media-breakpoint-up('md') {
+
+	.woocommerce {
+		form {
+			#billing_country_field,
+			#shipping_country_field {
+				strong {
+					display: block;
+					font-weight: normal;
+				}
+			}
+
+			#billing_state_field,
+			#shipping_state_field {
+				input,
+				select,
+				.select2-container {
+					max-width: 400px;
+					width: 100%;
+				}
+			}
+
+			#billing_city_field,
+			#shipping_city_field {
+				input {
+					max-width: 400px;
+				}
+			}
+
+			#billing_postcode_field,
+			#shipping_postcode_field {
+				input {
+					max-width: 200px;
+				}
+			}
+
+			#billing_phone_field {
+				input {
+					max-width: 300px;
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,160 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Tables
+
+******************************************************************/
+
+// Includes global table styles
+// See individual stylesheets for page specific tables
+
+.woocommerce {
+
+	//
+	// Table Reset
+	//
+
+	table {
+		thead,
+		tbody,
+		tfoot {
+			border: 1px solid $table__border-color;
+		}
+
+		tr + tr {
+			border-top: 1px solid $table__border-color;
+		}
+
+		th,
+		td {
+			border: 0;
+			background: none;
+		}
+
+		th {
+			text-align: left;
+		}
+
+		tr:nth-child(even),
+		tr.even,
+		tr:nth-child(odd),
+		tr.odd {
+			background: none;
+		}
+	}
+
+	//
+	// General
+	//
+
+	.shop_table {
+		margin: 0 0 24px 0;
+		text-align: left;
+		width: 100%;
+
+		th {
+			font-weight: 700;
+			padding: 9px 12px;
+			line-height: 1.5em;
+		}
+
+		td {
+			padding: 9px 12px;
+			vertical-align: middle;
+			line-height: 1.5em;
+
+			small {
+				font-weight: normal;
+			}
+
+			del {
+				font-weight: normal;
+			}
+		}
+
+		tfoot td,
+		tfoot th,
+		tbody th {
+			font-weight: bold;
+		}
+	}
+
+	td.product-name {
+		dl.variation,
+		.wc-item-meta {
+			list-style: none outside;
+
+			dt,
+			.wc-item-meta-label {
+				float: left;
+				clear: both;
+				margin-right: 0.25em;
+				list-style: none outside;
+			}
+
+			dd {
+				margin: 0;
+			}
+
+			p,
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		p.backorder_notification {
+			font-size: 0.83em;
+		}
+	}
+
+}
+
+@include media-breakpoint-down('md') {
+
+	.woocommerce {
+
+		//
+		// Responsive
+		//
+
+		.shop_table_responsive {
+			thead {
+				display: none;
+			}
+
+			tbody {
+				display: block;
+				border: 0;
+
+				th {
+					display: none;
+				}
+			}
+
+			tr {
+				display: block;
+				border: 1px solid $table__border-color;
+
+				+ tr {
+					border-top: 0;
+				}
+
+				td {
+					display: block;
+
+					&[data-title] {
+						&::before {
+							content: attr(data-title) ': ';
+							font-weight: bold;
+							float: left;
+							width: 35%;
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+}

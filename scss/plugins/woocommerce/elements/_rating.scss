@@ -1,0 +1,116 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Star Rating
+
+******************************************************************/
+
+.woocommerce-product-rating {
+	@include clearfix();
+	line-height: 2;
+	display: block;
+
+	.star-rating {
+		margin: 0.5em 4px 0 0;
+		float: left;
+	}
+}
+
+.woocommerce {
+	.star-rating {
+		overflow: hidden;
+		position: relative;
+		height: 1em;
+		line-height: 1;
+		font-size: 1em;
+		width: 5.4em;
+		font-family: "star";
+		color: $star;
+
+		&::before {
+			content: "\73\73\73\73\73";
+			color: darken($secondary, 10%);
+			float: left;
+			top: 0;
+			left: 0;
+			position: absolute;
+		}
+
+		span {
+			overflow: hidden;
+			float: left;
+			top: 0;
+			left: 0;
+			position: absolute;
+			padding-top: 1.5em;
+		}
+
+		span::before {
+			content: "\53\53\53\53\53";
+			top: 0;
+			position: absolute;
+			left: 0;
+		}
+	}
+
+	.products .star-rating {
+		display: block;
+		margin: 0 0 0.5em;
+		float: none;
+	}
+
+	.hreview-aggregate .star-rating {
+		margin: 10px 0 0;
+	}
+
+	p.stars {
+		a {
+			position: relative;
+			height: 1em;
+			width: 1em;
+			text-indent: -999em;
+			display: inline-block;
+			text-decoration: none;
+
+			&::before {
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 1em;
+				height: 1em;
+				line-height: 1;
+				font-family: "WooCommerce";
+				content: "\e021";
+				text-indent: 0;
+			}
+
+			&:hover ~ a::before {
+				content: "\e021";
+			}
+		}
+
+		&:hover a::before {
+			content: "\e020";
+		}
+
+		&.selected {
+
+			a.active {
+
+				&::before {
+					content: "\e020";
+				}
+
+				~ a::before {
+					content: "\e021";
+				}
+			}
+
+			a:not(.active)::before {
+				content: "\e020";
+			}
+		}
+	}
+}

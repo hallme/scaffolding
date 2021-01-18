@@ -1,0 +1,37 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Fonts
+
+******************************************************************/
+
+//
+// Star Font for ratings
+//
+
+@font-face {
+	font-family: 'star';
+	src: url('#{$plugins-path}woocommerce/assets/fonts/star.eot');
+	src: url('#{$plugins-path}woocommerce/assets/fonts/star.eot?#iefix') format('embedded-opentype'),
+		url('#{$plugins-path}woocommerce/assets/fonts/star.woff') format('woff'),
+		url('#{$plugins-path}woocommerce/assets/fonts/star.ttf') format('truetype'),
+		url('#{$plugins-path}woocommerce/assets/fonts/star.svg#star') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+//
+// WooCommerce Font
+//
+
+@font-face {
+	font-family: 'WooCommerce';
+	src: url('#{$plugins-path}woocommerce/assets/fonts/WooCommerce.eot');
+	src: url('#{$plugins-path}woocommerce/assets/fonts/WooCommerce.eot?#iefix') format('embedded-opentype'),
+		url('#{$plugins-path}woocommerce/assets/fonts/WooCommerce.woff') format('woff'),
+		url('#{$plugins-path}woocommerce/assets/fonts/WooCommerce.ttf') format('truetype'),
+		url('#{$plugins-path}woocommerce/assets/fonts/WooCommerce.svg#WooCommerce') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,217 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Payment
+
+******************************************************************/
+
+.woocommerce {
+	#payment {
+		border: 1px solid darken($secondary, 10%);
+
+		ul.payment_methods {
+			@include clearfix();
+			text-align: left;
+			padding: 1.5em;
+			border-bottom: 1px solid darken($secondary, 10%);
+			margin: 0;
+			list-style: none outside;
+
+			li {
+				line-height: 2;
+				text-align: left;
+				margin: 0;
+				font-weight: normal;
+
+				input {
+					margin: 0 1em 0 0;
+				}
+
+				img {
+					vertical-align: middle;
+					margin: -2px 0 0 0.5em;
+					padding: 0;
+					position: relative;
+					box-shadow: none;
+				}
+
+				img + img {
+					margin-left: 2px;
+				}
+			}
+
+			li:not(.woocommerce-notice) {
+				@include clearfix;
+			}
+		}
+
+		div.form-row {
+			padding: 1.5em;
+			margin: 0;
+		}
+
+		div.payment_box {
+			position: relative;
+			box-sizing: border-box;
+			width: 100%;
+			padding: 1em;
+			margin: 1em 0;
+			font-size: 0.92em;
+			line-height: 1.5;
+			border-color: darken($secondary, 10%);
+			border-width: 1px;
+			border-top-width: 2px;
+			border-style: solid;
+			color: $secondarytext;
+			max-width: 700px;
+
+			input.input-text,
+			textarea {
+				border-color: darken($secondary, 15%);
+				border-top-color: darken($secondary, 20%);
+			}
+
+			::-webkit-input-placeholder {
+				color: darken($secondary, 20%);
+			}
+
+			:-moz-placeholder {
+				color: darken($secondary, 20%);
+			}
+
+			:-ms-input-placeholder {
+				color: darken($secondary, 20%);
+			}
+
+			.woocommerce-SavedPaymentMethods {
+				list-style: none outside;
+				margin: 0;
+
+				.woocommerce-SavedPaymentMethods-token,
+				.woocommerce-SavedPaymentMethods-new {
+					margin: 0 0 0.5em;
+
+					label {
+						cursor: pointer;
+					}
+				}
+
+				.woocommerce-SavedPaymentMethods-tokenInput {
+					vertical-align: middle;
+					margin: -3px 1em 0 0;
+					position: relative;
+				}
+			}
+
+			.wc-credit-card-form {
+				border: 0;
+				padding: 0;
+				margin: 1em 0 0;
+			}
+
+			.wc-credit-card-form-card-number,
+			.wc-credit-card-form-card-expiry,
+			.wc-credit-card-form-card-cvc {
+				font-size: 1.5em;
+				padding: 8px;
+				background-repeat: no-repeat;
+				background-position: right 0.618em center;
+				background-size: 32px 20px;
+
+				&.visa {
+					background-image: url("../images/icons/credit-cards/visa.svg");
+				}
+
+				&.mastercard {
+					background-image: url("../images/icons/credit-cards/mastercard.svg");
+				}
+
+				&.laser {
+					background-image: url("../images/icons/credit-cards/laser.svg");
+				}
+
+				&.dinersclub {
+					background-image: url("../images/icons/credit-cards/diners.svg");
+				}
+
+				&.maestro {
+					background-image: url("../images/icons/credit-cards/maestro.svg");
+				}
+
+				&.jcb {
+					background-image: url("../images/icons/credit-cards/jcb.svg");
+				}
+
+				&.amex {
+					background-image: url("../images/icons/credit-cards/amex.svg");
+				}
+
+				&.discover {
+					background-image: url("../images/icons/credit-cards/discover.svg");
+				}
+			}
+
+			fieldset {
+				border: 0;
+				padding: 0;
+			}
+
+			span.help {
+				font-size: 0.857em;
+				color: $subtext;
+				font-weight: normal;
+			}
+
+			.form-row {
+				margin: 0 0 1em;
+			}
+
+			p:only-child,
+			p:last-child {
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+
+			&:before {
+				content: "";
+				display: block;
+				border: 1em solid darken($secondary, 10%); /* arrow size / color */
+				border-right-color: transparent;
+				border-left-color: transparent;
+				border-top-color: transparent;
+				position: absolute;
+				top: -1em;
+				left: 0;
+				margin: -1em 0 0 2em;
+			}
+		}
+
+		.payment_method_paypal {
+			.about_paypal {
+				float: right;
+				line-height: 52px;
+				font-size: 0.83em;
+			}
+
+			img {
+				max-height: 52px;
+				vertical-align: middle;
+			}
+		}
+	}
+}
+
+@include media-breakpoint-up('md') {
+
+	.woocommerce {
+		#payment {
+			.form-row {
+				select {
+					width: auto;
+				}
+			}
+		}
+	}
+
+}

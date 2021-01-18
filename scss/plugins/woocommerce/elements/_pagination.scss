@@ -1,0 +1,50 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Pagination
+
+******************************************************************/
+
+nav.woocommerce-pagination {
+	text-align: center;
+
+	ul {
+		display: inline-block;
+		white-space: nowrap;
+		padding: 0;
+		clear: both;
+		border: 1px solid darken($secondary, 10%);
+		border-right: 0;
+		margin: 1px;
+
+		li {
+			border-right: 1px solid darken($secondary, 10%);
+			padding: 0;
+			margin: 0;
+			float: left;
+			display: inline;
+			overflow: hidden;
+
+			a,
+			span {
+				margin: 0;
+				text-decoration: none;
+				padding: 0;
+				line-height: 1;
+				font-size: 1em;
+				font-weight: normal;
+				padding: 0.5em;
+				min-width: 1em;
+				display: block;
+			}
+
+			span.current,
+			a:hover,
+			a:focus {
+				background: $secondary;
+				color: darken($secondary, 40%);
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Breadcrumbs
+
+******************************************************************/
+
+.woocommerce-breadcrumb {
+	@include make-container();
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-right: ($grid-gutter-width / 2);
+	padding-left: ($grid-gutter-width / 2);
+	font-size: 0.92em;
+	color: $subtext;
+
+	a {
+		color: $subtext;
+	}
+}

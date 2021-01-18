@@ -1,0 +1,137 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Responsive WooCommerce Styles - Product Loops
+
+******************************************************************/
+
+.woocommerce.archive {
+	ul.products {
+		margin-top: 2em;
+	}
+}
+
+.woocommerce {
+	.products ul,
+	ul.products {
+		margin: 0;
+		padding: 0;
+		list-style: none outside;
+		clear: both;
+
+		li {
+			list-style: none outside;
+		}
+	}
+
+	ul.products {
+		@include make-row();
+
+		li.product {
+			display: inline-block;
+			margin-left: 0;
+			margin-right: 0;
+			margin-bottom: 2.992em;
+			max-width: none;
+			@include make-col-ready();
+		}
+
+		&.columns-1,
+		&.columns-2,
+		&.columns-3,
+		&.columns-4,
+		& .columns-1 ul.products,
+		& .columns-2 ul.products,
+		& .columns-3 ul.products,
+		& .columns-4 ul.products {
+			li.product {
+				@include make-col(6);
+			}
+		}
+	}
+
+
+	ul.products {
+		li.product {
+			&.sale {
+				position: relative;
+			}
+
+			span.onsale {
+				margin-left: ($grid-gutter-width / 2);
+			}
+
+			h3,
+			.woocommerce-loop-product__title,
+			.woocommerce-loop-category__title {
+				padding: 0.5em 0;
+				margin: 0;
+				font-size: 1.125em;
+				color: $color__body-text;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			a img {
+				width: 100%;
+				height: auto;
+				display: block;
+				margin: 0 0 0.5em;
+				box-shadow: none;
+			}
+
+			strong {
+				display: block;
+			}
+
+			.woocommerce-placeholder {
+				border: 1px solid #f2f2f2;
+			}
+
+			.star-rating {
+				font-size: 0.857em;
+			}
+
+			.button {
+				margin-top: 0.5em;
+			}
+
+			.price {
+				display: block;
+				margin-bottom: 0.5em;
+			}
+		}
+	}
+}
+
+@include media-breakpoint-up('md') {
+
+	.woocommerce {
+		ul.products {
+			& .columns-2 ul.products,
+			&.columns-2 {
+				li.product {
+					@include make-col(6);
+				}
+			}
+
+			& .columns-3 ul.products,
+			&.columns-3 {
+				li.product {
+					@include make-col(4);
+				}
+			}
+
+			& .columns-4 ul.products,
+			&.columns-4 {
+				li.product {
+					@include make-col(3);
+				}
+			}
+		}
+	}
+
+}
